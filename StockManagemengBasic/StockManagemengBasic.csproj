@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUsers.Designer.cs">
+      <DependentUpon>AddUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,6 +82,9 @@
     <Compile Include="SupplierIn.Designer.cs">
       <DependentUpon>SupplierIn.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddUsers.resx">
+      <DependentUpon>AddUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
