@@ -5,28 +5,40 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StockmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="StockmanagementModelStoreContainer">
-    <EntitySet Name="tblStocks" EntityType="StockmanagementModel.Store.tblStocks" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="tblStocks">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Brand" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Model" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="SellPrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="PurchasePrice" Type="decimal" Nullable="true" Precision="18" Scale="2" />
-    <Property Name="SupplierID" Type="int" Nullable="true" />
-    <Property Name="AlertQty" Type="int" Nullable="true" />
-  </EntityType>
-</Schema></edmx:StorageModels>
+        <EntityContainer Name="StockmanagementModelStoreContainer">
+          <EntitySet Name="tblStocks" EntityType="StockmanagementModel.Store.tblStocks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUsers" EntityType="StockmanagementModel.Store.tblUsers" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblStocks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="SellPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="PurchasePrice" Type="decimal" Scale="2" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="AlertQty" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="UserLevel" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StockmanagementModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="StockmanagementEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
+          <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
         </EntityContainer>
         <EntityType Name="tblStock">
           <Key>
@@ -40,6 +52,16 @@
           <Property Type="Decimal" Name="PurchasePrice" Precision="18" Scale="2" />
           <Property Type="Int32" Name="SupplierID" />
           <Property Type="Int32" Name="AlertQty" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserLevel" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -61,6 +83,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -82,6 +115,7 @@
     <Diagrams>
       <Diagram Name="Database" >
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="1" PointY="0.5" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="3.375" PointY="0.75" Height="1.9802864583333335" />
       </Diagram>
     </Diagrams>
   </Designer>

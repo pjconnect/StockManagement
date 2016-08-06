@@ -154,7 +154,7 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(154, 234);
+            this.btnInsert.Location = new System.Drawing.Point(145, 234);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(75, 23);
             this.btnInsert.TabIndex = 5;
@@ -164,7 +164,7 @@
             // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(129, 196);
+            this.txtItemName.Location = new System.Drawing.Point(120, 199);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(100, 20);
             this.txtItemName.TabIndex = 6;
@@ -186,7 +186,7 @@
             this.label8.TabIndex = 4;
             this.label8.Text = "Item Name";
             // 
-            // Form1
+            // AddStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -208,7 +208,7 @@
             this.Controls.Add(this.txtBrand);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtItemID);
-            this.Name = "Form1";
+            this.Name = "AddStock";
             this.Text = "Stock Manger";
             this.ResumeLayout(false);
             this.PerformLayout();

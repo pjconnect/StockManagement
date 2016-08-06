@@ -12,7 +12,6 @@ namespace StockManagemengBasic
 {
     public partial class AddStock : Form
     {
-
         StockmanagementEntities db = new StockmanagementEntities();
 
         public AddStock()

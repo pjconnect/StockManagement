@@ -80,6 +80,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblStock> _tblStocks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblUser> tblUsers
+        {
+            get
+            {
+                if ((_tblUsers == null))
+                {
+                    _tblUsers = base.CreateObjectSet<tblUser>("tblUsers");
+                }
+                return _tblUsers;
+            }
+        }
+        private ObjectSet<tblUser> _tblUsers;
 
         #endregion
 
@@ -91,6 +107,14 @@ namespace StockManagemengBasic
         public void AddTotblStocks(tblStock tblStock)
         {
             base.AddObject("tblStocks", tblStock);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblUsers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblUsers(tblUser tblUser)
+        {
+            base.AddObject("tblUsers", tblUser);
         }
 
         #endregion
@@ -324,6 +348,167 @@ namespace StockManagemengBasic
         private Nullable<global::System.Int32> _AlertQty;
         partial void OnAlertQtyChanging(Nullable<global::System.Int32> value);
         partial void OnAlertQtyChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblUser")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblUser : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblUser object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="username">Initial value of the Username property.</param>
+        /// <param name="password">Initial value of the Password property.</param>
+        /// <param name="userLevel">Initial value of the UserLevel property.</param>
+        /// <param name="isActive">Initial value of the IsActive property.</param>
+        public static tblUser CreatetblUser(global::System.Int32 id, global::System.String username, global::System.String password, global::System.Int32 userLevel, global::System.Boolean isActive)
+        {
+            tblUser tblUser = new tblUser();
+            tblUser.ID = id;
+            tblUser.Username = username;
+            tblUser.Password = password;
+            tblUser.UserLevel = userLevel;
+            tblUser.IsActive = isActive;
+            return tblUser;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserLevel
+        {
+            get
+            {
+                return _UserLevel;
+            }
+            set
+            {
+                OnUserLevelChanging(value);
+                ReportPropertyChanging("UserLevel");
+                _UserLevel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserLevel");
+                OnUserLevelChanged();
+            }
+        }
+        private global::System.Int32 _UserLevel;
+        partial void OnUserLevelChanging(global::System.Int32 value);
+        partial void OnUserLevelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
 
         #endregion
 
