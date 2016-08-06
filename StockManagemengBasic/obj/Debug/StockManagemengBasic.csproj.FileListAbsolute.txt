@@ -1,0 +1,10 @@
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\bin\Debug\StockManagemengBasic.exe.config
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.csprojResolveAssemblyReference.cache
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.Form1.resources
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.Properties.Resources.resources
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.csproj.GenerateResource.Cache
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\bin\Debug\StockManagemengBasic.exe
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\bin\Debug\StockManagemengBasic.pdb
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.exe
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.pdb
+C:\Users\Pasindu\Desktop\StockManagemengBasic\StockManagemengBasic\obj\Debug\StockManagemengBasic.SupplierIn.resources
