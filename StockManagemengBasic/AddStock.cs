@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace StockManagemengBasic
 {
-    public partial class Form1 : Form
+    public partial class AddStock : Form
     {
 
         StockmanagementEntities db = new StockmanagementEntities();
 
-        public Form1()
+        public AddStock()
         {
             InitializeComponent();
         }

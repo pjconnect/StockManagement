@@ -1,6 +1,6 @@
 ﻿namespace StockManagemengBasic
 {
-    partial class Form1
+    partial class AddStock
     {
         /// <summary>
         /// Required designer variable.
@@ -45,8 +45,6 @@
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.txtPurchasePrice = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtItemID
@@ -188,32 +186,11 @@
             this.label8.TabIndex = 4;
             this.label8.Text = "Item Name";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(536, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(261, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 367);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtPurchasePrice);
             this.Controls.Add(this.txtItemName);
             this.Controls.Add(this.btnInsert);
@@ -257,8 +234,6 @@
         private System.Windows.Forms.TextBox txtItemName;
         private System.Windows.Forms.TextBox txtPurchasePrice;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }
 

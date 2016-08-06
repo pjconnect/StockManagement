@@ -5,23 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StockmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="StockmanagementModelStoreContainer">
-          <EntitySet Name="tblStock" EntityType="StockmanagementModel.Store.tblStock" store:Type="Tables" Schema="dbo" />
-        </EntityContainer>
-        <EntityType Name="tblStock">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" />
-          <Property Name="SellPrice" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="PurchasePrice" Type="decimal" Scale="2" />
-          <Property Name="SupplierID" Type="int" />
-          <Property Name="AlertQty" Type="int" />
-        </EntityType>
-      </Schema></edmx:StorageModels>
+  <EntityContainer Name="StockmanagementModelStoreContainer">
+    <EntitySet Name="tblStocks" EntityType="StockmanagementModel.Store.tblStocks" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="tblStocks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Brand" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SellPrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PurchasePrice" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="SupplierID" Type="int" Nullable="true" />
+    <Property Name="AlertQty" Type="int" Nullable="true" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StockmanagementModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -45,25 +45,24 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities" >
-          <EntitySetMapping Name="tblStocks">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
-              <MappingFragment StoreEntitySet="tblStock">
-                <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
-                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities">
+    <EntitySetMapping Name="tblStocks">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblStock)">
+        <MappingFragment StoreEntitySet="tblStocks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
@@ -82,7 +81,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Database" >
-        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="1" PointY="0.5" Height="2.5571907552083335" />
       </Diagram>
     </Diagrams>
   </Designer>
