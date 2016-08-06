@@ -13,7 +13,7 @@ namespace StockManagemengBasic
     public partial class Form1 : Form
     {
 
-        DatabaseDataContext db = new DatabaseDataContext();
+        StockmanagementEntities db = new StockmanagementEntities();
 
         public Form1()
         {
@@ -54,11 +54,11 @@ namespace StockManagemengBasic
 
             };
 
-            db.tblStocks.InsertOnSubmit(newstock);
+            db.tblStocks.AddObject(newstock);
 
             try
             {
-                db.SubmitChanges();
+                db.SaveChanges();
 
                 MessageBox.Show("Successfull inserted");
 

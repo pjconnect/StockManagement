@@ -24,3 +24,14 @@ E:\PROJECTS\c#\StockManagement\trunk\StockManagemengBasic\obj\Debug\StockManagem
 E:\PROJECTS\c#\StockManagement\trunk\StockManagemengBasic\obj\Debug\StockManagemengBasic.Form1.resources
 E:\PROJECTS\c#\StockManagement\trunk\StockManagemengBasic\obj\Debug\StockManagemengBasic.Properties.Resources.resources
 E:\PROJECTS\c#\StockManagement\trunk\StockManagemengBasic\obj\Debug\StockManagemengBasic.csproj.GenerateResource.Cache
+D:\@c#\StockManagemengBasic\obj\Debug\ResolveAssemblyReference.cache
+D:\@c#\StockManagemengBasic\obj\Debug\StockManagemengBasic.SupplierIn.resources
+D:\@c#\StockManagemengBasic\obj\Debug\StockManagemengBasic.Form1.resources
+D:\@c#\StockManagemengBasic\obj\Debug\StockManagemengBasic.Properties.Resources.resources
+D:\@c#\StockManagemengBasic\obj\Debug\GenerateResource.read.1.tlog
+D:\@c#\StockManagemengBasic\obj\Debug\GenerateResource.write.1.tlog
+D:\@c#\StockManagemengBasic\bin\Debug\StockManagemengBasic.exe.config
+D:\@c#\StockManagemengBasic\bin\Debug\StockManagemengBasic.exe
+D:\@c#\StockManagemengBasic\bin\Debug\StockManagemengBasic.pdb
+D:\@c#\StockManagemengBasic\obj\Debug\StockManagemengBasic.exe
+D:\@c#\StockManagemengBasic\obj\Debug\StockManagemengBasic.pdb

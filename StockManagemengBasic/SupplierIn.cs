@@ -13,7 +13,7 @@ namespace StockManagemengBasic
     public partial class SupplierIn : Form
     {
 
-        DatabaseDataContext db = new DatabaseDataContext();
+         StockmanagementEntities db = new  StockmanagementEntities();
 
         public SupplierIn()
         {

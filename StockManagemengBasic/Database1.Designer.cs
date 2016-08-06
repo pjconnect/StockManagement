@@ -304,24 +304,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> AlertQt
+        public Nullable<global::System.Int32> AlertQty
         {
             get
             {
-                return _AlertQt;
+                return _AlertQty;
             }
             set
             {
-                OnAlertQtChanging(value);
-                ReportPropertyChanging("AlertQt");
-                _AlertQt = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AlertQt");
-                OnAlertQtChanged();
+                OnAlertQtyChanging(value);
+                ReportPropertyChanging("AlertQty");
+                _AlertQty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AlertQty");
+                OnAlertQtyChanged();
             }
         }
-        private Nullable<global::System.Int32> _AlertQt;
-        partial void OnAlertQtChanging(Nullable<global::System.Int32> value);
-        partial void OnAlertQtChanged();
+        private Nullable<global::System.Int32> _AlertQty;
+        partial void OnAlertQtyChanging(Nullable<global::System.Int32> value);
+        partial void OnAlertQtyChanged();
 
         #endregion
     
