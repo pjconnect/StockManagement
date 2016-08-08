@@ -47,6 +47,7 @@
             this.addUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgStock = new System.Windows.Forms.DataGridView();
+            this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).BeginInit();
             this.SuspendLayout();
@@ -177,7 +178,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addUsersToolStripMenuItem,
-            this.loginToolStripMenuItem});
+            this.loginToolStripMenuItem,
+            this.invoiceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(712, 24);
@@ -207,6 +209,13 @@
             this.dgStock.Size = new System.Drawing.Size(470, 288);
             this.dgStock.TabIndex = 9;
             this.dgStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgStock_CellClick);
+            // 
+            // invoiceToolStripMenuItem
+            // 
+            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.invoiceToolStripMenuItem.Text = "Invoice";
+            this.invoiceToolStripMenuItem.Click += new System.EventHandler(this.invoiceToolStripMenuItem_Click);
             // 
             // AddStock
             // 
@@ -262,6 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgStock;
+        private System.Windows.Forms.ToolStripMenuItem invoiceToolStripMenuItem;
     }
 }
 

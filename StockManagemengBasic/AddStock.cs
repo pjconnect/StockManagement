@@ -139,5 +139,10 @@ namespace StockManagemengBasic
             txtPurchasePrice.Text = selectedRow.PurchasePrice.ToString();
 
         }
+
+        private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AddInvoice().Show();
+        }
     }
 }

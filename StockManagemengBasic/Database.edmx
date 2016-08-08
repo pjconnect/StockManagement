@@ -6,9 +6,45 @@
     <edmx:StorageModels>
     <Schema Namespace="StockmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="StockmanagementModelStoreContainer">
+          <EntitySet Name="tblInvoice" EntityType="StockmanagementModel.Store.tblInvoice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.Store.tblInvoiceItems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.Store.tblStocks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.Store.tblUsers" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="Discount" Type="decimal" Scale="2" />
+          <Property Name="DiscountType" Type="int" />
+          <Property Name="CashReceived" Type="decimal" Scale="2" />
+          <Property Name="DebterID" Type="int" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="CreditReceived" Type="decimal" Scale="2" />
+          <Property Name="ChequeRecieved" Type="decimal" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblInvoiceItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="decimal" Scale="2" />
+          <Property Name="Credit" Type="decimal" Scale="2" />
+          <Property Name="SellingPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="DiscountType" Type="int" />
+          <Property Name="ItemPrice" Type="decimal" Scale="2" />
+          <Property Name="Debt" Type="decimal" Scale="2" />
+          <Property Name="Comment" Type="decimal" Scale="2" />
+          <Property Name="Category" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="tblStocks">
           <Key>
             <PropertyRef Name="ID" />
@@ -37,9 +73,45 @@
     <edmx:ConceptualModels>
       <Schema Namespace="StockmanagementModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="StockmanagementEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
+          <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.tblInvoiceItem" />
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
         </EntityContainer>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="Boolean" Name="IsPaid" />
+          <Property Type="Decimal" Name="Discount" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DiscountType" />
+          <Property Type="Decimal" Name="CashReceived" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DebterID" />
+          <Property Type="Int32" Name="PaymentType" Nullable="false" />
+          <Property Type="Int32" Name="BankID" />
+          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="DateTime" Name="UpdatedDate" />
+          <Property Type="Decimal" Name="CreditReceived" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ChequeRecieved" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblInvoiceItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="String" Name="ItemID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Qty" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SellingPrice" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DiscountType" />
+          <Property Type="Decimal" Name="ItemPrice" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Debt" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Comment" Precision="18" Scale="2" />
+          <Property Type="String" Name="Category" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblStock">
           <Key>
             <PropertyRef Name="ID" />
@@ -63,26 +135,62 @@
           <Property Type="Int32" Name="UserLevel" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities">
-    <EntitySetMapping Name="tblStocks">
-      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblStock)">
-        <MappingFragment StoreEntitySet="tblStocks">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-          <ScalarProperty Name="Brand" ColumnName="Brand" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
-          <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
-          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-          <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoices">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblInvoice">
+              <MappingFragment StoreEntitySet="tblInvoice">
+                <ScalarProperty Name="ChequeRecieved" ColumnName="ChequeRecieved" />
+                <ScalarProperty Name="CreditReceived" ColumnName="CreditReceived" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="DebterID" ColumnName="DebterID" />
+                <ScalarProperty Name="CashReceived" ColumnName="CashReceived" />
+                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoiceItems">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblInvoiceItem">
+              <MappingFragment StoreEntitySet="tblInvoiceItems">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Debt" ColumnName="Debt" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStocks">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
+              <MappingFragment StoreEntitySet="tblStocks">
+                <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblUser">
               <MappingFragment StoreEntitySet="tblUsers">
@@ -94,7 +202,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-  </EntityContainerMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
@@ -114,8 +222,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Database" >
-        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="1" PointY="0.5" Height="2.5571907552083335" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="3.375" PointY="0.75" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="0.75" PointY="0.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="2.75" PointY="0.75" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="4.75" PointY="0.75" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="4.75" Height="1.9802864583333246" />
       </Diagram>
     </Diagrams>
   </Designer>
