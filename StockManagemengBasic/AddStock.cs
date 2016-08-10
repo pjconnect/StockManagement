@@ -67,7 +67,6 @@ namespace StockManagemengBasic
                 firstitem.ItemName = itemname;
                 firstitem.ID = itemID;
                 firstitem.Model = model;
-                firstitem.PurchasePrice = puchasePrice;
                 message = "Successfully Updated";
             }
             else
@@ -80,7 +79,6 @@ namespace StockManagemengBasic
                     ItemName = itemname,
                     ID = itemID,
                     Model = model,
-                    PurchasePrice = puchasePrice,
 
                 };
 
@@ -126,7 +124,6 @@ namespace StockManagemengBasic
             txtModel.Text = selectedRow.Model;
             txtAlertQty.Text = selectedRow.AlertQty.ToString();
             txtSuppierID.Text = selectedRow.SupplierID.ToString();
-            txtPurchasePrice.Text = selectedRow.PurchasePrice.ToString();
 
         }
     }

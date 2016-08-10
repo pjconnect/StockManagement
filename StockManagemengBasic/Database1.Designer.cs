@@ -68,18 +68,34 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblInvoice> tblInvoices
+        public ObjectSet<tblCashbook> tblCashbooks
         {
             get
             {
-                if ((_tblInvoices == null))
+                if ((_tblCashbooks == null))
                 {
-                    _tblInvoices = base.CreateObjectSet<tblInvoice>("tblInvoices");
+                    _tblCashbooks = base.CreateObjectSet<tblCashbook>("tblCashbooks");
                 }
-                return _tblInvoices;
+                return _tblCashbooks;
             }
         }
-        private ObjectSet<tblInvoice> _tblInvoices;
+        private ObjectSet<tblCashbook> _tblCashbooks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblCredit> tblCredits
+        {
+            get
+            {
+                if ((_tblCredits == null))
+                {
+                    _tblCredits = base.CreateObjectSet<tblCredit>("tblCredits");
+                }
+                return _tblCredits;
+            }
+        }
+        private ObjectSet<tblCredit> _tblCredits;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -96,6 +112,38 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblInvoiceItem> _tblInvoiceItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblInvoice> tblInvoices
+        {
+            get
+            {
+                if ((_tblInvoices == null))
+                {
+                    _tblInvoices = base.CreateObjectSet<tblInvoice>("tblInvoices");
+                }
+                return _tblInvoices;
+            }
+        }
+        private ObjectSet<tblInvoice> _tblInvoices;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblStockItem> tblStockItems
+        {
+            get
+            {
+                if ((_tblStockItems == null))
+                {
+                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
+                }
+                return _tblStockItems;
+            }
+        }
+        private ObjectSet<tblStockItem> _tblStockItems;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -134,11 +182,19 @@ namespace StockManagemengBasic
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tblInvoices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the tblCashbooks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTotblInvoices(tblInvoice tblInvoice)
+        public void AddTotblCashbooks(tblCashbook tblCashbook)
         {
-            base.AddObject("tblInvoices", tblInvoice);
+            base.AddObject("tblCashbooks", tblCashbook);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblCredits EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblCredits(tblCredit tblCredit)
+        {
+            base.AddObject("tblCredits", tblCredit);
         }
     
         /// <summary>
@@ -147,6 +203,22 @@ namespace StockManagemengBasic
         public void AddTotblInvoiceItems(tblInvoiceItem tblInvoiceItem)
         {
             base.AddObject("tblInvoiceItems", tblInvoiceItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblInvoices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblInvoices(tblInvoice tblInvoice)
+        {
+            base.AddObject("tblInvoices", tblInvoice);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStockItems(tblStockItem tblStockItem)
+        {
+            base.AddObject("tblStockItems", tblStockItem);
         }
     
         /// <summary>
@@ -172,6 +244,360 @@ namespace StockManagemengBasic
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblCashbook")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblCashbook : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblCashbook object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static tblCashbook CreatetblCashbook(global::System.Int32 id)
+        {
+            tblCashbook tblCashbook = new tblCashbook();
+            tblCashbook.ID = id;
+            return tblCashbook;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Credit
+        {
+            get
+            {
+                return _Credit;
+            }
+            set
+            {
+                OnCreditChanging(value);
+                ReportPropertyChanging("Credit");
+                _Credit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Credit");
+                OnCreditChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Credit;
+        partial void OnCreditChanging(Nullable<global::System.Decimal> value);
+        partial void OnCreditChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Debt
+        {
+            get
+            {
+                return _Debt;
+            }
+            set
+            {
+                OnDebtChanging(value);
+                ReportPropertyChanging("Debt");
+                _Debt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Debt");
+                OnDebtChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Debt;
+        partial void OnDebtChanging(Nullable<global::System.Decimal> value);
+        partial void OnDebtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Comment
+        {
+            get
+            {
+                return _Comment;
+            }
+            set
+            {
+                OnCommentChanging(value);
+                ReportPropertyChanging("Comment");
+                _Comment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Comment");
+                OnCommentChanged();
+            }
+        }
+        private global::System.String _Comment;
+        partial void OnCommentChanging(global::System.String value);
+        partial void OnCommentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SupplierID
+        {
+            get
+            {
+                return _SupplierID;
+            }
+            set
+            {
+                OnSupplierIDChanging(value);
+                ReportPropertyChanging("SupplierID");
+                _SupplierID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierID");
+                OnSupplierIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SupplierID;
+        partial void OnSupplierIDChanging(Nullable<global::System.Int32> value);
+        partial void OnSupplierIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InvoiceID
+        {
+            get
+            {
+                return _InvoiceID;
+            }
+            set
+            {
+                OnInvoiceIDChanging(value);
+                ReportPropertyChanging("InvoiceID");
+                _InvoiceID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InvoiceID");
+                OnInvoiceIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _InvoiceID;
+        partial void OnInvoiceIDChanging(Nullable<global::System.Int32> value);
+        partial void OnInvoiceIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsAdministratoryPay
+        {
+            get
+            {
+                return _IsAdministratoryPay;
+            }
+            set
+            {
+                OnIsAdministratoryPayChanging(value);
+                ReportPropertyChanging("IsAdministratoryPay");
+                _IsAdministratoryPay = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsAdministratoryPay");
+                OnIsAdministratoryPayChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsAdministratoryPay;
+        partial void OnIsAdministratoryPayChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsAdministratoryPayChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblCredit")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblCredit : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblCredit object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static tblCredit CreatetblCredit(global::System.Int32 id)
+        {
+            tblCredit tblCredit = new tblCredit();
+            tblCredit.ID = id;
+            return tblCredit;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CustomerID
+        {
+            get
+            {
+                return _CustomerID;
+            }
+            set
+            {
+                OnCustomerIDChanging(value);
+                ReportPropertyChanging("CustomerID");
+                _CustomerID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerID");
+                OnCustomerIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CustomerID;
+        partial void OnCustomerIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCustomerIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Credit
+        {
+            get
+            {
+                return _Credit;
+            }
+            set
+            {
+                OnCreditChanging(value);
+                ReportPropertyChanging("Credit");
+                _Credit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Credit");
+                OnCreditChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Credit;
+        partial void OnCreditChanging(Nullable<global::System.Decimal> value);
+        partial void OnCreditChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Debt
+        {
+            get
+            {
+                return _Debt;
+            }
+            set
+            {
+                OnDebtChanging(value);
+                ReportPropertyChanging("Debt");
+                _Debt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Debt");
+                OnDebtChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Debt;
+        partial void OnDebtChanging(Nullable<global::System.Decimal> value);
+        partial void OnDebtChanged();
+
+        #endregion
+
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -258,30 +684,6 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsPaid
-        {
-            get
-            {
-                return _IsPaid;
-            }
-            set
-            {
-                OnIsPaidChanging(value);
-                ReportPropertyChanging("IsPaid");
-                _IsPaid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsPaid");
-                OnIsPaidChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _IsPaid;
-        partial void OnIsPaidChanging(Nullable<global::System.Boolean> value);
-        partial void OnIsPaidChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> Discount
         {
             get
@@ -352,30 +754,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DebterID
-        {
-            get
-            {
-                return _DebterID;
-            }
-            set
-            {
-                OnDebterIDChanging(value);
-                ReportPropertyChanging("DebterID");
-                _DebterID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DebterID");
-                OnDebterIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _DebterID;
-        partial void OnDebterIDChanging(Nullable<global::System.Int32> value);
-        partial void OnDebterIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 PaymentType
@@ -396,6 +774,54 @@ namespace StockManagemengBasic
         private global::System.Int32 _PaymentType;
         partial void OnPaymentTypeChanging(global::System.Int32 value);
         partial void OnPaymentTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> CreditReceived
+        {
+            get
+            {
+                return _CreditReceived;
+            }
+            set
+            {
+                OnCreditReceivedChanging(value);
+                ReportPropertyChanging("CreditReceived");
+                _CreditReceived = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreditReceived");
+                OnCreditReceivedChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _CreditReceived;
+        partial void OnCreditReceivedChanging(Nullable<global::System.Decimal> value);
+        partial void OnCreditReceivedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ChequeRecieved
+        {
+            get
+            {
+                return _ChequeRecieved;
+            }
+            set
+            {
+                OnChequeRecievedChanging(value);
+                ReportPropertyChanging("ChequeRecieved");
+                _ChequeRecieved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChequeRecieved");
+                OnChequeRecievedChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ChequeRecieved;
+        partial void OnChequeRecievedChanging(Nullable<global::System.Decimal> value);
+        partial void OnChequeRecievedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -474,48 +900,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> CreditReceived
+        public Nullable<global::System.Boolean> IsPaid
         {
             get
             {
-                return _CreditReceived;
+                return _IsPaid;
             }
             set
             {
-                OnCreditReceivedChanging(value);
-                ReportPropertyChanging("CreditReceived");
-                _CreditReceived = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreditReceived");
-                OnCreditReceivedChanged();
+                OnIsPaidChanging(value);
+                ReportPropertyChanging("IsPaid");
+                _IsPaid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsPaid");
+                OnIsPaidChanged();
             }
         }
-        private Nullable<global::System.Decimal> _CreditReceived;
-        partial void OnCreditReceivedChanging(Nullable<global::System.Decimal> value);
-        partial void OnCreditReceivedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ChequeRecieved
-        {
-            get
-            {
-                return _ChequeRecieved;
-            }
-            set
-            {
-                OnChequeRecievedChanging(value);
-                ReportPropertyChanging("ChequeRecieved");
-                _ChequeRecieved = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ChequeRecieved");
-                OnChequeRecievedChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _ChequeRecieved;
-        partial void OnChequeRecievedChanging(Nullable<global::System.Decimal> value);
-        partial void OnChequeRecievedChanged();
+        private Nullable<global::System.Boolean> _IsPaid;
+        partial void OnIsPaidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsPaidChanged();
 
         #endregion
 
@@ -838,13 +1240,11 @@ namespace StockManagemengBasic
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="itemName">Initial value of the ItemName property.</param>
-        /// <param name="sellPrice">Initial value of the SellPrice property.</param>
-        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName, global::System.Decimal sellPrice)
+        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName)
         {
             tblStock tblStock = new tblStock();
             tblStock.ID = id;
             tblStock.ItemName = itemName;
-            tblStock.SellPrice = sellPrice;
             return tblStock;
         }
 
@@ -954,54 +1354,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal SellPrice
-        {
-            get
-            {
-                return _SellPrice;
-            }
-            set
-            {
-                OnSellPriceChanging(value);
-                ReportPropertyChanging("SellPrice");
-                _SellPrice = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SellPrice");
-                OnSellPriceChanged();
-            }
-        }
-        private global::System.Decimal _SellPrice;
-        partial void OnSellPriceChanging(global::System.Decimal value);
-        partial void OnSellPriceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> PurchasePrice
-        {
-            get
-            {
-                return _PurchasePrice;
-            }
-            set
-            {
-                OnPurchasePriceChanging(value);
-                ReportPropertyChanging("PurchasePrice");
-                _PurchasePrice = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PurchasePrice");
-                OnPurchasePriceChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _PurchasePrice;
-        partial void OnPurchasePriceChanging(Nullable<global::System.Decimal> value);
-        partial void OnPurchasePriceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.Int32> SupplierID
@@ -1046,6 +1398,189 @@ namespace StockManagemengBasic
         private Nullable<global::System.Int32> _AlertQty;
         partial void OnAlertQtyChanging(Nullable<global::System.Int32> value);
         partial void OnAlertQtyChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblStockItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblStockItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblStockItem object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="stockID">Initial value of the StockID property.</param>
+        /// <param name="purchasePrice">Initial value of the PurchasePrice property.</param>
+        /// <param name="sellPrice">Initial value of the SellPrice property.</param>
+        public static tblStockItem CreatetblStockItem(global::System.Int32 id, global::System.String stockID, global::System.Decimal purchasePrice, global::System.Decimal sellPrice)
+        {
+            tblStockItem tblStockItem = new tblStockItem();
+            tblStockItem.ID = id;
+            tblStockItem.StockID = stockID;
+            tblStockItem.PurchasePrice = purchasePrice;
+            tblStockItem.SellPrice = sellPrice;
+            return tblStockItem;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StockID
+        {
+            get
+            {
+                return _StockID;
+            }
+            set
+            {
+                OnStockIDChanging(value);
+                ReportPropertyChanging("StockID");
+                _StockID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StockID");
+                OnStockIDChanged();
+            }
+        }
+        private global::System.String _StockID;
+        partial void OnStockIDChanging(global::System.String value);
+        partial void OnStockIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Credit
+        {
+            get
+            {
+                return _Credit;
+            }
+            set
+            {
+                OnCreditChanging(value);
+                ReportPropertyChanging("Credit");
+                _Credit = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Credit");
+                OnCreditChanged();
+            }
+        }
+        private global::System.String _Credit;
+        partial void OnCreditChanging(global::System.String value);
+        partial void OnCreditChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Debt
+        {
+            get
+            {
+                return _Debt;
+            }
+            set
+            {
+                OnDebtChanging(value);
+                ReportPropertyChanging("Debt");
+                _Debt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Debt");
+                OnDebtChanged();
+            }
+        }
+        private global::System.String _Debt;
+        partial void OnDebtChanging(global::System.String value);
+        partial void OnDebtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal PurchasePrice
+        {
+            get
+            {
+                return _PurchasePrice;
+            }
+            set
+            {
+                OnPurchasePriceChanging(value);
+                ReportPropertyChanging("PurchasePrice");
+                _PurchasePrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PurchasePrice");
+                OnPurchasePriceChanged();
+            }
+        }
+        private global::System.Decimal _PurchasePrice;
+        partial void OnPurchasePriceChanging(global::System.Decimal value);
+        partial void OnPurchasePriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal SellPrice
+        {
+            get
+            {
+                return _SellPrice;
+            }
+            set
+            {
+                OnSellPriceChanging(value);
+                ReportPropertyChanging("SellPrice");
+                _SellPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SellPrice");
+                OnSellPriceChanged();
+            }
+        }
+        private global::System.Decimal _SellPrice;
+        partial void OnSellPriceChanging(global::System.Decimal value);
+        partial void OnSellPriceChanged();
 
         #endregion
 

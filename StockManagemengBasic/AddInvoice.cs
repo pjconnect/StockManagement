@@ -42,7 +42,6 @@ namespace StockManagemengBasic
                     {
                         IsPaid = false,
                         CustomerID = 0, //todo
-                        DebterID = 0,
                         PaymentType = 1,
                     };
 
@@ -64,7 +63,6 @@ namespace StockManagemengBasic
                 var newInvoiceItem = new tblInvoiceItem()
                 {
                     InvoiceID = invoiceID,
-                    SellingPrice = selectedItem.SellPrice,
                     Qty = 1, // todo
                     ItemID = selectedItem.ID,
                 };
@@ -85,7 +83,6 @@ namespace StockManagemengBasic
 
                 dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).ToList();
 
-                totalAmount += selectedItem.SellPrice;
                 txtTotal.Text = totalAmount.ToString();
             }
             else
