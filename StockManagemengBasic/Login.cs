@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace StockManagemengBasic
 {
-    public partial class Login : Form
+    public partial class Login : UserControl
     {
 
         StockmanagementEntities db = new StockmanagementEntities();

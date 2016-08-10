@@ -37,13 +37,11 @@ namespace StockManagemengBasic
             var brand = txtBrand.Text;
             var itemname = txtItemName.Text;
 
-            var supplierid = txtSuppierID.Text; // todo supplier select
             var alert = txtAlertQty.Text;
             decimal puchasePrice = 0;
             var alertqty = 0;
             try
             {
-                puchasePrice = Convert.ToDecimal(txtPurchasePrice.Text);
                 alertqty = Convert.ToInt32(txtAlertQty.Text);
 
             }
@@ -123,7 +121,6 @@ namespace StockManagemengBasic
             txtItemName.Text = selectedRow.ItemName;
             txtModel.Text = selectedRow.Model;
             txtAlertQty.Text = selectedRow.AlertQty.ToString();
-            txtSuppierID.Text = selectedRow.SupplierID.ToString();
 
         }
     }
