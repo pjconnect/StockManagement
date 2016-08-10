@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace StockManagemengBasic
 {
-    public partial class AddStock : Form
+    public partial class AddStock : UserControl
     {
         StockmanagementEntities db = new StockmanagementEntities();
 
@@ -108,16 +108,6 @@ namespace StockManagemengBasic
             new SupplierIn().Show();
         }
 
-        private void addUsersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new AddUsers().Show();
-        }
-
-        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new Login().Show();
-        }
-
         private void dgStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
@@ -138,11 +128,6 @@ namespace StockManagemengBasic
             txtSuppierID.Text = selectedRow.SupplierID.ToString();
             txtPurchasePrice.Text = selectedRow.PurchasePrice.ToString();
 
-        }
-
-        private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new AddInvoice().Show();
         }
     }
 }

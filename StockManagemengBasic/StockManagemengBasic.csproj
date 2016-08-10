@@ -55,13 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInvoice.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddInvoice.Designer.cs">
       <DependentUpon>AddInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="AddUsers.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddUsers.Designer.cs">
       <DependentUpon>AddUsers.cs</DependentUpon>
@@ -72,7 +72,7 @@
       <DependentUpon>Database.edmx</DependentUpon>
     </Compile>
     <Compile Include="AddStock.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddStock.Designer.cs">
       <DependentUpon>AddStock.cs</DependentUpon>
@@ -91,8 +91,14 @@
       <DependentUpon>Invoice.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SupplierIn.cs">
+    <Compile Include="StartAdmin.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartAdmin.Designer.cs">
+      <DependentUpon>StartAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierIn.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SupplierIn.Designer.cs">
       <DependentUpon>SupplierIn.cs</DependentUpon>
@@ -109,6 +115,9 @@
     <EmbeddedResource Include="Reports\Invoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Invoice.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartAdmin.resx">
+      <DependentUpon>StartAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupplierIn.resx">
       <DependentUpon>SupplierIn.cs</DependentUpon>
@@ -142,7 +151,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
