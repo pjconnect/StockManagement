@@ -47,6 +47,7 @@
             this.cashbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loader = new System.Windows.Forms.Panel();
             this.administratorPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +77,8 @@
             this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addStockToolStripMenuItem,
             this.stockreceiveToolStripMenuItem,
-            this.suppliersToolStripMenuItem1});
+            this.suppliersToolStripMenuItem1,
+            this.itemReturnToolStripMenuItem});
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.stockToolStripMenuItem.Text = "Stock";
@@ -203,6 +205,12 @@
             this.administratorPayToolStripMenuItem.Text = "Administrator Pay";
             this.administratorPayToolStripMenuItem.Click += new System.EventHandler(this.administratorPayToolStripMenuItem_Click);
             // 
+            // itemReturnToolStripMenuItem
+            // 
+            this.itemReturnToolStripMenuItem.Name = "itemReturnToolStripMenuItem";
+            this.itemReturnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.itemReturnToolStripMenuItem.Text = "Item Return";
+            // 
             // StartAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,5 +251,6 @@
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administratorPayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemReturnToolStripMenuItem;
     }
 }
