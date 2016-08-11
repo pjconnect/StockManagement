@@ -28,39 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtItemID = new System.Windows.Forms.TextBox();
-            this.dgItem = new System.Windows.Forms.DataGridView();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.dgSuppliers = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.txtFax = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtNIC = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgItem)).BeginInit();
+            this.btnCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSuppliers)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtItemID
+            // txtName
             // 
-            this.txtItemID.Location = new System.Drawing.Point(110, 3);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.Size = new System.Drawing.Size(202, 20);
-            this.txtItemID.TabIndex = 0;
+            this.txtName.Location = new System.Drawing.Point(110, 3);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(202, 20);
+            this.txtName.TabIndex = 0;
             // 
-            // dgItem
+            // dgSuppliers
             // 
-            this.dgItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgItem.Location = new System.Drawing.Point(318, 3);
-            this.dgItem.Name = "dgItem";
-            this.dgItem.Size = new System.Drawing.Size(316, 337);
-            this.dgItem.TabIndex = 1;
+            this.dgSuppliers.AllowUserToAddRows = false;
+            this.dgSuppliers.AllowUserToDeleteRows = false;
+            this.dgSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgSuppliers.Location = new System.Drawing.Point(318, 3);
+            this.dgSuppliers.Name = "dgSuppliers";
+            this.dgSuppliers.ReadOnly = true;
+            this.dgSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgSuppliers.Size = new System.Drawing.Size(598, 337);
+            this.dgSuppliers.TabIndex = 1;
+            this.dgSuppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSuppliers_CellClick);
             // 
             // btnSave
             // 
@@ -70,7 +76,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnEnter_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label1
             // 
@@ -81,12 +87,12 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Name";
             // 
-            // textBox1
+            // txtContact
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(202, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtContact.Location = new System.Drawing.Point(110, 29);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(202, 20);
+            this.txtContact.TabIndex = 0;
             // 
             // label2
             // 
@@ -97,12 +103,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Contact Number";
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(110, 55);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(202, 20);
-            this.textBox2.TabIndex = 0;
+            this.txtEmail.Location = new System.Drawing.Point(110, 55);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(202, 20);
+            this.txtEmail.TabIndex = 0;
             // 
             // label3
             // 
@@ -122,20 +128,20 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Comment";
             // 
-            // textBox3
+            // txtComment
             // 
-            this.textBox3.Location = new System.Drawing.Point(110, 182);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(202, 78);
-            this.textBox3.TabIndex = 4;
+            this.txtComment.Location = new System.Drawing.Point(110, 182);
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(202, 78);
+            this.txtComment.TabIndex = 4;
             // 
-            // textBox4
+            // txtFax
             // 
-            this.textBox4.Location = new System.Drawing.Point(110, 156);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(202, 20);
-            this.textBox4.TabIndex = 0;
+            this.txtFax.Location = new System.Drawing.Point(110, 156);
+            this.txtFax.Name = "txtFax";
+            this.txtFax.Size = new System.Drawing.Size(202, 20);
+            this.txtFax.TabIndex = 0;
             // 
             // label5
             // 
@@ -146,13 +152,13 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Fax";
             // 
-            // textBox5
+            // txtAddress
             // 
-            this.textBox5.Location = new System.Drawing.Point(110, 81);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(202, 43);
-            this.textBox5.TabIndex = 0;
+            this.txtAddress.Location = new System.Drawing.Point(110, 81);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(202, 43);
+            this.txtAddress.TabIndex = 0;
             // 
             // label6
             // 
@@ -163,12 +169,12 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Address";
             // 
-            // textBox6
+            // txtNIC
             // 
-            this.textBox6.Location = new System.Drawing.Point(110, 130);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(202, 20);
-            this.textBox6.TabIndex = 0;
+            this.txtNIC.Location = new System.Drawing.Point(110, 130);
+            this.txtNIC.Name = "txtNIC";
+            this.txtNIC.Size = new System.Drawing.Size(202, 20);
+            this.txtNIC.TabIndex = 0;
             // 
             // label7
             // 
@@ -179,11 +185,21 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "NIC";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(110, 266);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // SupplierIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -191,17 +207,18 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dgItem);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtItemID);
+            this.Controls.Add(this.dgSuppliers);
+            this.Controls.Add(this.txtNIC);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.txtFax);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtContact);
+            this.Controls.Add(this.txtName);
             this.Name = "SupplierIn";
-            this.Size = new System.Drawing.Size(637, 343);
-            ((System.ComponentModel.ISupportInitialize)(this.dgItem)).EndInit();
+            this.Size = new System.Drawing.Size(919, 343);
+            ((System.ComponentModel.ISupportInitialize)(this.dgSuppliers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,21 +226,22 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtItemID;
-        private System.Windows.Forms.DataGridView dgItem;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.DataGridView dgSuppliers;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtNIC;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

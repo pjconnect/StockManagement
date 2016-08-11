@@ -4,168 +4,157 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'StockManagment.dbo.tblBank' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="tblBank">
-          <Key>
-            <PropertyRef Name="Date" />
-          </Key>
-          <Property Name="ID" Type="int" />
-          <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="ReleaseDate" Type="date" />
-          <Property Name="ChequeState" Type="int" />
-          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Date" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblCashbook">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
-          <Property Name="SupplierID" Type="int" />
-          <Property Name="InvoiceID" Type="int" />
-          <Property Name="IsAdministratoryPay" Type="bit" />
-          <Property Name="Date" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblCredit">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Date" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblInvoiceItems">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoiceID" Type="int" Nullable="false" />
-          <Property Name="ItemID" Type="nvarchar" MaxLength="50" />
-          <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="DiscountType" Type="int" />
-          <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Comment" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Category" Type="nchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="tblInvoices">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="DiscountType" Type="int" />
-          <Property Name="CashReceived" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="PaymentType" Type="int" Nullable="false" />
-          <Property Name="CreditReceived" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="ChequeRecieved" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="BankID" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="IsPaid" Type="bit" />
-          <Property Name="CreatedUserID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblReturn">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="ReturnItemID" Type="int" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblReturnItems">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StockItemID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblStockItems">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StockID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Credit" Type="nvarchar" MaxLength="50" />
-          <Property Name="Debt" Type="nvarchar" MaxLength="50" />
-          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="CreatedDate" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblStocks">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" />
-          <Property Name="SupplierID" Type="int" />
-          <Property Name="AlertQty" Type="int" />
-          <Property Name="CreatedDate" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblSupplier">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="300" />
-          <Property Name="NIC" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="300" />
-          <Property Name="CreatedDate" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblUsers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="UserLevel" Type="int" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedDate" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="StoreContainer">
-          <EntitySet Name="tblCashbook" EntityType="Self.tblCashbook" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblCredit" EntityType="Self.tblCredit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblInvoiceItems" EntityType="Self.tblInvoiceItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblInvoices" EntityType="Self.tblInvoices" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblReturn" EntityType="Self.tblReturn" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblReturnItems" EntityType="Self.tblReturnItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblStockItems" EntityType="Self.tblStockItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblStocks" EntityType="Self.tblStocks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblBank" EntityType="Self.tblBank" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[tblBank].[ID] AS [ID], 
-[tblBank].[ChequeNumber] AS [ChequeNumber], 
-[tblBank].[ReleaseDate] AS [ReleaseDate], 
-[tblBank].[ChequeState] AS [ChequeState], 
-[tblBank].[Amount] AS [Amount], 
-[tblBank].[Date] AS [Date]
-FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
-          </EntitySet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="StockmanagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="StockmanagementModelStoreContainer">
+    <EntitySet Name="tblCashbooks" EntityType="StockmanagementModel.Store.tblCashbooks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblCredits" EntityType="StockmanagementModel.Store.tblCredits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.Store.tblInvoiceItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.Store.tblInvoices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblReturns" EntityType="StockmanagementModel.Store.tblReturns" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.Store.tblReturnItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.Store.tblStockItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblStocks" EntityType="StockmanagementModel.Store.tblStocks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.Store.tblSuppliers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUsers" EntityType="StockmanagementModel.Store.tblUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblBanks" EntityType="StockmanagementModel.Store.tblBanks" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="tblCashbooks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Credit" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Debt" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Title" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Comment" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SupplierID" Type="int" Nullable="true" />
+    <Property Name="InvoiceID" Type="int" Nullable="true" />
+    <Property Name="IsAdministratoryPay" Type="bit" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCredits">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="true" />
+    <Property Name="Credit" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Debt" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblInvoiceItems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceID" Type="int" Nullable="false" />
+    <Property Name="ItemID" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Qty" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Credit" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="SellingPrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DiscountType" Type="int" Nullable="true" />
+    <Property Name="ItemPrice" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Debt" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Comment" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Category" Type="nchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblInvoices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="DiscountType" Type="int" Nullable="true" />
+    <Property Name="CashReceived" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="CreditReceived" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="ChequeRecieved" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="BankID" Type="int" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsPaid" Type="bit" Nullable="true" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblReturns">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CustomerID" Type="int" Nullable="true" />
+    <Property Name="ReturnItemID" Type="int" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblReturnItems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StockItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Qty" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tblStockItems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StockID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Credit" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Debt" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="PurchasePrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SellPrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblStocks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Brand" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SupplierID" Type="int" Nullable="true" />
+    <Property Name="AlertQty" Type="int" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSuppliers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContactNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="300" />
+    <Property Name="NIC" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Comment" Type="nvarchar" Nullable="true" MaxLength="300" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="UserLevel" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBanks">
+    <Key>
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="true" />
+    <Property Name="ChequeNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ReleaseDate" Type="datetime" Nullable="true" />
+    <Property Name="ChequeState" Type="int" Nullable="true" />
+    <Property Name="Amount" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StockmanagementModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -323,155 +312,155 @@ FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="StoreContainer" CdmEntityContainer="StockmanagementEntities" >
-          <EntitySetMapping Name="tblCashbooks">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblCashbook">
-              <MappingFragment StoreEntitySet="tblCashbook">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IsAdministratoryPay" ColumnName="IsAdministratoryPay" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Debt" ColumnName="Debt" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblCredits">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblCredit">
-              <MappingFragment StoreEntitySet="tblCredit">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Debt" ColumnName="Debt" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblInvoiceItems">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblInvoiceItem">
-              <MappingFragment StoreEntitySet="tblInvoiceItems">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Debt" ColumnName="Debt" />
-                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
-                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblInvoices">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblInvoice">
-              <MappingFragment StoreEntitySet="tblInvoices">
-                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
-                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="ChequeRecieved" ColumnName="ChequeRecieved" />
-                <ScalarProperty Name="CreditReceived" ColumnName="CreditReceived" />
-                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-                <ScalarProperty Name="CashReceived" ColumnName="CashReceived" />
-                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblReturns">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblReturn">
-              <MappingFragment StoreEntitySet="tblReturn">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ReturnItemID" ColumnName="ReturnItemID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblReturnItems">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblReturnItem">
-              <MappingFragment StoreEntitySet="tblReturnItems">
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblStockItems">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
-              <MappingFragment StoreEntitySet="tblStockItems">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
-                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
-                <ScalarProperty Name="Debt" ColumnName="Debt" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblStocks">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
-              <MappingFragment StoreEntitySet="tblStocks">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSuppliers">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblSupplier">
-              <MappingFragment StoreEntitySet="tblSupplier">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="NIC" ColumnName="NIC" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblUser">
-              <MappingFragment StoreEntitySet="tblUsers">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblBanks">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblBank">
-              <MappingFragment StoreEntitySet="tblBank">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="ChequeState" ColumnName="ChequeState" />
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-                <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+  <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities">
+    <EntitySetMapping Name="tblCashbooks">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblCashbook)">
+        <MappingFragment StoreEntitySet="tblCashbooks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="IsAdministratoryPay" ColumnName="IsAdministratoryPay" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCredits">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblCredit)">
+        <MappingFragment StoreEntitySet="tblCredits">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoiceItems">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblInvoiceItem)">
+        <MappingFragment StoreEntitySet="tblInvoiceItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+          <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+          <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoices">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblInvoice)">
+        <MappingFragment StoreEntitySet="tblInvoices">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+          <ScalarProperty Name="CashReceived" ColumnName="CashReceived" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="CreditReceived" ColumnName="CreditReceived" />
+          <ScalarProperty Name="ChequeRecieved" ColumnName="ChequeRecieved" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReturns">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblReturn)">
+        <MappingFragment StoreEntitySet="tblReturns">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="ReturnItemID" ColumnName="ReturnItemID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReturnItems">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblReturnItem)">
+        <MappingFragment StoreEntitySet="tblReturnItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStockItems">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblStockItem)">
+        <MappingFragment StoreEntitySet="tblStockItems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StockID" ColumnName="StockID" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStocks">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblStock)">
+        <MappingFragment StoreEntitySet="tblStocks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSuppliers">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblSupplier)">
+        <MappingFragment StoreEntitySet="tblSuppliers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblUser)">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBanks">
+      <EntityTypeMapping TypeName="IsTypeOf(StockmanagementModel.tblBank)">
+        <MappingFragment StoreEntitySet="tblBanks">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+          <ScalarProperty Name="ChequeState" ColumnName="ChequeState" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
