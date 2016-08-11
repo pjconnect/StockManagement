@@ -39,13 +39,14 @@
             this.stockReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeMyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditorsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.debtorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loader = new System.Windows.Forms.Panel();
-            this.changeMyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administratorPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,21 +84,21 @@
             // addStockToolStripMenuItem
             // 
             this.addStockToolStripMenuItem.Name = "addStockToolStripMenuItem";
-            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addStockToolStripMenuItem.Text = "Add Stock";
             this.addStockToolStripMenuItem.Click += new System.EventHandler(this.addStockToolStripMenuItem_Click);
             // 
             // stockreceiveToolStripMenuItem
             // 
             this.stockreceiveToolStripMenuItem.Name = "stockreceiveToolStripMenuItem";
-            this.stockreceiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stockreceiveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.stockreceiveToolStripMenuItem.Text = "Stock Receive";
             this.stockreceiveToolStripMenuItem.Click += new System.EventHandler(this.stockreceiveToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem1
             // 
             this.suppliersToolStripMenuItem1.Name = "suppliersToolStripMenuItem1";
-            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.suppliersToolStripMenuItem1.Text = "Suppliers";
             this.suppliersToolStripMenuItem1.Click += new System.EventHandler(this.suppliersToolStripMenuItem1_Click);
             // 
@@ -134,9 +135,16 @@
             // manageUsersToolStripMenuItem
             // 
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
-            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
             this.manageUsersToolStripMenuItem.Click += new System.EventHandler(this.manageUsersToolStripMenuItem_Click);
+            // 
+            // changeMyPasswordToolStripMenuItem
+            // 
+            this.changeMyPasswordToolStripMenuItem.Name = "changeMyPasswordToolStripMenuItem";
+            this.changeMyPasswordToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.changeMyPasswordToolStripMenuItem.Text = "Change My Password";
+            this.changeMyPasswordToolStripMenuItem.Click += new System.EventHandler(this.changeMyPasswordToolStripMenuItem_Click);
             // 
             // creditorsToolStripMenuItem
             // 
@@ -144,7 +152,8 @@
             this.creditorsToolStripMenuItem1,
             this.debtorsToolStripMenuItem,
             this.bankToolStripMenuItem,
-            this.cashbookToolStripMenuItem});
+            this.cashbookToolStripMenuItem,
+            this.administratorPayToolStripMenuItem});
             this.creditorsToolStripMenuItem.Name = "creditorsToolStripMenuItem";
             this.creditorsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.creditorsToolStripMenuItem.Text = "Accounts";
@@ -152,26 +161,30 @@
             // creditorsToolStripMenuItem1
             // 
             this.creditorsToolStripMenuItem1.Name = "creditorsToolStripMenuItem1";
-            this.creditorsToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.creditorsToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.creditorsToolStripMenuItem1.Text = "Creditors";
+            this.creditorsToolStripMenuItem1.Click += new System.EventHandler(this.creditorsToolStripMenuItem1_Click);
             // 
             // debtorsToolStripMenuItem
             // 
             this.debtorsToolStripMenuItem.Name = "debtorsToolStripMenuItem";
-            this.debtorsToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.debtorsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.debtorsToolStripMenuItem.Text = "Debtors";
+            this.debtorsToolStripMenuItem.Click += new System.EventHandler(this.debtorsToolStripMenuItem_Click);
             // 
             // bankToolStripMenuItem
             // 
             this.bankToolStripMenuItem.Name = "bankToolStripMenuItem";
-            this.bankToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.bankToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.bankToolStripMenuItem.Text = "Bank";
+            this.bankToolStripMenuItem.Click += new System.EventHandler(this.bankToolStripMenuItem_Click);
             // 
             // cashbookToolStripMenuItem
             // 
             this.cashbookToolStripMenuItem.Name = "cashbookToolStripMenuItem";
-            this.cashbookToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.cashbookToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.cashbookToolStripMenuItem.Text = "Cashbook";
+            this.cashbookToolStripMenuItem.Click += new System.EventHandler(this.cashbookToolStripMenuItem_Click);
             // 
             // loader
             // 
@@ -183,12 +196,12 @@
             this.loader.Size = new System.Drawing.Size(1008, 622);
             this.loader.TabIndex = 1;
             // 
-            // changeMyPasswordToolStripMenuItem
+            // administratorPayToolStripMenuItem
             // 
-            this.changeMyPasswordToolStripMenuItem.Name = "changeMyPasswordToolStripMenuItem";
-            this.changeMyPasswordToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.changeMyPasswordToolStripMenuItem.Text = "Change My Password";
-            this.changeMyPasswordToolStripMenuItem.Click += new System.EventHandler(this.changeMyPasswordToolStripMenuItem_Click);
+            this.administratorPayToolStripMenuItem.Name = "administratorPayToolStripMenuItem";
+            this.administratorPayToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.administratorPayToolStripMenuItem.Text = "Administrator Pay";
+            this.administratorPayToolStripMenuItem.Click += new System.EventHandler(this.administratorPayToolStripMenuItem_Click);
             // 
             // StartAdmin
             // 
@@ -229,5 +242,6 @@
         private System.Windows.Forms.ToolStripMenuItem stockReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administratorPayToolStripMenuItem;
     }
 }

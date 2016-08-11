@@ -61,5 +61,35 @@ namespace StockManagemengBasic
             ClearLoader();
             loader.Controls.Add(new ChangeMyPassword());
         }
+
+        private void creditorsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new Creditors());
+        }
+
+        private void debtorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new Debtors());
+        }
+
+        private void bankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new Bank());
+        }
+
+        private void cashbookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new Cashbook());
+        }
+
+        private void administratorPayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new AdmininstratorPay());
+        }
     }
 }

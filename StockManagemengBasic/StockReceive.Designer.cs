@@ -32,12 +32,13 @@
             this.btnInsert = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Supplier = new System.Windows.Forms.GroupBox();
+            this.btnSearchSupplier = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnSearchSupplier = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).BeginInit();
             this.Supplier.SuspendLayout();
             this.SuspendLayout();
@@ -48,12 +49,12 @@
             this.dgStock.Location = new System.Drawing.Point(248, 3);
             this.dgStock.Name = "dgStock";
             this.dgStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgStock.Size = new System.Drawing.Size(414, 288);
+            this.dgStock.Size = new System.Drawing.Size(414, 392);
             this.dgStock.TabIndex = 21;
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(142, 268);
+            this.btnInsert.Location = new System.Drawing.Point(142, 372);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(100, 23);
             this.btnInsert.TabIndex = 20;
@@ -76,6 +77,15 @@
             this.Supplier.TabIndex = 23;
             this.Supplier.TabStop = false;
             this.Supplier.Text = "Supplier";
+            // 
+            // btnSearchSupplier
+            // 
+            this.btnSearchSupplier.Location = new System.Drawing.Point(6, 19);
+            this.btnSearchSupplier.Name = "btnSearchSupplier";
+            this.btnSearchSupplier.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchSupplier.TabIndex = 0;
+            this.btnSearchSupplier.Text = "Search";
+            this.btnSearchSupplier.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -118,19 +128,21 @@
             this.label3.TabIndex = 24;
             this.label3.Text = "Sell Price";
             // 
-            // btnSearchSupplier
+            // checkBox1
             // 
-            this.btnSearchSupplier.Location = new System.Drawing.Point(6, 19);
-            this.btnSearchSupplier.Name = "btnSearchSupplier";
-            this.btnSearchSupplier.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchSupplier.TabIndex = 0;
-            this.btnSearchSupplier.Text = "Search";
-            this.btnSearchSupplier.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(154, 258);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(88, 17);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Buy by Credit";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // StockReceive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSearchSupplier;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
