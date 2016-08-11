@@ -12,9 +12,9 @@ namespace StockManagemengBasic
     public partial class SupplierSearch : Form
     {
 
-        public delegate void SupplierSelect(int SupplierID);
+        public delegate void SupplierSelectHandler(int SupplierID);
 
-        public event SupplierSelect SupplierSelectHandler;
+        public event SupplierSelectHandler SupplierSelect = delegate { };
 
         public SupplierSearch()
         {
@@ -25,7 +25,12 @@ namespace StockManagemengBasic
         {
             var selectedRow = dgSuppliers.SelectedRows;
 
-            SupplierSelectHandler(0);
+            SupplierSelect(0);
+        }
+
+        private void dgSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SupplierSelect(0);
         }
     }
 }

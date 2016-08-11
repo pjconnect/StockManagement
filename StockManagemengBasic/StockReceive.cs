@@ -20,6 +20,12 @@ namespace StockManagemengBasic
         {
             var supplierSearch =  new SupplierSearch();
             supplierSearch.Show();
+            supplierSearch.SupplierSelect += SupplierSearch_SupplierSelect;
+        }
+
+        private void SupplierSearch_SupplierSelect(int SupplierID)
+        {
+            MessageBox.Show(SupplierID.ToString());
         }
     }
 }

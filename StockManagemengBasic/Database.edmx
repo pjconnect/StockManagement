@@ -380,7 +380,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
         <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="3.625" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -28,16 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgSuppliers = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSelect = new System.Windows.Forms.Button();
+            this.stockmanagementEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgSuppliers)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockmanagementEntitiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgSuppliers
             // 
+            this.dgSuppliers.AllowUserToAddRows = false;
+            this.dgSuppliers.AllowUserToDeleteRows = false;
             this.dgSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSuppliers.Location = new System.Drawing.Point(12, 76);
             this.dgSuppliers.Name = "dgSuppliers";
@@ -71,6 +76,10 @@
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // stockmanagementEntitiesBindingSource
+            // 
+            this.stockmanagementEntitiesBindingSource.DataSource = typeof(StockManagemengBasic.StockmanagementEntities);
+            // 
             // SupplierSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgSuppliers)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockmanagementEntitiesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -94,5 +104,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.BindingSource stockmanagementEntitiesBindingSource;
     }
 }
