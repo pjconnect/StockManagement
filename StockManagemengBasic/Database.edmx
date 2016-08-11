@@ -75,6 +75,24 @@ warning 6002: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="IsPaid" Type="bit" />
           <Property Name="CreatedUserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblReturn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="ReturnItemID" Type="int" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReturnItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblStockItems">
           <Key>
             <PropertyRef Name="ID" />
@@ -130,6 +148,8 @@ warning 6002: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySet Name="tblCredit" EntityType="Self.tblCredit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoiceItems" EntityType="Self.tblInvoiceItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoices" EntityType="Self.tblInvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReturn" EntityType="Self.tblReturn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReturnItems" EntityType="Self.tblReturnItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStockItems" EntityType="Self.tblStockItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStocks" EntityType="Self.tblStocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
@@ -154,6 +174,8 @@ FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
           <EntitySet Name="tblCredits" EntityType="StockmanagementModel.tblCredit" />
           <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.tblInvoiceItem" />
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
+          <EntitySet Name="tblReturns" EntityType="StockmanagementModel.tblReturn" />
+          <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
           <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.tblStockItem" />
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
@@ -216,6 +238,24 @@ FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReturn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="ReturnItemID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblReturnItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="tblStockItem">
           <Key>
@@ -345,6 +385,26 @@ FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblReturns">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblReturn">
+              <MappingFragment StoreEntitySet="tblReturn">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ReturnItemID" ColumnName="ReturnItemID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReturnItems">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblReturnItem">
+              <MappingFragment StoreEntitySet="tblReturnItems">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblStockItems">
             <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
               <MappingFragment StoreEntitySet="tblStockItems">
@@ -436,11 +496,13 @@ FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
         <EntityTypeShape EntityType="StockmanagementModel.tblCredit" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="4.75" PointY="5.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="4.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblReturn" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="2.75" PointY="8.75" />
       </Diagram>
     </Diagrams>
   </Designer>

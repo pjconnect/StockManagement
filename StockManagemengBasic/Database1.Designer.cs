@@ -132,6 +132,38 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<tblReturn> tblReturns
+        {
+            get
+            {
+                if ((_tblReturns == null))
+                {
+                    _tblReturns = base.CreateObjectSet<tblReturn>("tblReturns");
+                }
+                return _tblReturns;
+            }
+        }
+        private ObjectSet<tblReturn> _tblReturns;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblReturnItem> tblReturnItems
+        {
+            get
+            {
+                if ((_tblReturnItems == null))
+                {
+                    _tblReturnItems = base.CreateObjectSet<tblReturnItem>("tblReturnItems");
+                }
+                return _tblReturnItems;
+            }
+        }
+        private ObjectSet<tblReturnItem> _tblReturnItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<tblStockItem> tblStockItems
         {
             get
@@ -243,6 +275,22 @@ namespace StockManagemengBasic
         public void AddTotblInvoices(tblInvoice tblInvoice)
         {
             base.AddObject("tblInvoices", tblInvoice);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblReturns EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblReturns(tblReturn tblReturn)
+        {
+            base.AddObject("tblReturns", tblReturn);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblReturnItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblReturnItems(tblReturnItem tblReturnItem)
+        {
+            base.AddObject("tblReturnItems", tblReturnItem);
         }
     
         /// <summary>
@@ -1500,6 +1548,272 @@ namespace StockManagemengBasic
         private global::System.String _Category;
         partial void OnCategoryChanging(global::System.String value);
         partial void OnCategoryChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblReturn")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblReturn : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblReturn object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="invoiceNumber">Initial value of the InvoiceNumber property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
+        public static tblReturn CreatetblReturn(global::System.Int32 id, global::System.String invoiceNumber, global::System.DateTime date)
+        {
+            tblReturn tblReturn = new tblReturn();
+            tblReturn.ID = id;
+            tblReturn.InvoiceNumber = invoiceNumber;
+            tblReturn.Date = date;
+            return tblReturn;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String InvoiceNumber
+        {
+            get
+            {
+                return _InvoiceNumber;
+            }
+            set
+            {
+                OnInvoiceNumberChanging(value);
+                ReportPropertyChanging("InvoiceNumber");
+                _InvoiceNumber = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("InvoiceNumber");
+                OnInvoiceNumberChanged();
+            }
+        }
+        private global::System.String _InvoiceNumber;
+        partial void OnInvoiceNumberChanging(global::System.String value);
+        partial void OnInvoiceNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CustomerID
+        {
+            get
+            {
+                return _CustomerID;
+            }
+            set
+            {
+                OnCustomerIDChanging(value);
+                ReportPropertyChanging("CustomerID");
+                _CustomerID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerID");
+                OnCustomerIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CustomerID;
+        partial void OnCustomerIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCustomerIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ReturnItemID
+        {
+            get
+            {
+                return _ReturnItemID;
+            }
+            set
+            {
+                OnReturnItemIDChanging(value);
+                ReportPropertyChanging("ReturnItemID");
+                _ReturnItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReturnItemID");
+                OnReturnItemIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ReturnItemID;
+        partial void OnReturnItemIDChanging(Nullable<global::System.Int32> value);
+        partial void OnReturnItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblReturnItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblReturnItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblReturnItem object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="stockItemID">Initial value of the StockItemID property.</param>
+        /// <param name="qty">Initial value of the Qty property.</param>
+        public static tblReturnItem CreatetblReturnItem(global::System.Int32 id, global::System.String stockItemID, global::System.Decimal qty)
+        {
+            tblReturnItem tblReturnItem = new tblReturnItem();
+            tblReturnItem.ID = id;
+            tblReturnItem.StockItemID = stockItemID;
+            tblReturnItem.Qty = qty;
+            return tblReturnItem;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StockItemID
+        {
+            get
+            {
+                return _StockItemID;
+            }
+            set
+            {
+                OnStockItemIDChanging(value);
+                ReportPropertyChanging("StockItemID");
+                _StockItemID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StockItemID");
+                OnStockItemIDChanged();
+            }
+        }
+        private global::System.String _StockItemID;
+        partial void OnStockItemIDChanging(global::System.String value);
+        partial void OnStockItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Qty
+        {
+            get
+            {
+                return _Qty;
+            }
+            set
+            {
+                OnQtyChanging(value);
+                ReportPropertyChanging("Qty");
+                _Qty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Qty");
+                OnQtyChanged();
+            }
+        }
+        private global::System.Decimal _Qty;
+        partial void OnQtyChanging(global::System.Decimal value);
+        partial void OnQtyChanged();
 
         #endregion
 

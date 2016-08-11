@@ -112,6 +112,12 @@
     <Compile Include="Debtors.Designer.cs">
       <DependentUpon>Debtors.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemReturn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemReturn.Designer.cs">
+      <DependentUpon>ItemReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Debtors.resx">
       <DependentUpon>Debtors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemReturn.resx">
+      <DependentUpon>ItemReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
