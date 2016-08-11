@@ -88,6 +88,7 @@
             this.btnSearchSupplier.TabIndex = 0;
             this.btnSearchSupplier.Text = "Search";
             this.btnSearchSupplier.UseVisualStyleBackColor = true;
+            this.btnSearchSupplier.Click += new System.EventHandler(this.btnSearchSupplier_Click);
             // 
             // label1
             // 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="StockmanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="tblBank">
@@ -91,6 +91,19 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="SupplierID" Type="int" />
           <Property Name="AlertQty" Type="int" />
         </EntityType>
+        <EntityType Name="tblSupplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="300" />
+        </EntityType>
         <EntityType Name="tblUsers">
           <Key>
             <PropertyRef Name="ID" />
@@ -101,13 +114,14 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="UserLevel" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="StockmanagementModelStoreContainer">
+        <EntityContainer Name="StoreContainer">
           <EntitySet Name="tblCashbook" EntityType="Self.tblCashbook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCredit" EntityType="Self.tblCredit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoiceItems" EntityType="Self.tblInvoiceItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoices" EntityType="Self.tblInvoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStockItems" EntityType="Self.tblStockItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStocks" EntityType="Self.tblStocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -121,6 +135,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
           <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.tblStockItem" />
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
+          <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
         </EntityContainer>
         <EntityType Name="tblCashbook">
@@ -200,6 +215,19 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="AlertQty" Type="Int32" />
         </EntityType>
+        <EntityType Name="tblSupplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -215,7 +243,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities">
+  <EntityContainerMapping StorageEntityContainer="StoreContainer" CdmEntityContainer="StockmanagementEntities" >
           <EntitySetMapping Name="tblCashbooks">
             <EntityTypeMapping TypeName="StockmanagementModel.tblCashbook">
               <MappingFragment StoreEntitySet="tblCashbook">
@@ -299,6 +327,20 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblSuppliers">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblSupplier">
+              <MappingFragment StoreEntitySet="tblSupplier">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblUser">
               <MappingFragment StoreEntitySet="tblUsers">
@@ -337,7 +379,8 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </Diagrams>
   </Designer>

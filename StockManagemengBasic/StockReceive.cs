@@ -15,5 +15,11 @@ namespace StockManagemengBasic
         {
             InitializeComponent();
         }
+
+        private void btnSearchSupplier_Click(object sender, EventArgs e)
+        {
+            var supplierSearch =  new SupplierSearch();
+            supplierSearch.Show();
+        }
     }
 }
