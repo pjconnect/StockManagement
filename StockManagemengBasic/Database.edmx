@@ -6,14 +6,18 @@
     <edmx:StorageModels>
     <Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'StockManagment.dbo.tblBank' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblBank">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
           <Property Name="ID" Type="int" />
           <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="ReleaseDate" Type="date" />
           <Property Name="ChequeState" Type="int" />
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblCashbook">
           <Key>
             <PropertyRef Name="ID" />
@@ -26,6 +30,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="SupplierID" Type="int" />
           <Property Name="InvoiceID" Type="int" />
           <Property Name="IsAdministratoryPay" Type="bit" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblCredit">
           <Key>
@@ -35,6 +40,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="CustomerID" Type="int" />
           <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblInvoiceItems">
           <Key>
@@ -65,9 +71,9 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="CreditReceived" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ChequeRecieved" Type="decimal" Precision="18" Scale="2" />
           <Property Name="BankID" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsPaid" Type="bit" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStockItems">
           <Key>
@@ -79,6 +85,8 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Debt" Type="nvarchar" MaxLength="50" />
           <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SellPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStocks">
           <Key>
@@ -90,6 +98,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="SupplierID" Type="int" />
           <Property Name="AlertQty" Type="int" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSupplier">
           <Key>
@@ -103,6 +112,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="NIC" Type="nvarchar" MaxLength="50" />
           <Property Name="Fax" Type="nvarchar" MaxLength="50" />
           <Property Name="Comment" Type="nvarchar" MaxLength="300" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUsers">
           <Key>
@@ -113,6 +123,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="UserLevel" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityContainer Name="StoreContainer">
           <EntitySet Name="tblCashbook" EntityType="Self.tblCashbook" Schema="dbo" store:Type="Tables" />
@@ -123,6 +134,16 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySet Name="tblStocks" EntityType="Self.tblStocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBank" EntityType="Self.tblBank" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tblBank].[ID] AS [ID], 
+[tblBank].[ChequeNumber] AS [ChequeNumber], 
+[tblBank].[ReleaseDate] AS [ReleaseDate], 
+[tblBank].[ChequeState] AS [ChequeState], 
+[tblBank].[Amount] AS [Amount], 
+[tblBank].[Date] AS [Date]
+FROM [dbo].[tblBank] AS [tblBank]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -137,6 +158,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
+          <EntitySet Name="tblBanks" EntityType="StockmanagementModel.tblBank" />
         </EntityContainer>
         <EntityType Name="tblCashbook">
           <Key>
@@ -150,6 +172,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="InvoiceID" Type="Int32" />
           <Property Name="IsAdministratoryPay" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblCredit">
           <Key>
@@ -159,6 +182,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="CustomerID" Type="Int32" />
           <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblInvoiceItem">
           <Key>
@@ -189,9 +213,9 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="CreditReceived" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ChequeRecieved" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="BankID" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStockItem">
           <Key>
@@ -203,6 +227,8 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Debt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="SellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblStock">
           <Key>
@@ -214,6 +240,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="AlertQty" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblSupplier">
           <Key>
@@ -227,6 +254,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -237,6 +265,18 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="UserLevel" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblBank">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="ID" Type="Int32" />
+          <Property Name="ChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <Property Name="ChequeState" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -247,6 +287,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblCashbooks">
             <EntityTypeMapping TypeName="StockmanagementModel.tblCashbook">
               <MappingFragment StoreEntitySet="tblCashbook">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="IsAdministratoryPay" ColumnName="IsAdministratoryPay" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
@@ -261,6 +302,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblCredits">
             <EntityTypeMapping TypeName="StockmanagementModel.tblCredit">
               <MappingFragment StoreEntitySet="tblCredit">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -288,8 +330,8 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblInvoices">
             <EntityTypeMapping TypeName="StockmanagementModel.tblInvoice">
               <MappingFragment StoreEntitySet="tblInvoices">
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="BankID" ColumnName="BankID" />
                 <ScalarProperty Name="ChequeRecieved" ColumnName="ChequeRecieved" />
@@ -306,6 +348,8 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblStockItems">
             <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
               <MappingFragment StoreEntitySet="tblStockItems">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
                 <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
@@ -318,6 +362,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblStocks">
             <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
               <MappingFragment StoreEntitySet="tblStocks">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
@@ -330,6 +375,7 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblSuppliers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblSupplier">
               <MappingFragment StoreEntitySet="tblSupplier">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="NIC" ColumnName="NIC" />
@@ -344,10 +390,23 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblUser">
               <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBanks">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblBank">
+              <MappingFragment StoreEntitySet="tblBank">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ChequeState" ColumnName="ChequeState" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -379,8 +438,9 @@ warning 6013: The table/view 'StockManagment.dbo.tblBank' does not have a primar
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="8.75" PointY="0.75" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -893,13 +893,15 @@ namespace StockManagemengBasic
         /// <param name="customerID">Initial value of the CustomerID property.</param>
         /// <param name="paymentType">Initial value of the PaymentType property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
-        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 customerID, global::System.Int32 paymentType, global::System.DateTime createdDate)
+        /// <param name="createdUserID">Initial value of the CreatedUserID property.</param>
+        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 customerID, global::System.Int32 paymentType, global::System.DateTime createdDate, global::System.Int32 createdUserID)
         {
             tblInvoice tblInvoice = new tblInvoice();
             tblInvoice.ID = id;
             tblInvoice.CustomerID = customerID;
             tblInvoice.PaymentType = paymentType;
             tblInvoice.CreatedDate = createdDate;
+            tblInvoice.CreatedUserID = createdUserID;
             return tblInvoice;
         }
 
@@ -1173,6 +1175,30 @@ namespace StockManagemengBasic
         private Nullable<global::System.Boolean> _IsPaid;
         partial void OnIsPaidChanging(Nullable<global::System.Boolean> value);
         partial void OnIsPaidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CreatedUserID
+        {
+            get
+            {
+                return _CreatedUserID;
+            }
+            set
+            {
+                OnCreatedUserIDChanging(value);
+                ReportPropertyChanging("CreatedUserID");
+                _CreatedUserID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedUserID");
+                OnCreatedUserIDChanged();
+            }
+        }
+        private global::System.Int32 _CreatedUserID;
+        partial void OnCreatedUserIDChanging(global::System.Int32 value);
+        partial void OnCreatedUserIDChanged();
 
         #endregion
 
