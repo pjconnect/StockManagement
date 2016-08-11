@@ -192,6 +192,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblBank> tblBanks
+        {
+            get
+            {
+                if ((_tblBanks == null))
+                {
+                    _tblBanks = base.CreateObjectSet<tblBank>("tblBanks");
+                }
+                return _tblBanks;
+            }
+        }
+        private ObjectSet<tblBank> _tblBanks;
 
         #endregion
 
@@ -260,6 +276,14 @@ namespace StockManagemengBasic
         {
             base.AddObject("tblUsers", tblUser);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblBanks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblBanks(tblBank tblBank)
+        {
+            base.AddObject("tblBanks", tblBank);
+        }
 
         #endregion
 
@@ -268,6 +292,183 @@ namespace StockManagemengBasic
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblBank")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblBank : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblBank object.
+        /// </summary>
+        /// <param name="date">Initial value of the Date property.</param>
+        public static tblBank CreatetblBank(global::System.DateTime date)
+        {
+            tblBank tblBank = new tblBank();
+            tblBank.Date = date;
+            return tblBank;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID;
+        partial void OnIDChanging(Nullable<global::System.Int32> value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ChequeNumber
+        {
+            get
+            {
+                return _ChequeNumber;
+            }
+            set
+            {
+                OnChequeNumberChanging(value);
+                ReportPropertyChanging("ChequeNumber");
+                _ChequeNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ChequeNumber");
+                OnChequeNumberChanged();
+            }
+        }
+        private global::System.String _ChequeNumber;
+        partial void OnChequeNumberChanging(global::System.String value);
+        partial void OnChequeNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ReleaseDate
+        {
+            get
+            {
+                return _ReleaseDate;
+            }
+            set
+            {
+                OnReleaseDateChanging(value);
+                ReportPropertyChanging("ReleaseDate");
+                _ReleaseDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReleaseDate");
+                OnReleaseDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ReleaseDate;
+        partial void OnReleaseDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnReleaseDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ChequeState
+        {
+            get
+            {
+                return _ChequeState;
+            }
+            set
+            {
+                OnChequeStateChanging(value);
+                ReportPropertyChanging("ChequeState");
+                _ChequeState = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChequeState");
+                OnChequeStateChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ChequeState;
+        partial void OnChequeStateChanging(Nullable<global::System.Int32> value);
+        partial void OnChequeStateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Amount
+        {
+            get
+            {
+                return _Amount;
+            }
+            set
+            {
+                OnAmountChanging(value);
+                ReportPropertyChanging("Amount");
+                _Amount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Amount");
+                OnAmountChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Amount;
+        partial void OnAmountChanging(Nullable<global::System.Decimal> value);
+        partial void OnAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                if (_Date != value)
+                {
+                    OnDateChanging(value);
+                    ReportPropertyChanging("Date");
+                    _Date = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Date");
+                    OnDateChanged();
+                }
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+
+        #endregion
+
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -283,10 +484,12 @@ namespace StockManagemengBasic
         /// Create a new tblCashbook object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static tblCashbook CreatetblCashbook(global::System.Int32 id)
+        /// <param name="date">Initial value of the Date property.</param>
+        public static tblCashbook CreatetblCashbook(global::System.Int32 id, global::System.DateTime date)
         {
             tblCashbook tblCashbook = new tblCashbook();
             tblCashbook.ID = id;
+            tblCashbook.Date = date;
             return tblCashbook;
         }
 
@@ -488,6 +691,30 @@ namespace StockManagemengBasic
         private Nullable<global::System.Boolean> _IsAdministratoryPay;
         partial void OnIsAdministratoryPayChanging(Nullable<global::System.Boolean> value);
         partial void OnIsAdministratoryPayChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
 
         #endregion
 
@@ -508,10 +735,12 @@ namespace StockManagemengBasic
         /// Create a new tblCredit object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static tblCredit CreatetblCredit(global::System.Int32 id)
+        /// <param name="date">Initial value of the Date property.</param>
+        public static tblCredit CreatetblCredit(global::System.Int32 id, global::System.DateTime date)
         {
             tblCredit tblCredit = new tblCredit();
             tblCredit.ID = id;
+            tblCredit.Date = date;
             return tblCredit;
         }
 
@@ -617,6 +846,30 @@ namespace StockManagemengBasic
         private Nullable<global::System.Decimal> _Debt;
         partial void OnDebtChanging(Nullable<global::System.Decimal> value);
         partial void OnDebtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
 
         #endregion
 
@@ -639,12 +892,14 @@ namespace StockManagemengBasic
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="customerID">Initial value of the CustomerID property.</param>
         /// <param name="paymentType">Initial value of the PaymentType property.</param>
-        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 customerID, global::System.Int32 paymentType)
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 customerID, global::System.Int32 paymentType, global::System.DateTime createdDate)
         {
             tblInvoice tblInvoice = new tblInvoice();
             tblInvoice.ID = id;
             tblInvoice.CustomerID = customerID;
             tblInvoice.PaymentType = paymentType;
+            tblInvoice.CreatedDate = createdDate;
             return tblInvoice;
         }
 
@@ -874,9 +1129,9 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> CreatedDate
+        public global::System.DateTime CreatedDate
         {
             get
             {
@@ -891,33 +1146,9 @@ namespace StockManagemengBasic
                 OnCreatedDateChanged();
             }
         }
-        private Nullable<global::System.DateTime> _CreatedDate;
-        partial void OnCreatedDateChanging(Nullable<global::System.DateTime> value);
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
         partial void OnCreatedDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> UpdatedDate
-        {
-            get
-            {
-                return _UpdatedDate;
-            }
-            set
-            {
-                OnUpdatedDateChanging(value);
-                ReportPropertyChanging("UpdatedDate");
-                _UpdatedDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UpdatedDate");
-                OnUpdatedDateChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _UpdatedDate;
-        partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnUpdatedDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1264,11 +1495,13 @@ namespace StockManagemengBasic
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="itemName">Initial value of the ItemName property.</param>
-        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName)
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName, global::System.DateTime createdDate)
         {
             tblStock tblStock = new tblStock();
             tblStock.ID = id;
             tblStock.ItemName = itemName;
+            tblStock.CreatedDate = createdDate;
             return tblStock;
         }
 
@@ -1422,6 +1655,30 @@ namespace StockManagemengBasic
         private Nullable<global::System.Int32> _AlertQty;
         partial void OnAlertQtyChanging(Nullable<global::System.Int32> value);
         partial void OnAlertQtyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
 
         #endregion
 
@@ -1445,13 +1702,17 @@ namespace StockManagemengBasic
         /// <param name="stockID">Initial value of the StockID property.</param>
         /// <param name="purchasePrice">Initial value of the PurchasePrice property.</param>
         /// <param name="sellPrice">Initial value of the SellPrice property.</param>
-        public static tblStockItem CreatetblStockItem(global::System.Int32 id, global::System.String stockID, global::System.Decimal purchasePrice, global::System.Decimal sellPrice)
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static tblStockItem CreatetblStockItem(global::System.Int32 id, global::System.String stockID, global::System.Decimal purchasePrice, global::System.Decimal sellPrice, global::System.DateTime date, global::System.DateTime createdDate)
         {
             tblStockItem tblStockItem = new tblStockItem();
             tblStockItem.ID = id;
             tblStockItem.StockID = stockID;
             tblStockItem.PurchasePrice = purchasePrice;
             tblStockItem.SellPrice = sellPrice;
+            tblStockItem.Date = date;
+            tblStockItem.CreatedDate = createdDate;
             return tblStockItem;
         }
 
@@ -1605,6 +1866,54 @@ namespace StockManagemengBasic
         private global::System.Decimal _SellPrice;
         partial void OnSellPriceChanging(global::System.Decimal value);
         partial void OnSellPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
 
         #endregion
 
@@ -1626,11 +1935,13 @@ namespace StockManagemengBasic
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static tblSupplier CreatetblSupplier(global::System.Int32 id, global::System.String name)
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static tblSupplier CreatetblSupplier(global::System.Int32 id, global::System.String name, global::System.DateTime createdDate)
         {
             tblSupplier tblSupplier = new tblSupplier();
             tblSupplier.ID = id;
             tblSupplier.Name = name;
+            tblSupplier.CreatedDate = createdDate;
             return tblSupplier;
         }
 
@@ -1832,6 +2143,30 @@ namespace StockManagemengBasic
         private global::System.String _Comment;
         partial void OnCommentChanging(global::System.String value);
         partial void OnCommentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
 
         #endregion
 
@@ -1856,7 +2191,8 @@ namespace StockManagemengBasic
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="userLevel">Initial value of the UserLevel property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
-        public static tblUser CreatetblUser(global::System.Int32 id, global::System.String username, global::System.String password, global::System.Int32 userLevel, global::System.Boolean isActive)
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static tblUser CreatetblUser(global::System.Int32 id, global::System.String username, global::System.String password, global::System.Int32 userLevel, global::System.Boolean isActive, global::System.DateTime createdDate)
         {
             tblUser tblUser = new tblUser();
             tblUser.ID = id;
@@ -1864,6 +2200,7 @@ namespace StockManagemengBasic
             tblUser.Password = password;
             tblUser.UserLevel = userLevel;
             tblUser.IsActive = isActive;
+            tblUser.CreatedDate = createdDate;
             return tblUser;
         }
 
@@ -1993,6 +2330,30 @@ namespace StockManagemengBasic
         private global::System.Boolean _IsActive;
         partial void OnIsActiveChanging(global::System.Boolean value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
 
         #endregion
 
