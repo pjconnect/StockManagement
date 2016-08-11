@@ -91,5 +91,11 @@ namespace StockManagemengBasic
             ClearLoader();
             loader.Controls.Add(new AdmininstratorPay());
         }
+
+        private void itemReturnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new ItemReturn());
+        }
     }
 }

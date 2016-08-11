@@ -34,6 +34,7 @@
             this.addStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockreceiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,9 +46,8 @@
             this.debtorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loader = new System.Windows.Forms.Panel();
             this.administratorPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loader = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,23 +86,30 @@
             // addStockToolStripMenuItem
             // 
             this.addStockToolStripMenuItem.Name = "addStockToolStripMenuItem";
-            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addStockToolStripMenuItem.Text = "Add Stock";
             this.addStockToolStripMenuItem.Click += new System.EventHandler(this.addStockToolStripMenuItem_Click);
             // 
             // stockreceiveToolStripMenuItem
             // 
             this.stockreceiveToolStripMenuItem.Name = "stockreceiveToolStripMenuItem";
-            this.stockreceiveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.stockreceiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stockreceiveToolStripMenuItem.Text = "Stock Receive";
             this.stockreceiveToolStripMenuItem.Click += new System.EventHandler(this.stockreceiveToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem1
             // 
             this.suppliersToolStripMenuItem1.Name = "suppliersToolStripMenuItem1";
-            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.suppliersToolStripMenuItem1.Text = "Suppliers";
             this.suppliersToolStripMenuItem1.Click += new System.EventHandler(this.suppliersToolStripMenuItem1_Click);
+            // 
+            // itemReturnToolStripMenuItem
+            // 
+            this.itemReturnToolStripMenuItem.Name = "itemReturnToolStripMenuItem";
+            this.itemReturnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.itemReturnToolStripMenuItem.Text = "Item Return";
+            this.itemReturnToolStripMenuItem.Click += new System.EventHandler(this.itemReturnToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
@@ -188,6 +195,13 @@
             this.cashbookToolStripMenuItem.Text = "Cashbook";
             this.cashbookToolStripMenuItem.Click += new System.EventHandler(this.cashbookToolStripMenuItem_Click);
             // 
+            // administratorPayToolStripMenuItem
+            // 
+            this.administratorPayToolStripMenuItem.Name = "administratorPayToolStripMenuItem";
+            this.administratorPayToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.administratorPayToolStripMenuItem.Text = "Administrator Pay";
+            this.administratorPayToolStripMenuItem.Click += new System.EventHandler(this.administratorPayToolStripMenuItem_Click);
+            // 
             // loader
             // 
             this.loader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -197,19 +211,6 @@
             this.loader.Name = "loader";
             this.loader.Size = new System.Drawing.Size(1008, 622);
             this.loader.TabIndex = 1;
-            // 
-            // administratorPayToolStripMenuItem
-            // 
-            this.administratorPayToolStripMenuItem.Name = "administratorPayToolStripMenuItem";
-            this.administratorPayToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.administratorPayToolStripMenuItem.Text = "Administrator Pay";
-            this.administratorPayToolStripMenuItem.Click += new System.EventHandler(this.administratorPayToolStripMenuItem_Click);
-            // 
-            // itemReturnToolStripMenuItem
-            // 
-            this.itemReturnToolStripMenuItem.Name = "itemReturnToolStripMenuItem";
-            this.itemReturnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.itemReturnToolStripMenuItem.Text = "Item Return";
             // 
             // StartAdmin
             // 
