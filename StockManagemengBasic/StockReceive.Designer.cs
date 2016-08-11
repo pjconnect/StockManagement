@@ -53,7 +53,7 @@
             this.dgStock.Location = new System.Drawing.Point(248, 3);
             this.dgStock.Name = "dgStock";
             this.dgStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgStock.Size = new System.Drawing.Size(414, 392);
+            this.dgStock.Size = new System.Drawing.Size(703, 392);
             this.dgStock.TabIndex = 21;
             // 
             // btnInsert
@@ -194,7 +194,7 @@
             this.Controls.Add(this.dgStock);
             this.Controls.Add(this.btnInsert);
             this.Name = "StockReceive";
-            this.Size = new System.Drawing.Size(665, 398);
+            this.Size = new System.Drawing.Size(954, 398);
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).EndInit();
             this.Supplier.ResumeLayout(false);
             this.ResumeLayout(false);
