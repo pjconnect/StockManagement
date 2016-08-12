@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCash = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -59,13 +60,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnSearchCustomer = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnNewCustomer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -215,6 +215,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Pay by Cheque";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(45, 88);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -264,6 +271,7 @@
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search Item";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtTotal
             // 
@@ -338,8 +346,8 @@
             // 
             this.groupBox4.Controls.Add(this.txtCustomerName);
             this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnNewCustomer);
+            this.groupBox4.Controls.Add(this.btnSearchCustomer);
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Location = new System.Drawing.Point(13, 214);
             this.groupBox4.Name = "groupBox4";
@@ -348,23 +356,32 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Save Customer";
             // 
-            // button2
+            // txtCustomerName
             // 
-            this.button2.Location = new System.Drawing.Point(168, 24);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "New";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtCustomerName.Location = new System.Drawing.Point(260, 26);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.ReadOnly = true;
+            this.txtCustomerName.Size = new System.Drawing.Size(177, 20);
+            this.txtCustomerName.TabIndex = 14;
             // 
-            // button1
+            // label15
             // 
-            this.button1.Location = new System.Drawing.Point(83, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(257, 10);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(85, 13);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Customer Name:";
+            // 
+            // btnSearchCustomer
+            // 
+            this.btnSearchCustomer.Location = new System.Drawing.Point(83, 24);
+            this.btnSearchCustomer.Name = "btnSearchCustomer";
+            this.btnSearchCustomer.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchCustomer.TabIndex = 10;
+            this.btnSearchCustomer.Text = "Search";
+            this.btnSearchCustomer.UseVisualStyleBackColor = true;
+            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
             // 
             // label13
             // 
@@ -375,34 +392,20 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "Customer";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(257, 29);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(85, 13);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "Customer Name:";
-            // 
-            // txtCustomerName
-            // 
-            this.txtCustomerName.Location = new System.Drawing.Point(348, 26);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(146, 20);
-            this.txtCustomerName.TabIndex = 14;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // dateTimePicker1
+            // btnNewCustomer
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(45, 88);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 5;
+            this.btnNewCustomer.Location = new System.Drawing.Point(164, 24);
+            this.btnNewCustomer.Name = "btnNewCustomer";
+            this.btnNewCustomer.Size = new System.Drawing.Size(75, 23);
+            this.btnNewCustomer.TabIndex = 10;
+            this.btnNewCustomer.Text = "New";
+            this.btnNewCustomer.UseVisualStyleBackColor = true;
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
             // 
             // AddInvoice
             // 
@@ -474,12 +477,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearchCustomer;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnNewCustomer;
     }
 }

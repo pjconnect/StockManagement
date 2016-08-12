@@ -1,9 +1,9 @@
 
 -- --------------------------------------------------
--- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
+-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/12/2016 00:18:30
--- Generated from EDMX file: E:\PROJECTS\c#\StockManagement\StockManagemengBasic\Database.edmx
+-- Date Created: 08/12/2016 10:34:49
+-- Generated from EDMX file: D:\Projects\StockManagementBasic\StockManagemengBasic\Database.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -22,11 +22,11 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[tblCashbook]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblCashbook];
+IF OBJECT_ID(N'[dbo].[tblCashbooks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblCashbooks];
 GO
-IF OBJECT_ID(N'[dbo].[tblCredit]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblCredit];
+IF OBJECT_ID(N'[dbo].[tblCredits]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblCredits];
 GO
 IF OBJECT_ID(N'[dbo].[tblInvoiceItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblInvoiceItems];
@@ -34,8 +34,8 @@ GO
 IF OBJECT_ID(N'[dbo].[tblInvoices]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblInvoices];
 GO
-IF OBJECT_ID(N'[dbo].[tblReturn]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblReturn];
+IF OBJECT_ID(N'[dbo].[tblReturns]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblReturns];
 GO
 IF OBJECT_ID(N'[dbo].[tblReturnItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblReturnItems];
@@ -46,14 +46,14 @@ GO
 IF OBJECT_ID(N'[dbo].[tblStocks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblStocks];
 GO
-IF OBJECT_ID(N'[dbo].[tblSupplier]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblSupplier];
+IF OBJECT_ID(N'[dbo].[tblSuppliers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblSuppliers];
 GO
 IF OBJECT_ID(N'[dbo].[tblUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblUsers];
 GO
-IF OBJECT_ID(N'[StoreContainer].[tblBank]', 'U') IS NOT NULL
-    DROP TABLE [StoreContainer].[tblBank];
+IF OBJECT_ID(N'[dbo].[tblBanks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblBanks];
 GO
 
 -- --------------------------------------------------

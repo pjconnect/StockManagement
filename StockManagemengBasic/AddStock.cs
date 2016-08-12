@@ -29,7 +29,6 @@ namespace StockManagemengBasic
         private void btnInsert_Click(object sender, EventArgs e)
         {
             
-
             #region init variables
 
             var itemID = txtItemID.Text;
@@ -66,6 +65,7 @@ namespace StockManagemengBasic
                 firstitem.ID = itemID;
                 firstitem.Model = model;
                 message = "Successfully Updated";
+                firstitem.CreatedDate = DateTime.Now;
             }
             else
             {
@@ -77,6 +77,7 @@ namespace StockManagemengBasic
                     ItemName = itemname,
                     ID = itemID,
                     Model = model,
+                    CreatedDate = DateTime.Now,
 
                 };
 

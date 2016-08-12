@@ -30,18 +30,18 @@
         {
             this.dgStock = new System.Windows.Forms.DataGridView();
             this.btnInsert = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtQty = new System.Windows.Forms.TextBox();
             this.Supplier = new System.Windows.Forms.GroupBox();
             this.btnSearchSupplier = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPurchasedPrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSellPrice = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.checkBuyForCredit = new System.Windows.Forms.CheckBox();
+            this.txtInvoiceNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpStockRecieveDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).BeginInit();
             this.Supplier.SuspendLayout();
@@ -64,13 +64,14 @@
             this.btnInsert.TabIndex = 20;
             this.btnInsert.Text = "Update Stock";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // textBox1
+            // txtQty
             // 
-            this.textBox1.Location = new System.Drawing.Point(142, 180);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 22;
+            this.txtQty.Location = new System.Drawing.Point(142, 180);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(100, 20);
+            this.txtQty.TabIndex = 22;
             // 
             // Supplier
             // 
@@ -101,12 +102,12 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Qty";
             // 
-            // textBox2
+            // txtPurchasedPrice
             // 
-            this.textBox2.Location = new System.Drawing.Point(142, 206);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 22;
+            this.txtPurchasedPrice.Location = new System.Drawing.Point(142, 206);
+            this.txtPurchasedPrice.Name = "txtPurchasedPrice";
+            this.txtPurchasedPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtPurchasedPrice.TabIndex = 22;
             // 
             // label2
             // 
@@ -117,12 +118,12 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Purchased Price";
             // 
-            // textBox3
+            // txtSellPrice
             // 
-            this.textBox3.Location = new System.Drawing.Point(142, 232);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 22;
+            this.txtSellPrice.Location = new System.Drawing.Point(142, 232);
+            this.txtSellPrice.Name = "txtSellPrice";
+            this.txtSellPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtSellPrice.TabIndex = 22;
             // 
             // label3
             // 
@@ -133,22 +134,22 @@
             this.label3.TabIndex = 24;
             this.label3.Text = "Sell Price";
             // 
-            // checkBox1
+            // checkBuyForCredit
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(154, 313);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(88, 17);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "Buy by Credit";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBuyForCredit.AutoSize = true;
+            this.checkBuyForCredit.Location = new System.Drawing.Point(154, 313);
+            this.checkBuyForCredit.Name = "checkBuyForCredit";
+            this.checkBuyForCredit.Size = new System.Drawing.Size(88, 17);
+            this.checkBuyForCredit.TabIndex = 25;
+            this.checkBuyForCredit.Text = "Buy by Credit";
+            this.checkBuyForCredit.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // txtInvoiceNumber
             // 
-            this.textBox4.Location = new System.Drawing.Point(142, 154);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 26;
+            this.txtInvoiceNumber.Location = new System.Drawing.Point(142, 154);
+            this.txtInvoiceNumber.Name = "txtInvoiceNumber";
+            this.txtInvoiceNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtInvoiceNumber.TabIndex = 26;
             // 
             // label4
             // 
@@ -159,12 +160,12 @@
             this.label4.TabIndex = 24;
             this.label4.Text = "Invoice Number";
             // 
-            // dateTimePicker1
+            // dtpStockRecieveDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(42, 287);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 27;
+            this.dtpStockRecieveDate.Location = new System.Drawing.Point(42, 287);
+            this.dtpStockRecieveDate.Name = "dtpStockRecieveDate";
+            this.dtpStockRecieveDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpStockRecieveDate.TabIndex = 27;
             // 
             // label5
             // 
@@ -180,21 +181,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.dtpStockRecieveDate);
+            this.Controls.Add(this.txtInvoiceNumber);
+            this.Controls.Add(this.checkBuyForCredit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Supplier);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSellPrice);
+            this.Controls.Add(this.txtPurchasedPrice);
+            this.Controls.Add(this.txtQty);
             this.Controls.Add(this.dgStock);
             this.Controls.Add(this.btnInsert);
             this.Name = "StockReceive";
             this.Size = new System.Drawing.Size(954, 398);
+            this.Load += new System.EventHandler(this.StockReceive_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).EndInit();
             this.Supplier.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -206,18 +208,18 @@
 
         private System.Windows.Forms.DataGridView dgStock;
         private System.Windows.Forms.Button btnInsert;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.GroupBox Supplier;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPurchasedPrice;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSellPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSearchSupplier;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.CheckBox checkBuyForCredit;
+        private System.Windows.Forms.TextBox txtInvoiceNumber;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpStockRecieveDate;
         private System.Windows.Forms.Label label5;
     }
 }

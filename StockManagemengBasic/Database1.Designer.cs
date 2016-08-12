@@ -68,6 +68,22 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<tblBank> tblBanks
+        {
+            get
+            {
+                if ((_tblBanks == null))
+                {
+                    _tblBanks = base.CreateObjectSet<tblBank>("tblBanks");
+                }
+                return _tblBanks;
+            }
+        }
+        private ObjectSet<tblBank> _tblBanks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<tblCashbook> tblCashbooks
         {
             get
@@ -96,6 +112,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblCredit> _tblCredits;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblCustomer> tblCustomers
+        {
+            get
+            {
+                if ((_tblCustomers == null))
+                {
+                    _tblCustomers = base.CreateObjectSet<tblCustomer>("tblCustomers");
+                }
+                return _tblCustomers;
+            }
+        }
+        private ObjectSet<tblCustomer> _tblCustomers;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -132,22 +164,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblReturn> tblReturns
-        {
-            get
-            {
-                if ((_tblReturns == null))
-                {
-                    _tblReturns = base.CreateObjectSet<tblReturn>("tblReturns");
-                }
-                return _tblReturns;
-            }
-        }
-        private ObjectSet<tblReturn> _tblReturns;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblReturnItem> tblReturnItems
         {
             get
@@ -160,6 +176,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblReturnItem> _tblReturnItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblReturn> tblReturns
+        {
+            get
+            {
+                if ((_tblReturns == null))
+                {
+                    _tblReturns = base.CreateObjectSet<tblReturn>("tblReturns");
+                }
+                return _tblReturns;
+            }
+        }
+        private ObjectSet<tblReturn> _tblReturns;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -224,26 +256,18 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<tblBank> tblBanks
-        {
-            get
-            {
-                if ((_tblBanks == null))
-                {
-                    _tblBanks = base.CreateObjectSet<tblBank>("tblBanks");
-                }
-                return _tblBanks;
-            }
-        }
-        private ObjectSet<tblBank> _tblBanks;
 
         #endregion
 
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblBanks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblBanks(tblBank tblBank)
+        {
+            base.AddObject("tblBanks", tblBank);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the tblCashbooks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -259,6 +283,14 @@ namespace StockManagemengBasic
         public void AddTotblCredits(tblCredit tblCredit)
         {
             base.AddObject("tblCredits", tblCredit);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblCustomers(tblCustomer tblCustomer)
+        {
+            base.AddObject("tblCustomers", tblCustomer);
         }
     
         /// <summary>
@@ -278,19 +310,19 @@ namespace StockManagemengBasic
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tblReturns EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblReturns(tblReturn tblReturn)
-        {
-            base.AddObject("tblReturns", tblReturn);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tblReturnItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotblReturnItems(tblReturnItem tblReturnItem)
         {
             base.AddObject("tblReturnItems", tblReturnItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblReturns EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblReturns(tblReturn tblReturn)
+        {
+            base.AddObject("tblReturns", tblReturn);
         }
     
         /// <summary>
@@ -323,14 +355,6 @@ namespace StockManagemengBasic
         public void AddTotblUsers(tblUser tblUser)
         {
             base.AddObject("tblUsers", tblUser);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the tblBanks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblBanks(tblBank tblBank)
-        {
-            base.AddObject("tblBanks", tblBank);
         }
 
         #endregion
@@ -918,6 +942,209 @@ namespace StockManagemengBasic
         private global::System.DateTime _Date;
         partial void OnDateChanging(global::System.DateTime value);
         partial void OnDateChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="StockmanagementModel", Name="tblCustomer")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblCustomer : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblCustomer object.
+        /// </summary>
+        /// <param name="contactNumber">Initial value of the ContactNumber property.</param>
+        /// <param name="customerName">Initial value of the CustomerName property.</param>
+        public static tblCustomer CreatetblCustomer(global::System.String contactNumber, global::System.String customerName)
+        {
+            tblCustomer tblCustomer = new tblCustomer();
+            tblCustomer.ContactNumber = contactNumber;
+            tblCustomer.CustomerName = customerName;
+            return tblCustomer;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ContactNumber
+        {
+            get
+            {
+                return _ContactNumber;
+            }
+            set
+            {
+                if (_ContactNumber != value)
+                {
+                    OnContactNumberChanging(value);
+                    ReportPropertyChanging("ContactNumber");
+                    _ContactNumber = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ContactNumber");
+                    OnContactNumberChanged();
+                }
+            }
+        }
+        private global::System.String _ContactNumber;
+        partial void OnContactNumberChanging(global::System.String value);
+        partial void OnContactNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CustomerName
+        {
+            get
+            {
+                return _CustomerName;
+            }
+            set
+            {
+                OnCustomerNameChanging(value);
+                ReportPropertyChanging("CustomerName");
+                _CustomerName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CustomerName");
+                OnCustomerNameChanged();
+            }
+        }
+        private global::System.String _CustomerName;
+        partial void OnCustomerNameChanging(global::System.String value);
+        partial void OnCustomerNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Designation
+        {
+            get
+            {
+                return _Designation;
+            }
+            set
+            {
+                OnDesignationChanging(value);
+                ReportPropertyChanging("Designation");
+                _Designation = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Designation");
+                OnDesignationChanged();
+            }
+        }
+        private global::System.String _Designation;
+        partial void OnDesignationChanging(global::System.String value);
+        partial void OnDesignationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fax
+        {
+            get
+            {
+                return _Fax;
+            }
+            set
+            {
+                OnFaxChanging(value);
+                ReportPropertyChanging("Fax");
+                _Fax = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fax");
+                OnFaxChanged();
+            }
+        }
+        private global::System.String _Fax;
+        partial void OnFaxChanging(global::System.String value);
+        partial void OnFaxChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                OnAddressChanging(value);
+                ReportPropertyChanging("Address");
+                _Address = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Address");
+                OnAddressChanged();
+            }
+        }
+        private global::System.String _Address;
+        partial void OnAddressChanging(global::System.String value);
+        partial void OnAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NIC
+        {
+            get
+            {
+                return _NIC;
+            }
+            set
+            {
+                OnNICChanging(value);
+                ReportPropertyChanging("NIC");
+                _NIC = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NIC");
+                OnNICChanged();
+            }
+        }
+        private global::System.String _NIC;
+        partial void OnNICChanging(global::System.String value);
+        partial void OnNICChanged();
 
         #endregion
 
@@ -2116,48 +2343,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Credit
+        public Nullable<global::System.Decimal> Qty
         {
             get
             {
-                return _Credit;
+                return _Qty;
             }
             set
             {
-                OnCreditChanging(value);
-                ReportPropertyChanging("Credit");
-                _Credit = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Credit");
-                OnCreditChanged();
+                OnQtyChanging(value);
+                ReportPropertyChanging("Qty");
+                _Qty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Qty");
+                OnQtyChanged();
             }
         }
-        private global::System.String _Credit;
-        partial void OnCreditChanging(global::System.String value);
-        partial void OnCreditChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Debt
-        {
-            get
-            {
-                return _Debt;
-            }
-            set
-            {
-                OnDebtChanging(value);
-                ReportPropertyChanging("Debt");
-                _Debt = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Debt");
-                OnDebtChanged();
-            }
-        }
-        private global::System.String _Debt;
-        partial void OnDebtChanging(global::System.String value);
-        partial void OnDebtChanged();
+        private Nullable<global::System.Decimal> _Qty;
+        partial void OnQtyChanging(Nullable<global::System.Decimal> value);
+        partial void OnQtyChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2254,6 +2457,30 @@ namespace StockManagemengBasic
         private global::System.DateTime _CreatedDate;
         partial void OnCreatedDateChanging(global::System.DateTime value);
         partial void OnCreatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String InvoiceNumber
+        {
+            get
+            {
+                return _InvoiceNumber;
+            }
+            set
+            {
+                OnInvoiceNumberChanging(value);
+                ReportPropertyChanging("InvoiceNumber");
+                _InvoiceNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InvoiceNumber");
+                OnInvoiceNumberChanged();
+            }
+        }
+        private global::System.String _InvoiceNumber;
+        partial void OnInvoiceNumberChanging(global::System.String value);
+        partial void OnInvoiceNumberChanged();
 
         #endregion
 

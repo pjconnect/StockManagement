@@ -38,6 +38,7 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
@@ -53,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCustomers.Designer.cs">
+      <DependentUpon>AddCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddInvoice.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +102,12 @@
     <Compile Include="Creditors.Designer.cs">
       <DependentUpon>Creditors.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomerSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerSearch.Designer.cs">
+      <DependentUpon>CustomerSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,6 +145,12 @@
       <DependentUpon>Invoice.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SearchStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchStock.Designer.cs">
+      <DependentUpon>SearchStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="StartAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +175,9 @@
     <Compile Include="SupplierSearch.Designer.cs">
       <DependentUpon>SupplierSearch.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCustomers.resx">
+      <DependentUpon>AddCustomers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddInvoice.resx">
       <DependentUpon>AddInvoice.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +199,9 @@
     <EmbeddedResource Include="Creditors.resx">
       <DependentUpon>Creditors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomerSearch.resx">
+      <DependentUpon>CustomerSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Debtors.resx">
       <DependentUpon>Debtors.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,9 +211,13 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\Invoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Invoice.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchStock.resx">
+      <DependentUpon>SearchStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartAdmin.resx">
       <DependentUpon>StartAdmin.cs</DependentUpon>

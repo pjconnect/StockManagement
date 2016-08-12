@@ -141,5 +141,22 @@ namespace StockManagemengBasic
             }
 
         }
+
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            var customerSearch = new CustomerSearch();
+            customerSearch.Show();
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            var customerSearch = new AddCustomers();
+            customerSearch.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

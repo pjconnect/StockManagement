@@ -21,12 +21,6 @@ namespace StockManagemengBasic
 
         }
 
-        private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearLoader();
-            loader.Controls.Add(new AddInvoice());
-        }
-
         private void ClearLoader()
         {
             loader.Controls.Clear();
@@ -96,6 +90,17 @@ namespace StockManagemengBasic
         {
             ClearLoader();
             loader.Controls.Add(new ItemReturn());
+        }
+
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AddCustomers().Show();
+        }
+
+        private void addInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new AddInvoice());
         }
     }
 }
