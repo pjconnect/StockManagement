@@ -24,6 +24,11 @@ namespace StockManagemengBasic
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            SelectCustomer();
+        }
+
+        void SelectCustomer()
+        {
             var id = Convert.ToInt32(dgCustomer.SelectedRows[0].Cells["ID"].Value);
             CustomerSelect(id);
             this.Close();
@@ -34,6 +39,9 @@ namespace StockManagemengBasic
             dgCustomer.DataSource = db.tblCustomers.ToList();
         }
 
-
+        private void dgCustomer_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SelectCustomer();
+        }
     }
 }

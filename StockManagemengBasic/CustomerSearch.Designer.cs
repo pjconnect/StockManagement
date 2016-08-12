@@ -56,11 +56,17 @@
             // 
             this.dgCustomer.AllowUserToAddRows = false;
             this.dgCustomer.AllowUserToDeleteRows = false;
+            this.dgCustomer.AllowUserToOrderColumns = true;
+            this.dgCustomer.AllowUserToResizeColumns = false;
+            this.dgCustomer.AllowUserToResizeRows = false;
             this.dgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCustomer.Location = new System.Drawing.Point(11, 38);
             this.dgCustomer.Name = "dgCustomer";
+            this.dgCustomer.ReadOnly = true;
+            this.dgCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCustomer.Size = new System.Drawing.Size(614, 290);
             this.dgCustomer.TabIndex = 3;
+            this.dgCustomer.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgCustomer_CellMouseDoubleClick);
             // 
             // label1
             // 

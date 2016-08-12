@@ -20,27 +20,31 @@ namespace StockManagemengBasic
         decimal totalDiscount = 0;
         int customerID = 0;
 
+        decimal cash = 0;
+        decimal credit = 0;
+        decimal cheque = 0;
+        int paymentType = 0; // cash, credit or cheque
+
         public AddInvoice()
         {
             InitializeComponent();
-            isFirstTime = true;
-            invoiceID = 0;
         }
 
         private void AddInvoice_Load(object sender, EventArgs e)
         {
-            clear();
+            Clear();
+            DisableTextboxes();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            var itemID = txtItemID.Text;
-            var item = db.tblStocks.Where(t => t.ID == itemID).Select(t => t).ToList();
-            var stockItems = db.tblStockItems.Where(t => t.StockID == itemID).Select(t => t).ToList();
+            var stockID = txtItemID.Text;
+            var stock = db.tblStocks.Where(t => t.ID == stockID).Select(t => t).ToList();
+            var stockItems = db.tblStockItems.Where(t => t.StockID == stockID).Select(t => t).ToList();
 
-            if (item.Count() > 0 && stockItems.Count() > 0)
+            if (stock.Count() > 0 && stockItems.Count() > 0)
             {
-                var selectedStock = item.First();
+                var selectedStock = stock.First();
                 var selectedStockItem = stockItems.First();
 
                 var itemCount = db.tblStockItems.Where(t => t.StockID == selectedStock.ID).Select(t => t.Qty).Sum();
@@ -66,8 +70,6 @@ namespace StockManagemengBasic
 
                 var totalItemPrice = selectedStockItem.SellPrice * qty;
                 this.totalPrice += totalItemPrice;
-                txtTotal.Text = this.totalPrice.ToString();
-                txtCash.Text = this.totalPrice.ToString();
 
                 // insert into Invoice table
                 if (isFirstTime)
@@ -123,21 +125,23 @@ namespace StockManagemengBasic
             else
             {
                 MessageBox.Show("Item not found please use search instead");
+                return;
             }
+
+            CalculateBalance();
+            EnableTextboxes();
         }
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-
-            // TODO: discount
-
             var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice ;
-            decimal cash = 0;
-            decimal credit = 0;
-            decimal cheque = 0;
-            int paymentType = 0;
-            
 
+            if(total <= 0)
+            {
+                MessageBox.Show("Total Canot be less than 0");
+                return;
+            }
+            
             decimal balance = 0;
 
             try
@@ -243,25 +247,8 @@ namespace StockManagemengBasic
 
             MessageBox.Show("Successfully Saved ", "Success");
 
-            clear();
+            Clear();
 
-        }
-
-        void clear()
-        {
-            dgCart.DataSource = null;
-            txtCash.Text = 0.ToString();
-            txtCheque.Text = 0.ToString();
-            txtCredit.Text = 0.ToString();
-            txtTotal.Text = 0.ToString();
-            txtQty.Text = 1.ToString();
-            txtBalance.Text = 0.ToString();
-            txtCustomerName.Text = string.Empty;
-            txtChequeNumber.Text = string.Empty;
-            dtpRealiseDate.Value = DateTime.Now;
-            txtDiscount.Text = string.Empty;
-            cmbDiscountType.SelectedIndex = 0;
-            txtItemID.Text = string.Empty;
         }
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
@@ -309,10 +296,71 @@ namespace StockManagemengBasic
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            calculateDiscout();
+            CalculateBalance();
         }
 
-        void calculateDiscout()
+        private void cmbDiscountType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+        }
+
+        private void txtCash_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+        }
+
+        private void txtCheque_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+
+        }
+
+        private void txtCredit_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+
+        }
+
+        void Clear()
+        {
+            dgCart.DataSource = null;
+            txtCash.Text = 0.ToString();
+            txtCheque.Text = 0.ToString();
+            txtCredit.Text = 0.ToString();
+            txtTotal.Text = 0.ToString();
+            txtQty.Text = 1.ToString();
+            txtBalance.Text = 0.ToString();
+            txtCustomerName.Text = string.Empty;
+            txtChequeNumber.Text = string.Empty;
+
+            dtpRealiseDate.MinDate = DateTime.Now;
+            dtpRealiseDate.Value = DateTime.Now;
+
+            txtDiscount.Text = string.Empty;
+            cmbDiscountType.SelectedIndex = 0;
+            txtItemID.Text = string.Empty;
+            lblTotalAmountDescription.Text = string.Empty;
+            txtContactNumber.Text = string.Empty;
+
+        }
+
+        void ZerofyPayTextboxes()
+        {
+            if (txtCash.Text == string.Empty)
+            {
+                txtCash.Text = 0.ToString();
+            }
+            if (txtCredit.Text == string.Empty)
+            {
+                txtCredit.Text = 0.ToString();
+            }
+            if (txtCash.Text == string.Empty)
+            {
+                txtCheque.Text = 0.ToString();
+            }
+        }
+
+        void CalculateDiscout()
         {
             int discount = 0;
             var discountType = cmbDiscountType.Text;
@@ -334,7 +382,6 @@ namespace StockManagemengBasic
             {
                 totalDiscount = ((decimal)discount / 100) * totalPrice;
                 totalDiscountedPrice = totalPrice - totalDiscount;
-                txtTotal.Text = totalDiscountedPrice.ToString();
 
             }
             else
@@ -342,14 +389,72 @@ namespace StockManagemengBasic
                 discount = Convert.ToInt32(txtDiscount.Text);
                 totalDiscount = discount;
                 totalDiscountedPrice = totalPrice - totalDiscount;
-                txtTotal.Text = totalDiscountedPrice.ToString();
+            }
+            if (totalDiscount > 0)
+            {
+                lblTotalAmountDescription.Text = "Total: " + totalPrice + " | " + "Discount: " + totalDiscount;
             }
 
         }
 
-        private void cmbDiscountType_SelectedIndexChanged(object sender, EventArgs e)
+        void CalculateBalance()
         {
-            calculateDiscout();
+            CalculateDiscout();
+
+            var totalAmount = (totalDiscountedPrice > 0) ? totalDiscountedPrice : totalPrice;
+            try
+            {
+                if (txtCash.Text != string.Empty && txtCredit.Text != string.Empty && txtCheque.Text != string.Empty)
+                {
+                    cash = Convert.ToDecimal(txtCash.Text);
+                    credit = Convert.ToDecimal(txtCredit.Text);
+                    cheque = Convert.ToDecimal(txtCheque.Text);
+                }
+                else
+                {
+                    ZerofyPayTextboxes();
+                }
+
+                if (cash < 0 || credit < 0 || cheque < 0)
+                {
+                    MessageBox.Show("You have 'minus (-)' Value one of text fields, please correct them ");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            var totalPay = cash + credit + cheque;
+
+            txtBalance.Text = (totalPay - totalAmount).ToString();
+            txtTotal.Text = (totalDiscount == 0) ? totalAmount.ToString() : totalDiscountedPrice.ToString();
+
+        }
+
+        void EnableTextboxes()
+        {
+            txtCash.Enabled = true;
+            txtCredit.Enabled = true;
+            txtCheque.Enabled = true;
+            txtChequeNumber.Enabled = true;
+            dtpRealiseDate.Enabled = true;
+            txtDiscount.Enabled = true;
+            cmbDiscountType.Enabled = true;
+            btnPay.Enabled = true;
+        }
+
+        void DisableTextboxes()
+        {
+            txtCash.Enabled = false;
+            txtCredit.Enabled = false;
+            txtCheque.Enabled = false;
+            txtChequeNumber.Enabled = false;
+            dtpRealiseDate.Enabled = false;
+            txtDiscount.Enabled = false;
+            cmbDiscountType.Enabled = false;
+            btnPay.Enabled = false;
         }
     }
 }

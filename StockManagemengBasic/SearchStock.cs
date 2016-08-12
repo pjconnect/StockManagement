@@ -25,6 +25,11 @@ namespace StockManagemengBasic
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            SelectStockItem();
+        }
+
+        void SelectStockItem()
+        {
             var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
             SelectStock(stockID);
             this.Close();
@@ -43,6 +48,11 @@ namespace StockManagemengBasic
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             var searchText = txtSearch.Text;
+        }
+
+        private void dgStock_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SelectStockItem();
         }
     }
 }

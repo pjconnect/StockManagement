@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtItemID = new System.Windows.Forms.TextBox();
             this.btnAddItem = new System.Windows.Forms.Button();
             this.dgCart = new System.Windows.Forms.DataGridView();
@@ -63,7 +62,6 @@
             this.btnNewCustomer = new System.Windows.Forms.Button();
             this.btnSearchCustomer = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbDiscountType = new System.Windows.Forms.ComboBox();
@@ -97,9 +95,19 @@
             // 
             // dgCart
             // 
+            this.dgCart.AllowUserToAddRows = false;
+            this.dgCart.AllowUserToDeleteRows = false;
+            this.dgCart.AllowUserToOrderColumns = true;
+            this.dgCart.AllowUserToResizeColumns = false;
+            this.dgCart.AllowUserToResizeRows = false;
+            this.dgCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgCart.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCart.Location = new System.Drawing.Point(13, 52);
+            this.dgCart.MultiSelect = false;
             this.dgCart.Name = "dgCart";
+            this.dgCart.ReadOnly = true;
+            this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCart.Size = new System.Drawing.Size(767, 216);
             this.dgCart.TabIndex = 2;
             // 
@@ -159,6 +167,7 @@
             this.txtCredit.Name = "txtCredit";
             this.txtCredit.Size = new System.Drawing.Size(176, 20);
             this.txtCredit.TabIndex = 0;
+            this.txtCredit.TextChanged += new System.EventHandler(this.txtCredit_TextChanged);
             // 
             // groupBox2
             // 
@@ -186,6 +195,7 @@
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(177, 20);
             this.txtCash.TabIndex = 0;
+            this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
             // 
             // groupBox3
             // 
@@ -249,6 +259,7 @@
             this.txtCheque.Name = "txtCheque";
             this.txtCheque.Size = new System.Drawing.Size(138, 20);
             this.txtCheque.TabIndex = 0;
+            this.txtCheque.TextChanged += new System.EventHandler(this.txtCheque_TextChanged);
             // 
             // btnSearch
             // 
@@ -347,6 +358,7 @@
             // 
             // txtCustomerName
             // 
+            this.txtCustomerName.Enabled = false;
             this.txtCustomerName.Location = new System.Drawing.Point(97, 51);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
@@ -391,11 +403,6 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "Customer";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // txtDiscount
             // 
             this.txtDiscount.Location = new System.Drawing.Point(192, 465);
@@ -436,6 +443,7 @@
             // 
             // txtContactNumber
             // 
+            this.txtContactNumber.Enabled = false;
             this.txtContactNumber.Location = new System.Drawing.Point(97, 77);
             this.txtContactNumber.Name = "txtContactNumber";
             this.txtContactNumber.ReadOnly = true;
@@ -454,7 +462,7 @@
             // lblTotalAmountDescription
             // 
             this.lblTotalAmountDescription.AutoSize = true;
-            this.lblTotalAmountDescription.Location = new System.Drawing.Point(507, 490);
+            this.lblTotalAmountDescription.Location = new System.Drawing.Point(445, 490);
             this.lblTotalAmountDescription.Name = "lblTotalAmountDescription";
             this.lblTotalAmountDescription.Size = new System.Drawing.Size(0, 13);
             this.lblTotalAmountDescription.TabIndex = 18;
@@ -535,7 +543,6 @@
         private System.Windows.Forms.Label lblTotalCredit;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCustomerName;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.DateTimePicker dtpRealiseDate;
         private System.Windows.Forms.Button btnNewCustomer;
         private System.Windows.Forms.TextBox txtDiscount;
