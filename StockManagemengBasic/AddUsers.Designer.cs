@@ -41,7 +41,7 @@
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(240, 94);
+            this.btnCreateUser.Location = new System.Drawing.Point(240, 120);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(75, 23);
             this.btnCreateUser.TabIndex = 0;
@@ -114,7 +114,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 330);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbl1);
@@ -124,7 +123,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnCreateUser);
             this.Name = "AddUsers";
-            this.Text = "AddUsers";
+            this.Size = new System.Drawing.Size(688, 330);
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

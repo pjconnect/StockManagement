@@ -26,11 +26,7 @@ namespace StockManagemengBasic
 
         private void AddInvoice_Load(object sender, EventArgs e)
         {
-            txtCash.Text = 0.ToString();
-            txtCheque.Text = 0.ToString();
-            txtCredit.Text = 0.ToString();
-            txtTotal.Text = 0.ToString();
-            txtQty.Text = 1.ToString();
+            clear();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -136,6 +132,7 @@ namespace StockManagemengBasic
             decimal cash = 0;
             decimal credit = 0;
             decimal cheque = 0;
+            int paymentType = 0;
 
             decimal balance = 0;
 
@@ -151,17 +148,33 @@ namespace StockManagemengBasic
                 return;
             }
 
-            if (total > (cash + credit + cheque))
+            //pay type algorithm
+            if (txtCash.Text != 0.ToString())
+            {
+                paymentType++;
+            }
+            if (txtCredit.Text != 0.ToString())
+            {
+                paymentType += 2;
+            }
+            if (txtCredit.Text != 0.ToString())
+            {
+                paymentType += 3;
+            }
+
+            if (total <= (cash + credit + cheque))
             {
                 var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
                 invoice.IsPaid = true;
                 invoice.CreditReceived = credit;
                 invoice.CashReceived = cash;
                 invoice.ChequeRecieved = cheque;
-                invoice.PaymentType = 0; // TODO pay type algorighm
+                invoice.PaymentType = paymentType;
 
                 balance = total - (cash + credit + cheque);
                 txtBalance.Text = balance.ToString();
+
+                db.SaveChanges();
             }
             else
             {
@@ -170,8 +183,31 @@ namespace StockManagemengBasic
             }
 
             // todo: if credit go to credit
+            if(txtBalance.Text != 0.ToString())
+            {
+
+            }
 
             //todo: if bank go to bank
+
+            clear();
+
+        }
+
+        void clear()
+        {
+            dgCart.DataSource = null;
+            txtCash.Text = 0.ToString();
+            txtCheque.Text = 0.ToString();
+            txtCredit.Text = 0.ToString();
+            txtTotal.Text = 0.ToString();
+            txtQty.Text = 1.ToString();
+            txtBalance.Text = 0.ToString();
+            txtCustomerName.Text = string.Empty;
+            txtChequeNumber.Text = string.Empty;
+            dtpRealiseDate.Value = DateTime.Now;
+            txtDiscount.Text = string.Empty;
+            cmbDiscountType.SelectedIndex = 0;
 
         }
 

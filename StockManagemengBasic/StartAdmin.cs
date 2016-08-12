@@ -47,7 +47,7 @@ namespace StockManagemengBasic
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClearLoader();
-            loader.Controls.Add(new Login());
+            loader.Controls.Add(new AddUsers());
         }
 
         private void changeMyPasswordToolStripMenuItem_Click(object sender, EventArgs e)
