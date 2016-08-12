@@ -31,16 +31,7 @@ namespace StockManagemengBasic
             var id = Convert.ToInt32(dgSuppliers.SelectedRows[0].Cells["ID"].Value);
 
             SupplierSelect(id);
-        }
-
-        private void dgSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex == -1)
-            {
-                return;
-            }
-            var id = Convert.ToInt32(dgSuppliers.SelectedRows[0].Cells["ID"].Value);
-            SupplierSelect(id);
+            this.Close();
         }
 
         private void loadGrid() {

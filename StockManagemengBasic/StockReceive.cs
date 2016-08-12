@@ -29,6 +29,15 @@ namespace StockManagemengBasic
         private void SupplierSearch_SupplierSelect(int SupplierID)
         {
             supplierID = SupplierID;
+
+           //db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
+            var supplier = db.tblSuppliers.Where(t => t.ID == supplierID).First();
+            txtspName.Text = supplier.Name;
+            txtspContact.Text = supplier.ContactNumber;
+            txtspEmail.Text = supplier.Email;
+            txtspNIC.Text = supplier.NIC;
+            txtspFax.Text = supplier.Fax;
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
