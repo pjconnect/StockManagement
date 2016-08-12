@@ -66,14 +66,14 @@
           <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Comment" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Category" Type="nchar" MaxLength="10" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblInvoices">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="DiscountType" Type="int" />
           <Property Name="CashReceived" Type="decimal" Precision="18" Scale="2" />
@@ -83,7 +83,7 @@
           <Property Name="BankID" Type="int" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsPaid" Type="bit" />
-          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="CashierID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblReturnItems">
           <Key>
@@ -246,14 +246,14 @@
           <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Comment" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblInvoice">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" />
           <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="DiscountType" Type="Int32" />
           <Property Name="CashReceived" Type="Decimal" Precision="18" Scale="2" />
@@ -263,7 +263,7 @@
           <Property Name="BankID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsPaid" Type="Boolean" />
-          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="CashierID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblReturnItem">
           <Key>
@@ -410,7 +410,7 @@
           <EntitySetMapping Name="tblInvoices">
             <EntityTypeMapping TypeName="StockmanagementModel.tblInvoice">
               <MappingFragment StoreEntitySet="tblInvoices">
-                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CashierID" ColumnName="CashierID" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="BankID" ColumnName="BankID" />

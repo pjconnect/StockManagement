@@ -13,9 +13,9 @@ namespace StockManagemengBasic
     {
 
         StockmanagementEntities db = new StockmanagementEntities();
-        decimal totalAmount = 0;
         bool isFirstTime = true;
         int invoiceID = 0;
+        decimal totalPrice = 0;
 
         public AddInvoice()
         {
@@ -24,29 +24,66 @@ namespace StockManagemengBasic
             invoiceID = 0;
         }
 
+        private void AddInvoice_Load(object sender, EventArgs e)
+        {
+            txtCash.Text = 0.ToString();
+            txtCheque.Text = 0.ToString();
+            txtCredit.Text = 0.ToString();
+            txtTotal.Text = 0.ToString();
+            txtQty.Text = 1.ToString();
+        }
+
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             var itemID = txtItemID.Text;
-
             var item = db.tblStocks.Where(t => t.ID == itemID).Select(t => t).ToList();
+            var stockItems = db.tblStockItems.Where(t => t.StockID == itemID).Select(t => t).ToList();
 
-            if (item.Count() > 0)
+            if (item.Count() > 0 && stockItems.Count() > 0)
             {
-                var selectedItem = item.First();
+                var selectedStock = item.First();
+                var selectedStockItem = stockItems.First();
 
+                var itemCount = db.tblStockItems.Where(t => t.StockID == selectedStock.ID).Select(t => t.Qty).Sum();
+                var sellCount = (from invoice in db.tblInvoices
+                                 join invoiceItems in db.tblInvoiceItems on invoice.ID equals invoiceItems.InvoiceID
+                                 where invoice.IsPaid == true
+                                 select invoiceItems.Qty).Sum();
+
+                var qty = Convert.ToInt32(txtQty.Text);
+                if (qty <= 0) { MessageBox.Show("Please Select Valid Qty"); return; }
+
+                decimal total = 0;
+                if (sellCount != null)
+                {
+                    total = (decimal) (itemCount - sellCount) - qty;
+                }
+                else
+                {
+                    total = (decimal) (itemCount - qty);
+                }
+
+                if (total <= 0){ MessageBox.Show("This Item is out of stock!"); return; }
+
+                var totalItemPrice = selectedStockItem.SellPrice * qty;                
+                this.totalPrice += totalItemPrice;
+                txtTotal.Text = this.totalPrice.ToString();
+                txtCash.Text = this.totalPrice.ToString();
+
+                // insert into Invoice table
                 if (isFirstTime)
                 {
                     isFirstTime = false;
-                    //add to invoice
                     var newInvoice = new tblInvoice()
                     {
                         IsPaid = false,
-                        CustomerID = 0, //todo
-                        PaymentType = 1,
+                        CustomerID = 0, // TODO: add customer ID
+                        PaymentType = 0,
+                        CreatedDate = DateTime.Now,
+                        CashierID = 0, // TODO: add chashier ID
                     };
 
                     db.tblInvoices.AddObject(newInvoice);
-
                     try
                     {
                         db.SaveChanges();
@@ -63,8 +100,10 @@ namespace StockManagemengBasic
                 var newInvoiceItem = new tblInvoiceItem()
                 {
                     InvoiceID = invoiceID,
-                    Qty = 1, // todo
-                    ItemID = selectedItem.ID,
+                    Qty = qty,
+                    ItemID = selectedStock.ID,
+                    SellingPrice = selectedStockItem.SellPrice, // TODO: May be no need sell price because we have itemprice and discount
+                    ItemPrice = selectedStockItem.SellPrice,
                 };
 
                 db.tblInvoiceItems.AddObject(newInvoiceItem);
@@ -79,11 +118,7 @@ namespace StockManagemengBasic
                     MessageBox.Show(ex.Message);
                     return;
                 }
-
-
                 dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).ToList();
-
-                txtTotal.Text = totalAmount.ToString();
             }
             else
             {
@@ -91,19 +126,13 @@ namespace StockManagemengBasic
             }
         }
 
-        private void AddInvoice_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            //todo
-            txtCash.Text = 0.ToString();
-            txtCheque.Text = 0.ToString();
-            txtCredit.Text = 0.ToString();
 
-            var total = Convert.ToDecimal(txtTotal.Text);
+            // TODO: discount
+
+            var total = totalPrice;
             decimal cash = 0;
             decimal credit = 0;
             decimal cheque = 0;
@@ -124,12 +153,12 @@ namespace StockManagemengBasic
 
             if (total > (cash + credit + cheque))
             {
-                var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t=>t).First();
+                var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
                 invoice.IsPaid = true;
                 invoice.CreditReceived = credit;
                 invoice.CashReceived = cash;
                 invoice.ChequeRecieved = cheque;
-                invoice.PaymentType = 0; //todo
+                invoice.PaymentType = 0; // TODO pay type algorighm
 
                 balance = total - (cash + credit + cheque);
                 txtBalance.Text = balance.ToString();
@@ -139,6 +168,10 @@ namespace StockManagemengBasic
                 MessageBox.Show("Can not pay less than the total amount");
                 return;
             }
+
+            // todo: if credit go to credit
+
+            //todo: if bank go to bank
 
         }
 
@@ -156,7 +189,7 @@ namespace StockManagemengBasic
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            new SearchStock().Show();
         }
     }
 }

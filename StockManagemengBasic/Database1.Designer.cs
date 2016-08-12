@@ -1165,18 +1165,16 @@ namespace StockManagemengBasic
         /// Create a new tblInvoice object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="customerID">Initial value of the CustomerID property.</param>
         /// <param name="paymentType">Initial value of the PaymentType property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
-        /// <param name="createdUserID">Initial value of the CreatedUserID property.</param>
-        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 customerID, global::System.Int32 paymentType, global::System.DateTime createdDate, global::System.Int32 createdUserID)
+        /// <param name="cashierID">Initial value of the CashierID property.</param>
+        public static tblInvoice CreatetblInvoice(global::System.Int32 id, global::System.Int32 paymentType, global::System.DateTime createdDate, global::System.Int32 cashierID)
         {
             tblInvoice tblInvoice = new tblInvoice();
             tblInvoice.ID = id;
-            tblInvoice.CustomerID = customerID;
             tblInvoice.PaymentType = paymentType;
             tblInvoice.CreatedDate = createdDate;
-            tblInvoice.CreatedUserID = createdUserID;
+            tblInvoice.CashierID = cashierID;
             return tblInvoice;
         }
 
@@ -1214,9 +1212,9 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 CustomerID
+        public Nullable<global::System.Int32> CustomerID
         {
             get
             {
@@ -1231,8 +1229,8 @@ namespace StockManagemengBasic
                 OnCustomerIDChanged();
             }
         }
-        private global::System.Int32 _CustomerID;
-        partial void OnCustomerIDChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _CustomerID;
+        partial void OnCustomerIDChanging(Nullable<global::System.Int32> value);
         partial void OnCustomerIDChanged();
     
         /// <summary>
@@ -1456,24 +1454,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 CreatedUserID
+        public global::System.Int32 CashierID
         {
             get
             {
-                return _CreatedUserID;
+                return _CashierID;
             }
             set
             {
-                OnCreatedUserIDChanging(value);
-                ReportPropertyChanging("CreatedUserID");
-                _CreatedUserID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreatedUserID");
-                OnCreatedUserIDChanged();
+                OnCashierIDChanging(value);
+                ReportPropertyChanging("CashierID");
+                _CashierID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CashierID");
+                OnCashierIDChanged();
             }
         }
-        private global::System.Int32 _CreatedUserID;
-        partial void OnCreatedUserIDChanging(global::System.Int32 value);
-        partial void OnCreatedUserIDChanged();
+        private global::System.Int32 _CashierID;
+        partial void OnCashierIDChanging(global::System.Int32 value);
+        partial void OnCashierIDChanged();
 
         #endregion
 
