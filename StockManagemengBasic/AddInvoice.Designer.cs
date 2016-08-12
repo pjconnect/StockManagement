@@ -34,7 +34,7 @@
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblTotalCredit = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCredit = new System.Windows.Forms.TextBox();
@@ -67,6 +67,10 @@
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbDiscountType = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtContactNumber = new System.Windows.Forms.TextBox();
+            this.RS = new System.Windows.Forms.Label();
+            this.lblTotalAmountDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -110,7 +114,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.RS);
+            this.groupBox1.Controls.Add(this.lblTotalCredit);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtCredit);
@@ -121,19 +126,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pay by Credit";
             // 
-            // label14
+            // lblTotalCredit
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(186, 54);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 13);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "0.00 RS";
+            this.lblTotalCredit.AutoSize = true;
+            this.lblTotalCredit.Location = new System.Drawing.Point(172, 54);
+            this.lblTotalCredit.Name = "lblTotalCredit";
+            this.lblTotalCredit.Size = new System.Drawing.Size(28, 13);
+            this.lblTotalCredit.TabIndex = 7;
+            this.lblTotalCredit.Text = "0.00";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(119, 54);
+            this.label6.Location = new System.Drawing.Point(7, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 5;
@@ -326,6 +331,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txtContactNumber);
+            this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.txtCustomerName);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.btnNewCustomer);
@@ -395,6 +402,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(100, 20);
             this.txtDiscount.TabIndex = 15;
+            this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             // 
             // label12
             // 
@@ -415,11 +423,47 @@
             this.cmbDiscountType.Name = "cmbDiscountType";
             this.cmbDiscountType.Size = new System.Drawing.Size(52, 21);
             this.cmbDiscountType.TabIndex = 17;
+            this.cmbDiscountType.SelectedIndexChanged += new System.EventHandler(this.cmbDiscountType_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 80);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(87, 13);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Contact Number:";
+            // 
+            // txtContactNumber
+            // 
+            this.txtContactNumber.Location = new System.Drawing.Point(97, 77);
+            this.txtContactNumber.Name = "txtContactNumber";
+            this.txtContactNumber.ReadOnly = true;
+            this.txtContactNumber.Size = new System.Drawing.Size(142, 20);
+            this.txtContactNumber.TabIndex = 14;
+            // 
+            // RS
+            // 
+            this.RS.AutoSize = true;
+            this.RS.Location = new System.Drawing.Point(210, 54);
+            this.RS.Name = "RS";
+            this.RS.Size = new System.Drawing.Size(22, 13);
+            this.RS.TabIndex = 8;
+            this.RS.Text = "RS";
+            // 
+            // lblTotalAmountDescription
+            // 
+            this.lblTotalAmountDescription.AutoSize = true;
+            this.lblTotalAmountDescription.Location = new System.Drawing.Point(507, 490);
+            this.lblTotalAmountDescription.Name = "lblTotalAmountDescription";
+            this.lblTotalAmountDescription.Size = new System.Drawing.Size(0, 13);
+            this.lblTotalAmountDescription.TabIndex = 18;
             // 
             // AddInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTotalAmountDescription);
             this.Controls.Add(this.cmbDiscountType);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtDiscount);
@@ -441,7 +485,7 @@
             this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.txtItemID);
             this.Name = "AddInvoice";
-            this.Size = new System.Drawing.Size(798, 500);
+            this.Size = new System.Drawing.Size(798, 517);
             this.Load += new System.EventHandler(this.AddInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -488,7 +532,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnSearchCustomer;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblTotalCredit;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -497,5 +541,9 @@
         private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbDiscountType;
+        private System.Windows.Forms.TextBox txtContactNumber;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label RS;
+        private System.Windows.Forms.Label lblTotalAmountDescription;
     }
 }

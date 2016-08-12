@@ -88,7 +88,6 @@
             // 
             this.txtDesignation.Location = new System.Drawing.Point(141, 64);
             this.txtDesignation.Name = "txtDesignation";
-            this.txtDesignation.PasswordChar = '*';
             this.txtDesignation.Size = new System.Drawing.Size(174, 20);
             this.txtDesignation.TabIndex = 9;
             // 
@@ -113,7 +112,6 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(141, 90);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.PasswordChar = '*';
             this.txtEmail.Size = new System.Drawing.Size(174, 20);
             this.txtEmail.TabIndex = 9;
             // 
@@ -130,7 +128,6 @@
             // 
             this.txtFax.Location = new System.Drawing.Point(141, 116);
             this.txtFax.Name = "txtFax";
-            this.txtFax.PasswordChar = '*';
             this.txtFax.Size = new System.Drawing.Size(174, 20);
             this.txtFax.TabIndex = 9;
             // 
@@ -147,7 +144,6 @@
             // 
             this.txtAddress.Location = new System.Drawing.Point(141, 142);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.PasswordChar = '*';
             this.txtAddress.Size = new System.Drawing.Size(174, 20);
             this.txtAddress.TabIndex = 9;
             // 
@@ -164,7 +160,6 @@
             // 
             this.txtNIC.Location = new System.Drawing.Point(141, 168);
             this.txtNIC.Name = "txtNIC";
-            this.txtNIC.PasswordChar = '*';
             this.txtNIC.Size = new System.Drawing.Size(174, 20);
             this.txtNIC.TabIndex = 9;
             // 

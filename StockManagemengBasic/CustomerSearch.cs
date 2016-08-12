@@ -26,11 +26,12 @@ namespace StockManagemengBasic
         {
             var id = Convert.ToInt32(dgCustomer.SelectedRows[0].Cells["ID"].Value);
             CustomerSelect(id);
+            this.Close();
         }
 
         private void CustomerSearch_Load(object sender, EventArgs e)
         {
-            //dgCustomer.DataSource = db
+            dgCustomer.DataSource = db.tblCustomers.ToList();
         }
 
 

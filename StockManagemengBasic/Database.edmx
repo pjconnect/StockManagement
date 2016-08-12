@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="StockmanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="StockmanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="tblBanks">
           <Key>
             <PropertyRef Name="Date" />
@@ -42,8 +42,9 @@
         </EntityType>
         <EntityType Name="tblCustomers">
           <Key>
-            <PropertyRef Name="ContactNumber" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CustomerName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Designation" Type="nvarchar" MaxLength="50" />
@@ -175,7 +176,6 @@
           <EntitySet Name="tblBanks" EntityType="StockmanagementModel.tblBank" />
           <EntitySet Name="tblCashbooks" EntityType="StockmanagementModel.tblCashbook" />
           <EntitySet Name="tblCredits" EntityType="StockmanagementModel.tblCredit" />
-          <EntitySet Name="tblCustomers" EntityType="StockmanagementModel.tblCustomer" />
           <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.tblInvoiceItem" />
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
           <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
@@ -184,6 +184,7 @@
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
+          <EntitySet Name="tblCustomers" EntityType="StockmanagementModel.tblCustomer" />
         </EntityContainer>
         <EntityType Name="tblBank">
           <Key>
@@ -219,18 +220,6 @@
           <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="tblCustomer">
-          <Key>
-            <PropertyRef Name="ContactNumber" />
-          </Key>
-          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblInvoiceItem">
           <Key>
@@ -333,6 +322,19 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -374,19 +376,6 @@
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblCustomers">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblCustomer">
-              <MappingFragment StoreEntitySet="tblCustomers">
-                <ScalarProperty Name="NIC" ColumnName="NIC" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -499,6 +488,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomers">
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -523,7 +526,6 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCashbook" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCredit" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblCustomer" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
@@ -532,6 +534,7 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblCustomer" Width="1.5" PointX="9.375" PointY="4.75" />
       </Diagram>
     </Diagrams>
   </Designer>

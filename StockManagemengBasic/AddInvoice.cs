@@ -16,6 +16,8 @@ namespace StockManagemengBasic
         bool isFirstTime = true;
         int invoiceID = 0;
         decimal totalPrice = 0;
+        decimal totalDiscountedPrice = 0;
+        decimal totalDiscount = 0;
         int customerID = 0;
 
         public AddInvoice()
@@ -115,7 +117,8 @@ namespace StockManagemengBasic
                     MessageBox.Show(ex.Message);
                     return;
                 }
-                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).ToList();
+
+                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).Select(t => new { t.ItemID, t.ItemPrice, t.Qty, ItemName = db.tblStocks.Where(si => si.ID == t.ItemID).Select(si=>si.ItemName).FirstOrDefault() });
             }
             else
             {
@@ -128,7 +131,7 @@ namespace StockManagemengBasic
 
             // TODO: discount
 
-            var total = totalPrice;
+            var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice ;
             decimal cash = 0;
             decimal credit = 0;
             decimal cheque = 0;
@@ -270,7 +273,20 @@ namespace StockManagemengBasic
 
         private void CustomerSearch_CustomerSelect(int CustomerID)
         {
-            
+            this.customerID = CustomerID;
+            var selectedCustomer = db.tblCustomers.Where(t => t.ID == customerID).Select(t => t).FirstOrDefault();
+            txtCustomerName.Text = selectedCustomer.CustomerName;
+            txtContactNumber.Text = selectedCustomer.ContactNumber;
+
+            //calculate debt
+            var customerCredit = db.tblCredits.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
+            if(customerCredit.Count() > 0)
+            {
+                var credit = customerCredit.Select(t => t.Credit).Sum();
+                var debt = customerCredit.Select(t => t.Debt).Sum();
+                var total = credit - debt;
+                lblTotalCredit.Text = total.ToString();
+            }
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
@@ -289,6 +305,51 @@ namespace StockManagemengBasic
         private void SearchStock_SelectStock(string stockID)
         {
             txtItemID.Text = stockID;
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            calculateDiscout();
+        }
+
+        void calculateDiscout()
+        {
+            int discount = 0;
+            var discountType = cmbDiscountType.Text;
+            if (txtDiscount.Text.Trim() == string.Empty)
+            {
+                txtDiscount.Text = 0.ToString();
+            }
+            try
+            {
+                discount = Convert.ToInt32(txtDiscount.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (discountType == "%")
+            {
+                totalDiscount = ((decimal)discount / 100) * totalPrice;
+                totalDiscountedPrice = totalPrice - totalDiscount;
+                txtTotal.Text = totalDiscountedPrice.ToString();
+
+            }
+            else
+            {
+                discount = Convert.ToInt32(txtDiscount.Text);
+                totalDiscount = discount;
+                totalDiscountedPrice = totalPrice - totalDiscount;
+                txtTotal.Text = totalDiscountedPrice.ToString();
+            }
+
+        }
+
+        private void cmbDiscountType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calculateDiscout();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace StockManagemengBasic
         {
             var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
             SelectStock(stockID);
-            this.Hide();
+            this.Close();
         }
 
         void RefreshGrid()

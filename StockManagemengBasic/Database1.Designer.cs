@@ -116,22 +116,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblCustomer> tblCustomers
-        {
-            get
-            {
-                if ((_tblCustomers == null))
-                {
-                    _tblCustomers = base.CreateObjectSet<tblCustomer>("tblCustomers");
-                }
-                return _tblCustomers;
-            }
-        }
-        private ObjectSet<tblCustomer> _tblCustomers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblInvoiceItem> tblInvoiceItems
         {
             get
@@ -256,6 +240,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblCustomer> tblCustomers
+        {
+            get
+            {
+                if ((_tblCustomers == null))
+                {
+                    _tblCustomers = base.CreateObjectSet<tblCustomer>("tblCustomers");
+                }
+                return _tblCustomers;
+            }
+        }
+        private ObjectSet<tblCustomer> _tblCustomers;
 
         #endregion
 
@@ -283,14 +283,6 @@ namespace StockManagemengBasic
         public void AddTotblCredits(tblCredit tblCredit)
         {
             base.AddObject("tblCredits", tblCredit);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the tblCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblCustomers(tblCustomer tblCustomer)
-        {
-            base.AddObject("tblCustomers", tblCustomer);
         }
     
         /// <summary>
@@ -355,6 +347,14 @@ namespace StockManagemengBasic
         public void AddTotblUsers(tblUser tblUser)
         {
             base.AddObject("tblUsers", tblUser);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblCustomers(tblCustomer tblCustomer)
+        {
+            base.AddObject("tblCustomers", tblCustomer);
         }
 
         #endregion
@@ -961,11 +961,13 @@ namespace StockManagemengBasic
         /// <summary>
         /// Create a new tblCustomer object.
         /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
         /// <param name="contactNumber">Initial value of the ContactNumber property.</param>
         /// <param name="customerName">Initial value of the CustomerName property.</param>
-        public static tblCustomer CreatetblCustomer(global::System.String contactNumber, global::System.String customerName)
+        public static tblCustomer CreatetblCustomer(global::System.Int32 id, global::System.String contactNumber, global::System.String customerName)
         {
             tblCustomer tblCustomer = new tblCustomer();
+            tblCustomer.ID = id;
             tblCustomer.ContactNumber = contactNumber;
             tblCustomer.CustomerName = customerName;
             return tblCustomer;
@@ -980,6 +982,33 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String ContactNumber
         {
             get
@@ -988,14 +1017,11 @@ namespace StockManagemengBasic
             }
             set
             {
-                if (_ContactNumber != value)
-                {
-                    OnContactNumberChanging(value);
-                    ReportPropertyChanging("ContactNumber");
-                    _ContactNumber = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("ContactNumber");
-                    OnContactNumberChanged();
-                }
+                OnContactNumberChanging(value);
+                ReportPropertyChanging("ContactNumber");
+                _ContactNumber = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ContactNumber");
+                OnContactNumberChanged();
             }
         }
         private global::System.String _ContactNumber;
