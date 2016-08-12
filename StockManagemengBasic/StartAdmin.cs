@@ -16,11 +16,6 @@ namespace StockManagemengBasic
             InitializeComponent();
         }
 
-        private void StartAdmin_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void ClearLoader()
         {
             loader.Controls.Clear();
@@ -102,5 +97,11 @@ namespace StockManagemengBasic
             ClearLoader();
             loader.Controls.Add(new AddInvoice());
         }
+
+        private void StartAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

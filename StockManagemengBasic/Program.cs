@@ -16,7 +16,8 @@ namespace StockManagemengBasic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartAdmin());
+            new Login().Show();
+            Application.Run();
         }
     }
 }

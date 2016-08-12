@@ -36,12 +36,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(240, 120);
+            this.btnCreateUser.Location = new System.Drawing.Point(240, 136);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(75, 23);
             this.btnCreateUser.TabIndex = 0;
@@ -71,7 +73,9 @@
             this.dgUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgUsers.Location = new System.Drawing.Point(321, 13);
             this.dgUsers.Name = "dgUsers";
-            this.dgUsers.Size = new System.Drawing.Size(355, 305);
+            this.dgUsers.ReadOnly = true;
+            this.dgUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgUsers.Size = new System.Drawing.Size(692, 305);
             this.dgUsers.TabIndex = 4;
             this.dgUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUsers_CellClick);
             // 
@@ -110,10 +114,29 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Password";
             // 
+            // txtConfirm
+            // 
+            this.txtConfirm.Location = new System.Drawing.Point(141, 98);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.PasswordChar = '*';
+            this.txtConfirm.Size = new System.Drawing.Size(174, 20);
+            this.txtConfirm.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Confirm Password";
+            // 
             // AddUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtConfirm);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbl1);
@@ -123,7 +146,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnCreateUser);
             this.Name = "AddUsers";
-            this.Size = new System.Drawing.Size(688, 330);
+            this.Size = new System.Drawing.Size(1016, 330);
             ((System.ComponentModel.ISupportInitialize)(this.dgUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,5 +163,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtConfirm;
+        private System.Windows.Forms.Label label1;
     }
 }

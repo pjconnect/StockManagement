@@ -28,10 +28,17 @@ namespace StockManagemengBasic
             var username = txtUsername.Text;
             var level = cmbUserLevel.SelectedIndex+1;
             var password = txtPassword.Text;
+            var confirm = txtConfirm.Text;
 
             if ((username.Length == 0) || (password.Length == 0))
             {
                 MessageBox.Show("Username and Password cannot be empty!");
+                return;
+            }
+
+            if(!password.Equals(confirm))
+            {
+                MessageBox.Show("Passwords Should Be Matched!");
                 return;
             }
 
@@ -40,7 +47,8 @@ namespace StockManagemengBasic
                 Username = username,
                 UserLevel = level,
                 Password = password,
-                IsActive = true
+                IsActive = true,
+                CreatedDate = DateTime.Now
             };
             db.tblUsers.AddObject(newUser);
             try
