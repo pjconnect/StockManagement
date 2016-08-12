@@ -190,6 +190,7 @@
     <Compile Include="SupplierSearch.Designer.cs">
       <DependentUpon>SupplierSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemProperties.cs" />
     <EmbeddedResource Include="AddCustomers.resx">
       <DependentUpon>AddCustomers.cs</DependentUpon>
     </EmbeddedResource>
