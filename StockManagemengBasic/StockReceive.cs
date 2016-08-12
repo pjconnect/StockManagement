@@ -17,8 +17,6 @@ namespace StockManagemengBasic
         public StockReceive()
         {
             InitializeComponent();
-
-
         }
 
         private void btnSearchSupplier_Click(object sender, EventArgs e)
@@ -73,7 +71,6 @@ namespace StockManagemengBasic
                 Date = stockRecievDate,
                 CreatedDate = DateTime.Now,
                 StockID = ItemID,
-                
             };
 
             db.tblStockItems.AddObject(newStockReciev);
@@ -91,7 +88,23 @@ namespace StockManagemengBasic
 
         private void StockReceive_Load(object sender, EventArgs e)
         {
-            dgStock.DataSource = db.tblStocks.ToList();
+
+            //(from invoice in db.tblInvoices
+            // join invoiceItems in db.tblInvoiceItems on invoice.ID equals invoiceItems.InvoiceID
+            // where invoice.IsPaid == true
+            // select invoiceItems.Qty).Sum();
+
+            var collection = (from stocks in db.tblStocks
+                              join stockItems in db.tblStockItems on stocks.ID equals stockItems.StockID
+                              into ps
+                              from p in ps.DefaultIfEmpty()
+                              select new { ID = stocks.ID, Qty = p.Qty, TotalQty = db.tblStockItems.Where(t => t.StockID == p.StockID).Select(t => t.Qty).Sum() });
+
+            //var collectiondist = collection.Distinct();
+
+            dgStock.DataSource = collection;
+
+
         }
     }
 }
