@@ -50,6 +50,7 @@
             this.cashbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loader = new System.Windows.Forms.Panel();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +155,8 @@
             // 
             this.systemUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageUsersToolStripMenuItem,
-            this.changeMyPasswordToolStripMenuItem});
+            this.changeMyPasswordToolStripMenuItem,
+            this.logoutToolStripMenuItem});
             this.systemUsersToolStripMenuItem.Name = "systemUsersToolStripMenuItem";
             this.systemUsersToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemUsersToolStripMenuItem.Text = "System";
@@ -230,6 +232,13 @@
             this.loader.Size = new System.Drawing.Size(1008, 622);
             this.loader.TabIndex = 1;
             // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
             // StartAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,5 +282,6 @@
         private System.Windows.Forms.ToolStripMenuItem itemReturnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addInvoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

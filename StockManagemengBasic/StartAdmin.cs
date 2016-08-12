@@ -100,7 +100,12 @@ namespace StockManagemengBasic
 
         private void StartAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            new Login().Show();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }
