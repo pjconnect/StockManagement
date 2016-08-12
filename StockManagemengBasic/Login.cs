@@ -26,6 +26,7 @@ namespace StockManagemengBasic
             var user = db.tblUsers.Where(t => t.Username == username && t.Password == password);
             if (user.Count() > 0)
             {
+                SystemProperties.CurrentLoginUserID = user.First().ID;
                 this.Close();
                 new StartAdmin().Show();
             }
