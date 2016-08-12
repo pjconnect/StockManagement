@@ -94,11 +94,15 @@ namespace StockManagemengBasic
             // where invoice.IsPaid == true
             // select invoiceItems.Qty).Sum();
 
-            var collection = (from stocks in db.tblStocks
-                              join stockItems in db.tblStockItems on stocks.ID equals stockItems.StockID
-                              into ps
-                              from p in ps.DefaultIfEmpty()
-                              select new { ID = stocks.ID, Qty = p.Qty, TotalQty = db.tblStockItems.Where(t => t.StockID == p.StockID).Select(t => t.Qty).Sum() });
+            var collection = from stocks in db.tblStocks
+                             select new { ID = stocks.ID, Name = stocks.ItemName, TotalQty = db.tblStockItems.Where(t => t.StockID == stocks.ID).Select(t => t.Qty).Sum() };
+
+            //(from stocks in db.tblStocks
+            // join stockItems in db.tblStockItems on stocks.ID equals stockItems.StockID
+            // into ps
+            // from p in ps.DefaultIfEmpty()
+            // group p by p.StockID into g
+            // select new { ID = stocks.ID, stocks.ItemName, Qty = p.Qty, TotalQty = db.tblStockItems.Where(t => t.StockID == p.StockID).Select(t => t.Qty).Sum() });
 
             //var collectiondist = collection.Distinct();
 
