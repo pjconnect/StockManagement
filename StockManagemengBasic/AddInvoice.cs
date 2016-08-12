@@ -16,6 +16,7 @@ namespace StockManagemengBasic
         bool isFirstTime = true;
         int invoiceID = 0;
         decimal totalPrice = 0;
+        int customerID = 0;
 
         public AddInvoice()
         {
@@ -52,16 +53,16 @@ namespace StockManagemengBasic
                 decimal total = 0;
                 if (sellCount != null)
                 {
-                    total = (decimal) (itemCount - sellCount) - qty;
+                    total = (decimal)(itemCount - sellCount) - qty;
                 }
                 else
                 {
-                    total = (decimal) (itemCount - qty);
+                    total = (decimal)(itemCount - qty);
                 }
 
-                if (total <= 0){ MessageBox.Show("This Item is out of stock!"); return; }
+                if (total <= 0) { MessageBox.Show("This Item is out of stock!"); return; }
 
-                var totalItemPrice = selectedStockItem.SellPrice * qty;                
+                var totalItemPrice = selectedStockItem.SellPrice * qty;
                 this.totalPrice += totalItemPrice;
                 txtTotal.Text = this.totalPrice.ToString();
                 txtCash.Text = this.totalPrice.ToString();
@@ -73,7 +74,7 @@ namespace StockManagemengBasic
                     var newInvoice = new tblInvoice()
                     {
                         IsPaid = false,
-                        CustomerID = 0, // TODO: add customer ID
+                        CustomerID = customerID,
                         PaymentType = 0,
                         CreatedDate = DateTime.Now,
                         CashierID = 0, // TODO: add chashier ID
@@ -122,7 +123,6 @@ namespace StockManagemengBasic
             }
         }
 
-
         private void btnPay_Click(object sender, EventArgs e)
         {
 
@@ -133,6 +133,7 @@ namespace StockManagemengBasic
             decimal credit = 0;
             decimal cheque = 0;
             int paymentType = 0;
+            
 
             decimal balance = 0;
 
@@ -141,6 +142,11 @@ namespace StockManagemengBasic
                 cash = Convert.ToDecimal(txtCash.Text);
                 credit = Convert.ToDecimal(txtCredit.Text);
                 cheque = Convert.ToDecimal(txtCheque.Text);
+
+                if(cash < 0 || credit < 0 || cheque < 0)
+                {
+                    MessageBox.Show("You have 'minus (-)' Value one of text fields, please correct them ");
+                }
             }
             catch (Exception ex)
             {
@@ -174,7 +180,6 @@ namespace StockManagemengBasic
                 balance = total - (cash + credit + cheque);
                 txtBalance.Text = balance.ToString();
 
-                db.SaveChanges();
             }
             else
             {
@@ -182,13 +187,58 @@ namespace StockManagemengBasic
                 return;
             }
 
-            // todo: if credit go to credit
-            if(txtBalance.Text != 0.ToString())
+            //if credit go to credit
+            if (cheque > 0)
             {
+                if (txtChequeNumber.Text.Length < 5)
+                {
+                    MessageBox.Show("Please Enter Valid Cheque Number");
+                    return;
+                }
 
+                var newbank = new tblBank()
+                {
+                    Amount = cheque,
+                    ChequeNumber = txtChequeNumber.Text,
+                    ChequeState = 1,
+                    Date = dtpRealiseDate.Value,
+                    ReleaseDate = DateTime.Now,
+                };
+
+                db.tblBanks.AddObject(newbank);
             }
 
-            //todo: if bank go to bank
+            //if bank go to bank
+            if(credit > 0)
+            {
+                if(customerID <= 0)
+                {
+                    MessageBox.Show("You must first enter customer before pay by credit");
+                    return;
+                }
+
+                var newcredit = new tblCredit()
+                {
+                    Credit = credit,
+                    Debt = 0,
+                    CustomerID = customerID,
+                    Date = DateTime.Now,
+                };
+
+                db.tblCredits.AddObject(newcredit);
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            MessageBox.Show("Successfully Saved ", "Success");
 
             clear();
 
@@ -208,13 +258,19 @@ namespace StockManagemengBasic
             dtpRealiseDate.Value = DateTime.Now;
             txtDiscount.Text = string.Empty;
             cmbDiscountType.SelectedIndex = 0;
-
+            txtItemID.Text = string.Empty;
         }
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
             var customerSearch = new CustomerSearch();
             customerSearch.Show();
+            customerSearch.CustomerSelect += CustomerSearch_CustomerSelect;
+        }
+
+        private void CustomerSearch_CustomerSelect(int CustomerID)
+        {
+            
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
@@ -225,7 +281,14 @@ namespace StockManagemengBasic
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            new SearchStock().Show();
+            var searchStock = new SearchStock();
+            searchStock.Show();
+            searchStock.SelectStock += SearchStock_SelectStock;
+        }
+
+        private void SearchStock_SelectStock(string stockID)
+        {
+            txtItemID.Text = stockID;
         }
     }
 }

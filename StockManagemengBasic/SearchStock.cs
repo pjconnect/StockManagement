@@ -14,7 +14,7 @@ namespace StockManagemengBasic
 
         StockmanagementEntities db = new StockmanagementEntities();
 
-        public delegate void SelectStockHandler(int stockID);
+        public delegate void SelectStockHandler(string stockID);
         public event SelectStockHandler SelectStock = delegate { };
 
 
@@ -25,10 +25,10 @@ namespace StockManagemengBasic
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            
-            SelectStock(0);
+            var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+            SelectStock(stockID);
+            this.Hide();
         }
-
 
         void RefreshGrid()
         {
@@ -38,6 +38,11 @@ namespace StockManagemengBasic
         private void SearchStock_Load(object sender, EventArgs e)
         {
             RefreshGrid();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            var searchText = txtSearch.Text;
         }
     }
 }
