@@ -74,7 +74,7 @@
             this.button1.Location = new System.Drawing.Point(91, 35);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 23);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 2;
             this.button1.Text = "Search Customer";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -84,7 +84,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(91, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(278, 139);
-            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.TabIndex = 6;
             // 
             // label3
             // 
@@ -101,7 +101,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(375, 27);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(319, 384);
-            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.TabIndex = 7;
             // 
             // label4
             // 
@@ -117,7 +117,7 @@
             this.button2.Location = new System.Drawing.Point(597, 417);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 23);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 5;
             this.button2.Text = "Return Selected";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -136,14 +136,14 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 9;
+            this.textBox2.TabIndex = 3;
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(269, 235);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 10;
+            this.button3.TabIndex = 4;
             this.button3.Text = "Make Return";
             this.button3.UseVisualStyleBackColor = true;
             // 

@@ -46,7 +46,7 @@
             this.btnCreateUser.Location = new System.Drawing.Point(240, 136);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateUser.TabIndex = 0;
+            this.btnCreateUser.TabIndex = 5;
             this.btnCreateUser.Text = "Create User";
             this.btnCreateUser.UseVisualStyleBackColor = true;
             this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
@@ -76,7 +76,7 @@
             this.dgUsers.ReadOnly = true;
             this.dgUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgUsers.Size = new System.Drawing.Size(692, 305);
-            this.dgUsers.TabIndex = 4;
+            this.dgUsers.TabIndex = 6;
             this.dgUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUsers_CellClick);
             // 
             // lbl1
@@ -120,7 +120,7 @@
             this.txtConfirm.Name = "txtConfirm";
             this.txtConfirm.PasswordChar = '*';
             this.txtConfirm.Size = new System.Drawing.Size(174, 20);
-            this.txtConfirm.TabIndex = 6;
+            this.txtConfirm.TabIndex = 4;
             // 
             // label1
             // 
