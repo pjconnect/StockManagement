@@ -17,6 +17,7 @@ namespace StockManagemengBasic
         public StockReceive()
         {
             InitializeComponent();
+            loadGrid();
         }
 
         private void btnSearchSupplier_Click(object sender, EventArgs e)
@@ -87,6 +88,8 @@ namespace StockManagemengBasic
             try
             {
                 db.SaveChanges();
+                MessageBox.Show("Successfully Saved!");
+                loadGrid();
             }
             catch (Exception ex)
             {
@@ -95,29 +98,13 @@ namespace StockManagemengBasic
 
         }
 
-        private void StockReceive_Load(object sender, EventArgs e)
+        private void loadGrid()
         {
-
-            //(from invoice in db.tblInvoices
-            // join invoiceItems in db.tblInvoiceItems on invoice.ID equals invoiceItems.InvoiceID
-            // where invoice.IsPaid == true
-            // select invoiceItems.Qty).Sum();
-
             var collection = from stocks in db.tblStocks
                              select new { ID = stocks.ID, Name = stocks.ItemName, TotalQty = db.tblStockItems.Where(t => t.StockID == stocks.ID).Select(t => t.Qty).Sum() };
-
-            //(from stocks in db.tblStocks
-            // join stockItems in db.tblStockItems on stocks.ID equals stockItems.StockID
-            // into ps
-            // from p in ps.DefaultIfEmpty()
-            // group p by p.StockID into g
-            // select new { ID = stocks.ID, stocks.ItemName, Qty = p.Qty, TotalQty = db.tblStockItems.Where(t => t.StockID == p.StockID).Select(t => t.Qty).Sum() });
-
-            //var collectiondist = collection.Distinct();
-
             dgStock.DataSource = collection;
-
-
         }
+
+
     }
 }

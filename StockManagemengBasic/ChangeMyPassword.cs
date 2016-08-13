@@ -43,9 +43,6 @@ namespace StockManagemengBasic
             }
 
 
-
-
-
             var selectedUser = db.tblUsers.Where(t=>t.ID == SystemProperties.CurrentLoginUserID).First();
             if(!selectedUser.Password.Equals(currentPassword)){
                 MessageBox.Show("Your Current Password is Wrong!");

@@ -53,7 +53,7 @@ namespace StockManagemengBasic
                                  where invoice.IsPaid == true
                                  select invoiceItems.Qty).Sum();
 
-                var qty = Convert.ToInt32(txtQty.Text);
+                var qty = Convert.ToDecimal(txtQty.Text);
                 if (qty <= 0) { MessageBox.Show("Please Select Valid Qty"); return; }
 
                 decimal total = 0;
@@ -417,7 +417,7 @@ namespace StockManagemengBasic
 
                 if (cash < 0 || credit < 0 || cheque < 0)
                 {
-                    MessageBox.Show("You have 'minus (-)' Value one of text fields, please correct them ");
+                    MessageBox.Show("You have 'minus (-)' Value in one of text fields, please correct them ");
                 }
             }
             catch (Exception ex)

@@ -32,6 +32,16 @@
             this.btnInsert = new System.Windows.Forms.Button();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.Supplier = new System.Windows.Forms.GroupBox();
+            this.txtspName = new System.Windows.Forms.TextBox();
+            this.txtspContact = new System.Windows.Forms.TextBox();
+            this.txtspEmail = new System.Windows.Forms.TextBox();
+            this.txtspNIC = new System.Windows.Forms.TextBox();
+            this.txtspFax = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnSearchSupplier = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPurchasedPrice = new System.Windows.Forms.TextBox();
@@ -43,16 +53,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtpStockRecieveDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtspFax = new System.Windows.Forms.TextBox();
-            this.txtspNIC = new System.Windows.Forms.TextBox();
-            this.txtspEmail = new System.Windows.Forms.TextBox();
-            this.txtspContact = new System.Windows.Forms.TextBox();
-            this.txtspName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).BeginInit();
             this.Supplier.SuspendLayout();
             this.SuspendLayout();
@@ -64,14 +64,14 @@
             this.dgStock.Name = "dgStock";
             this.dgStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgStock.Size = new System.Drawing.Size(703, 489);
-            this.dgStock.TabIndex = 21;
+            this.dgStock.TabIndex = 8;
             // 
             // btnInsert
             // 
             this.btnInsert.Location = new System.Drawing.Point(142, 469);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(100, 23);
-            this.btnInsert.TabIndex = 20;
+            this.btnInsert.TabIndex = 7;
             this.btnInsert.Text = "Update Stock";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -81,7 +81,7 @@
             this.txtQty.Location = new System.Drawing.Point(142, 277);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(100, 20);
-            this.txtQty.TabIndex = 22;
+            this.txtQty.TabIndex = 2;
             // 
             // Supplier
             // 
@@ -102,6 +102,91 @@
             this.Supplier.TabIndex = 23;
             this.Supplier.TabStop = false;
             this.Supplier.Text = "Supplier";
+            // 
+            // txtspName
+            // 
+            this.txtspName.Location = new System.Drawing.Point(63, 42);
+            this.txtspName.Name = "txtspName";
+            this.txtspName.ReadOnly = true;
+            this.txtspName.Size = new System.Drawing.Size(170, 20);
+            this.txtspName.TabIndex = 20;
+            // 
+            // txtspContact
+            // 
+            this.txtspContact.Location = new System.Drawing.Point(63, 75);
+            this.txtspContact.Name = "txtspContact";
+            this.txtspContact.ReadOnly = true;
+            this.txtspContact.Size = new System.Drawing.Size(170, 20);
+            this.txtspContact.TabIndex = 21;
+            // 
+            // txtspEmail
+            // 
+            this.txtspEmail.Location = new System.Drawing.Point(63, 108);
+            this.txtspEmail.Name = "txtspEmail";
+            this.txtspEmail.ReadOnly = true;
+            this.txtspEmail.Size = new System.Drawing.Size(170, 20);
+            this.txtspEmail.TabIndex = 22;
+            // 
+            // txtspNIC
+            // 
+            this.txtspNIC.Location = new System.Drawing.Point(63, 141);
+            this.txtspNIC.Name = "txtspNIC";
+            this.txtspNIC.ReadOnly = true;
+            this.txtspNIC.Size = new System.Drawing.Size(170, 20);
+            this.txtspNIC.TabIndex = 23;
+            // 
+            // txtspFax
+            // 
+            this.txtspFax.Location = new System.Drawing.Point(63, 174);
+            this.txtspFax.Name = "txtspFax";
+            this.txtspFax.ReadOnly = true;
+            this.txtspFax.Size = new System.Drawing.Size(170, 20);
+            this.txtspFax.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 177);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Fax";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 144);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(25, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "NIC";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Email";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Contact";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Name";
             // 
             // btnSearchSupplier
             // 
@@ -127,7 +212,7 @@
             this.txtPurchasedPrice.Location = new System.Drawing.Point(142, 303);
             this.txtPurchasedPrice.Name = "txtPurchasedPrice";
             this.txtPurchasedPrice.Size = new System.Drawing.Size(100, 20);
-            this.txtPurchasedPrice.TabIndex = 22;
+            this.txtPurchasedPrice.TabIndex = 3;
             // 
             // label2
             // 
@@ -143,7 +228,7 @@
             this.txtSellPrice.Location = new System.Drawing.Point(142, 329);
             this.txtSellPrice.Name = "txtSellPrice";
             this.txtSellPrice.Size = new System.Drawing.Size(100, 20);
-            this.txtSellPrice.TabIndex = 22;
+            this.txtSellPrice.TabIndex = 4;
             // 
             // label3
             // 
@@ -160,7 +245,7 @@
             this.checkBuyForCredit.Location = new System.Drawing.Point(154, 410);
             this.checkBuyForCredit.Name = "checkBuyForCredit";
             this.checkBuyForCredit.Size = new System.Drawing.Size(88, 17);
-            this.checkBuyForCredit.TabIndex = 25;
+            this.checkBuyForCredit.TabIndex = 6;
             this.checkBuyForCredit.Text = "Buy by Credit";
             this.checkBuyForCredit.UseVisualStyleBackColor = true;
             // 
@@ -169,7 +254,7 @@
             this.txtInvoiceNumber.Location = new System.Drawing.Point(142, 251);
             this.txtInvoiceNumber.Name = "txtInvoiceNumber";
             this.txtInvoiceNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtInvoiceNumber.TabIndex = 26;
+            this.txtInvoiceNumber.TabIndex = 1;
             // 
             // label4
             // 
@@ -185,7 +270,7 @@
             this.dtpStockRecieveDate.Location = new System.Drawing.Point(42, 384);
             this.dtpStockRecieveDate.Name = "dtpStockRecieveDate";
             this.dtpStockRecieveDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpStockRecieveDate.TabIndex = 27;
+            this.dtpStockRecieveDate.TabIndex = 5;
             // 
             // label5
             // 
@@ -195,91 +280,6 @@
             this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 28;
             this.label5.Text = "Stock Recieve Date";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Name";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 78);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Contact";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 111);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Email";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 144);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "NIC";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 177);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 13);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Fax";
-            // 
-            // txtspFax
-            // 
-            this.txtspFax.Location = new System.Drawing.Point(63, 174);
-            this.txtspFax.Name = "txtspFax";
-            this.txtspFax.ReadOnly = true;
-            this.txtspFax.Size = new System.Drawing.Size(170, 20);
-            this.txtspFax.TabIndex = 7;
-            // 
-            // txtspNIC
-            // 
-            this.txtspNIC.Location = new System.Drawing.Point(63, 141);
-            this.txtspNIC.Name = "txtspNIC";
-            this.txtspNIC.ReadOnly = true;
-            this.txtspNIC.Size = new System.Drawing.Size(170, 20);
-            this.txtspNIC.TabIndex = 7;
-            // 
-            // txtspEmail
-            // 
-            this.txtspEmail.Location = new System.Drawing.Point(63, 108);
-            this.txtspEmail.Name = "txtspEmail";
-            this.txtspEmail.ReadOnly = true;
-            this.txtspEmail.Size = new System.Drawing.Size(170, 20);
-            this.txtspEmail.TabIndex = 7;
-            // 
-            // txtspContact
-            // 
-            this.txtspContact.Location = new System.Drawing.Point(63, 75);
-            this.txtspContact.Name = "txtspContact";
-            this.txtspContact.ReadOnly = true;
-            this.txtspContact.Size = new System.Drawing.Size(170, 20);
-            this.txtspContact.TabIndex = 7;
-            // 
-            // txtspName
-            // 
-            this.txtspName.Location = new System.Drawing.Point(63, 42);
-            this.txtspName.Name = "txtspName";
-            this.txtspName.ReadOnly = true;
-            this.txtspName.Size = new System.Drawing.Size(170, 20);
-            this.txtspName.TabIndex = 7;
             // 
             // StockReceive
             // 
@@ -301,7 +301,6 @@
             this.Controls.Add(this.btnInsert);
             this.Name = "StockReceive";
             this.Size = new System.Drawing.Size(954, 495);
-            this.Load += new System.EventHandler(this.StockReceive_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).EndInit();
             this.Supplier.ResumeLayout(false);
             this.Supplier.PerformLayout();

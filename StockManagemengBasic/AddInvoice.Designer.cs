@@ -33,6 +33,7 @@
             this.dgCart = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RS = new System.Windows.Forms.Label();
             this.lblTotalCredit = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,6 +58,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtContactNumber = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.btnNewCustomer = new System.Windows.Forms.Button();
@@ -65,9 +68,6 @@
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbDiscountType = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtContactNumber = new System.Windows.Forms.TextBox();
-            this.RS = new System.Windows.Forms.Label();
             this.lblTotalAmountDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,14 +81,14 @@
             this.txtItemID.Location = new System.Drawing.Point(57, 13);
             this.txtItemID.Name = "txtItemID";
             this.txtItemID.Size = new System.Drawing.Size(170, 20);
-            this.txtItemID.TabIndex = 0;
+            this.txtItemID.TabIndex = 1;
             // 
             // btnAddItem
             // 
             this.btnAddItem.Location = new System.Drawing.Point(350, 10);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(75, 23);
-            this.btnAddItem.TabIndex = 1;
+            this.btnAddItem.TabIndex = 3;
             this.btnAddItem.Text = "Add";
             this.btnAddItem.UseVisualStyleBackColor = true;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
@@ -109,7 +109,7 @@
             this.dgCart.ReadOnly = true;
             this.dgCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCart.Size = new System.Drawing.Size(767, 216);
-            this.dgCart.TabIndex = 2;
+            this.dgCart.TabIndex = 17;
             // 
             // label1
             // 
@@ -130,9 +130,18 @@
             this.groupBox1.Location = new System.Drawing.Point(273, 360);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(254, 99);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pay by Credit";
+            // 
+            // RS
+            // 
+            this.RS.AutoSize = true;
+            this.RS.Location = new System.Drawing.Point(210, 54);
+            this.RS.Name = "RS";
+            this.RS.Size = new System.Drawing.Size(22, 13);
+            this.RS.TabIndex = 8;
+            this.RS.Text = "RS";
             // 
             // lblTotalCredit
             // 
@@ -166,7 +175,7 @@
             this.txtCredit.Location = new System.Drawing.Point(56, 18);
             this.txtCredit.Name = "txtCredit";
             this.txtCredit.Size = new System.Drawing.Size(176, 20);
-            this.txtCredit.TabIndex = 0;
+            this.txtCredit.TabIndex = 6;
             this.txtCredit.TextChanged += new System.EventHandler(this.txtCredit_TextChanged);
             // 
             // groupBox2
@@ -176,7 +185,7 @@
             this.groupBox2.Location = new System.Drawing.Point(273, 283);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(254, 71);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pay by Cash";
             // 
@@ -194,7 +203,7 @@
             this.txtCash.Location = new System.Drawing.Point(56, 28);
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(177, 20);
-            this.txtCash.TabIndex = 0;
+            this.txtCash.TabIndex = 5;
             this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
             // 
             // groupBox3
@@ -217,7 +226,7 @@
             this.dtpRealiseDate.Location = new System.Drawing.Point(17, 88);
             this.dtpRealiseDate.Name = "dtpRealiseDate";
             this.dtpRealiseDate.Size = new System.Drawing.Size(228, 20);
-            this.dtpRealiseDate.TabIndex = 5;
+            this.dtpRealiseDate.TabIndex = 13;
             // 
             // label9
             // 
@@ -251,14 +260,14 @@
             this.txtChequeNumber.Location = new System.Drawing.Point(107, 24);
             this.txtChequeNumber.Name = "txtChequeNumber";
             this.txtChequeNumber.Size = new System.Drawing.Size(138, 20);
-            this.txtChequeNumber.TabIndex = 1;
+            this.txtChequeNumber.TabIndex = 11;
             // 
             // txtCheque
             // 
             this.txtCheque.Location = new System.Drawing.Point(107, 50);
             this.txtCheque.Name = "txtCheque";
             this.txtCheque.Size = new System.Drawing.Size(138, 20);
-            this.txtCheque.TabIndex = 0;
+            this.txtCheque.TabIndex = 12;
             this.txtCheque.TextChanged += new System.EventHandler(this.txtCheque_TextChanged);
             // 
             // btnSearch
@@ -266,7 +275,7 @@
             this.btnSearch.Location = new System.Drawing.Point(431, 9);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 7;
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search Item";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -277,7 +286,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtTotal.TabIndex = 8;
+            this.txtTotal.TabIndex = 17;
             // 
             // label2
             // 
@@ -293,7 +302,7 @@
             this.btnPay.Location = new System.Drawing.Point(714, 465);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(75, 23);
-            this.btnPay.TabIndex = 2;
+            this.btnPay.TabIndex = 16;
             this.btnPay.Text = "Pay";
             this.btnPay.UseVisualStyleBackColor = true;
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
@@ -304,7 +313,7 @@
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.ReadOnly = true;
             this.txtBalance.Size = new System.Drawing.Size(100, 20);
-            this.txtBalance.TabIndex = 10;
+            this.txtBalance.TabIndex = 18;
             // 
             // label5
             // 
@@ -320,7 +329,7 @@
             this.txtQty.Location = new System.Drawing.Point(262, 12);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(78, 20);
-            this.txtQty.TabIndex = 12;
+            this.txtQty.TabIndex = 2;
             // 
             // label10
             // 
@@ -356,6 +365,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Save Customer";
             // 
+            // txtContactNumber
+            // 
+            this.txtContactNumber.Enabled = false;
+            this.txtContactNumber.Location = new System.Drawing.Point(97, 77);
+            this.txtContactNumber.Name = "txtContactNumber";
+            this.txtContactNumber.ReadOnly = true;
+            this.txtContactNumber.Size = new System.Drawing.Size(142, 20);
+            this.txtContactNumber.TabIndex = 10;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 80);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(87, 13);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Contact Number:";
+            // 
             // txtCustomerName
             // 
             this.txtCustomerName.Enabled = false;
@@ -363,7 +390,7 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
             this.txtCustomerName.Size = new System.Drawing.Size(142, 20);
-            this.txtCustomerName.TabIndex = 14;
+            this.txtCustomerName.TabIndex = 9;
             // 
             // label15
             // 
@@ -379,7 +406,7 @@
             this.btnNewCustomer.Location = new System.Drawing.Point(164, 24);
             this.btnNewCustomer.Name = "btnNewCustomer";
             this.btnNewCustomer.Size = new System.Drawing.Size(75, 23);
-            this.btnNewCustomer.TabIndex = 10;
+            this.btnNewCustomer.TabIndex = 8;
             this.btnNewCustomer.Text = "New";
             this.btnNewCustomer.UseVisualStyleBackColor = true;
             this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
@@ -389,7 +416,7 @@
             this.btnSearchCustomer.Location = new System.Drawing.Point(83, 24);
             this.btnSearchCustomer.Name = "btnSearchCustomer";
             this.btnSearchCustomer.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchCustomer.TabIndex = 10;
+            this.btnSearchCustomer.TabIndex = 7;
             this.btnSearchCustomer.Text = "Search";
             this.btnSearchCustomer.UseVisualStyleBackColor = true;
             this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
@@ -408,7 +435,7 @@
             this.txtDiscount.Location = new System.Drawing.Point(192, 465);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(100, 20);
-            this.txtDiscount.TabIndex = 15;
+            this.txtDiscount.TabIndex = 14;
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             // 
             // label12
@@ -429,35 +456,8 @@
             this.cmbDiscountType.Location = new System.Drawing.Point(298, 465);
             this.cmbDiscountType.Name = "cmbDiscountType";
             this.cmbDiscountType.Size = new System.Drawing.Size(52, 21);
-            this.cmbDiscountType.TabIndex = 17;
+            this.cmbDiscountType.TabIndex = 15;
             this.cmbDiscountType.SelectedIndexChanged += new System.EventHandler(this.cmbDiscountType_SelectedIndexChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 80);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 13);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "Contact Number:";
-            // 
-            // txtContactNumber
-            // 
-            this.txtContactNumber.Enabled = false;
-            this.txtContactNumber.Location = new System.Drawing.Point(97, 77);
-            this.txtContactNumber.Name = "txtContactNumber";
-            this.txtContactNumber.ReadOnly = true;
-            this.txtContactNumber.Size = new System.Drawing.Size(142, 20);
-            this.txtContactNumber.TabIndex = 14;
-            // 
-            // RS
-            // 
-            this.RS.AutoSize = true;
-            this.RS.Location = new System.Drawing.Point(210, 54);
-            this.RS.Name = "RS";
-            this.RS.Size = new System.Drawing.Size(22, 13);
-            this.RS.TabIndex = 8;
-            this.RS.Text = "RS";
             // 
             // lblTotalAmountDescription
             // 

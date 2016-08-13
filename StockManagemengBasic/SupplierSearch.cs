@@ -24,18 +24,32 @@ namespace StockManagemengBasic
         }
 
         //dodo supplier search
-        
+
+        private void selectSupplier() {
+            try
+            {
+                var id = Convert.ToInt32(dgSuppliers.SelectedRows[0].Cells["ID"].Value);
+                SupplierSelect(id);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No Suppliers Found!");
+            }
+        }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            var id = Convert.ToInt32(dgSuppliers.SelectedRows[0].Cells["ID"].Value);
-
-            SupplierSelect(id);
-            this.Close();
+            selectSupplier();
         }
 
         private void loadGrid() {
             dgSuppliers.DataSource = db.tblSuppliers.ToList();
+        }
+
+        private void dgSuppliers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            selectSupplier();
         }
     }
 }

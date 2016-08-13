@@ -49,7 +49,8 @@
             this.dgSuppliers.ReadOnly = true;
             this.dgSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSuppliers.Size = new System.Drawing.Size(614, 253);
-            this.dgSuppliers.TabIndex = 0;
+            this.dgSuppliers.TabIndex = 2;
+            this.dgSuppliers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSuppliers_CellMouseDoubleClick);
             // 
             // groupBox1
             // 
@@ -57,7 +58,7 @@
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(613, 57);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
@@ -66,14 +67,14 @@
             this.txtSearch.Location = new System.Drawing.Point(6, 19);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(308, 20);
-            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TabIndex = 1;
             // 
             // btnSelect
             // 
             this.btnSelect.Location = new System.Drawing.Point(551, 335);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSelect.TabIndex = 2;
+            this.btnSelect.TabIndex = 3;
             this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);

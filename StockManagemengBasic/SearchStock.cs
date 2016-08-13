@@ -30,9 +30,17 @@ namespace StockManagemengBasic
 
         void SelectStockItem()
         {
-            var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
-            SelectStock(stockID);
-            this.Close();
+            try
+            {
+                var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+                SelectStock(stockID);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No Items Added!");
+            }
+            
         }
 
         void RefreshGrid()

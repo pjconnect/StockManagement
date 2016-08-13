@@ -89,6 +89,7 @@ namespace StockManagemengBasic
             {
                 db.SaveChanges();
                 MessageBox.Show(message);
+                clearForm();
             }
             catch (Exception ex)
             {
@@ -123,6 +124,14 @@ namespace StockManagemengBasic
             txtModel.Text = selectedRow.Model;
             txtAlertQty.Text = selectedRow.AlertQty.ToString();
 
+        }
+
+        private void clearForm() {
+            txtBrand.Text = "";
+            txtItemID.Text = "";
+            txtItemName.Text = "";
+            txtModel.Text = "";
+            txtAlertQty.Text = "";
         }
     }
 }

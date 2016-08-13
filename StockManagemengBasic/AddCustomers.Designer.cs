@@ -81,29 +81,31 @@
             this.dgCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCustomers.Location = new System.Drawing.Point(325, 9);
             this.dgCustomers.Name = "dgCustomers";
+            this.dgCustomers.ReadOnly = true;
+            this.dgCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCustomers.Size = new System.Drawing.Size(339, 360);
-            this.dgCustomers.TabIndex = 10;
+            this.dgCustomers.TabIndex = 9;
             // 
             // txtDesignation
             // 
             this.txtDesignation.Location = new System.Drawing.Point(141, 64);
             this.txtDesignation.Name = "txtDesignation";
             this.txtDesignation.Size = new System.Drawing.Size(174, 20);
-            this.txtDesignation.TabIndex = 9;
+            this.txtDesignation.TabIndex = 3;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(141, 9);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(174, 20);
-            this.txtName.TabIndex = 7;
+            this.txtName.TabIndex = 1;
             // 
             // btnCreateCustomer
             // 
             this.btnCreateCustomer.Location = new System.Drawing.Point(215, 349);
             this.btnCreateCustomer.Name = "btnCreateCustomer";
             this.btnCreateCustomer.Size = new System.Drawing.Size(100, 23);
-            this.btnCreateCustomer.TabIndex = 6;
+            this.btnCreateCustomer.TabIndex = 8;
             this.btnCreateCustomer.Text = "Create Customer";
             this.btnCreateCustomer.UseVisualStyleBackColor = true;
             this.btnCreateCustomer.Click += new System.EventHandler(this.btnCreateCustomer_Click);
@@ -113,7 +115,7 @@
             this.txtEmail.Location = new System.Drawing.Point(141, 90);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(174, 20);
-            this.txtEmail.TabIndex = 9;
+            this.txtEmail.TabIndex = 4;
             // 
             // label1
             // 
@@ -129,7 +131,7 @@
             this.txtFax.Location = new System.Drawing.Point(141, 116);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(174, 20);
-            this.txtFax.TabIndex = 9;
+            this.txtFax.TabIndex = 5;
             // 
             // label4
             // 
@@ -145,7 +147,7 @@
             this.txtAddress.Location = new System.Drawing.Point(141, 142);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(174, 20);
-            this.txtAddress.TabIndex = 9;
+            this.txtAddress.TabIndex = 6;
             // 
             // label5
             // 
@@ -161,7 +163,7 @@
             this.txtNIC.Location = new System.Drawing.Point(141, 168);
             this.txtNIC.Name = "txtNIC";
             this.txtNIC.Size = new System.Drawing.Size(174, 20);
-            this.txtNIC.TabIndex = 9;
+            this.txtNIC.TabIndex = 7;
             // 
             // label6
             // 
@@ -177,7 +179,7 @@
             this.txtContactNumber.Location = new System.Drawing.Point(141, 35);
             this.txtContactNumber.Name = "txtContactNumber";
             this.txtContactNumber.Size = new System.Drawing.Size(174, 20);
-            this.txtContactNumber.TabIndex = 14;
+            this.txtContactNumber.TabIndex = 2;
             // 
             // AddCustomers
             // 

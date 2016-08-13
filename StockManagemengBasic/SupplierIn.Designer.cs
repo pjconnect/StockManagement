@@ -53,7 +53,7 @@
             this.txtName.Location = new System.Drawing.Point(110, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(202, 20);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 1;
             // 
             // dgSuppliers
             // 
@@ -65,7 +65,7 @@
             this.dgSuppliers.ReadOnly = true;
             this.dgSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSuppliers.Size = new System.Drawing.Size(598, 337);
-            this.dgSuppliers.TabIndex = 1;
+            this.dgSuppliers.TabIndex = 10;
             this.dgSuppliers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSuppliers_CellClick);
             // 
             // btnSave
@@ -73,7 +73,7 @@
             this.btnSave.Location = new System.Drawing.Point(237, 266);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -92,7 +92,7 @@
             this.txtContact.Location = new System.Drawing.Point(110, 29);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(202, 20);
-            this.txtContact.TabIndex = 0;
+            this.txtContact.TabIndex = 2;
             // 
             // label2
             // 
@@ -108,7 +108,7 @@
             this.txtEmail.Location = new System.Drawing.Point(110, 55);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(202, 20);
-            this.txtEmail.TabIndex = 0;
+            this.txtEmail.TabIndex = 3;
             // 
             // label3
             // 
@@ -134,14 +134,14 @@
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(202, 78);
-            this.txtComment.TabIndex = 4;
+            this.txtComment.TabIndex = 7;
             // 
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(110, 156);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(202, 20);
-            this.txtFax.TabIndex = 0;
+            this.txtFax.TabIndex = 6;
             // 
             // label5
             // 
@@ -158,7 +158,7 @@
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(202, 43);
-            this.txtAddress.TabIndex = 0;
+            this.txtAddress.TabIndex = 4;
             // 
             // label6
             // 
@@ -174,7 +174,7 @@
             this.txtNIC.Location = new System.Drawing.Point(110, 130);
             this.txtNIC.Name = "txtNIC";
             this.txtNIC.Size = new System.Drawing.Size(202, 20);
-            this.txtNIC.TabIndex = 0;
+            this.txtNIC.TabIndex = 5;
             // 
             // label7
             // 
@@ -190,7 +190,7 @@
             this.btnCancel.Location = new System.Drawing.Point(110, 266);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
