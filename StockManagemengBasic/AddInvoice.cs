@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockManagemengBasic.Reports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +12,6 @@ namespace StockManagemengBasic
 {
     public partial class AddInvoice : UserControl
     {
-
         StockmanagementEntities db = new StockmanagementEntities();
         bool isFirstTime = true;
         int invoiceID = 0;
@@ -130,6 +130,7 @@ namespace StockManagemengBasic
 
             CalculateBalance();
             EnableTextboxes();
+
         }
 
         private void btnPay_Click(object sender, EventArgs e)
@@ -213,6 +214,7 @@ namespace StockManagemengBasic
                 };
 
                 db.tblBanks.AddObject(newbank);
+
             }
 
             //if bank go to bank
@@ -248,6 +250,9 @@ namespace StockManagemengBasic
             MessageBox.Show("Successfully Saved ", "Success");
 
             Clear();
+
+            InvoiceReportViewer reportViewer = new InvoiceReportViewer(invoiceID);
+            reportViewer.Show();
 
         }
 
@@ -323,6 +328,19 @@ namespace StockManagemengBasic
 
         void Clear()
         {
+
+            isFirstTime = true;
+            invoiceID = 0;
+            totalPrice = 0;
+            totalDiscountedPrice = 0;
+            totalDiscount = 0;
+            customerID = 0;
+
+            cash = 0;
+            credit = 0;
+            cheque = 0;
+            paymentType = 0; // cash, credit or cheque
+
             dgCart.DataSource = null;
             txtCash.Text = 0.ToString();
             txtCheque.Text = 0.ToString();
@@ -341,6 +359,8 @@ namespace StockManagemengBasic
             txtItemID.Text = string.Empty;
             lblTotalAmountDescription.Text = string.Empty;
             txtContactNumber.Text = string.Empty;
+
+           
 
         }
 
