@@ -1677,30 +1677,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Credit
-        {
-            get
-            {
-                return _Credit;
-            }
-            set
-            {
-                OnCreditChanging(value);
-                ReportPropertyChanging("Credit");
-                _Credit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Credit");
-                OnCreditChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _Credit;
-        partial void OnCreditChanging(Nullable<global::System.Decimal> value);
-        partial void OnCreditChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Decimal SellingPrice
@@ -1775,24 +1751,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Debt
+        public Nullable<global::System.Decimal> ReturnedQty
         {
             get
             {
-                return _Debt;
+                return _ReturnedQty;
             }
             set
             {
-                OnDebtChanging(value);
-                ReportPropertyChanging("Debt");
-                _Debt = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Debt");
-                OnDebtChanged();
+                OnReturnedQtyChanging(value);
+                ReportPropertyChanging("ReturnedQty");
+                _ReturnedQty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReturnedQty");
+                OnReturnedQtyChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Debt;
-        partial void OnDebtChanging(Nullable<global::System.Decimal> value);
-        partial void OnDebtChanged();
+        private Nullable<global::System.Decimal> _ReturnedQty;
+        partial void OnReturnedQtyChanging(Nullable<global::System.Decimal> value);
+        partial void OnReturnedQtyChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

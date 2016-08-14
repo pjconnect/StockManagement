@@ -150,8 +150,6 @@ namespace StockManagemengBasic
                 stockItemID = newStockReciev.ID;
             }
 
-            
-
             GenerateBarcode(stockItemID.ToString());
 
         }
