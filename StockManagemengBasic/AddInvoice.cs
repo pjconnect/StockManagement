@@ -1,5 +1,4 @@
-﻿using StockManagemengBasic.Reports;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -120,7 +119,7 @@ namespace StockManagemengBasic
                     return;
                 }
 
-                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).Select(t => new { t.ItemID, t.ItemPrice, t.Qty, ItemName = db.tblStocks.Where(si => si.ID == t.ItemID).Select(si=>si.ItemName).FirstOrDefault() });
+                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).Select(t => new { t.ItemID, t.ItemPrice, t.Qty, ItemName = db.tblStocks.Where(si => si.ID == t.ItemID).Select(si => si.ItemName).FirstOrDefault() });
             }
             else
             {
@@ -131,18 +130,21 @@ namespace StockManagemengBasic
             CalculateBalance();
             EnableTextboxes();
 
+            Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
+            invoiceReport.Show();
+
         }
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice ;
+            var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice;
 
-            if(total <= 0)
+            if (total <= 0)
             {
                 MessageBox.Show("Total Canot be less than 0");
                 return;
             }
-            
+
             decimal balance = 0;
 
             try
@@ -151,7 +153,7 @@ namespace StockManagemengBasic
                 credit = Convert.ToDecimal(txtCredit.Text);
                 cheque = Convert.ToDecimal(txtCheque.Text);
 
-                if(cash < 0 || credit < 0 || cheque < 0)
+                if (cash < 0 || credit < 0 || cheque < 0)
                 {
                     MessageBox.Show("You have 'minus (-)' Value one of text fields, please correct them ");
                 }
@@ -165,15 +167,15 @@ namespace StockManagemengBasic
             //pay type algorithm
             if (txtCash.Text != 0.ToString())
             {
-                paymentType++;
-            }
-            if (txtCredit.Text != 0.ToString())
-            {
-                paymentType += 2;
+                paymentType += 1;
             }
             if (txtCredit.Text != 0.ToString())
             {
                 paymentType += 3;
+            }
+            if (txtCredit.Text != 0.ToString())
+            {
+                paymentType += 5;
             }
 
             if (total <= (cash + credit + cheque))
@@ -218,9 +220,9 @@ namespace StockManagemengBasic
             }
 
             //if bank go to bank
-            if(credit > 0)
+            if (credit > 0)
             {
-                if(customerID <= 0)
+                if (customerID <= 0)
                 {
                     MessageBox.Show("You must first enter customer before pay by credit");
                     return;
@@ -251,9 +253,6 @@ namespace StockManagemengBasic
 
             Clear();
 
-            InvoiceReportViewer reportViewer = new InvoiceReportViewer(invoiceID);
-            reportViewer.Show();
-
         }
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
@@ -272,7 +271,7 @@ namespace StockManagemengBasic
 
             //calculate debt
             var customerCredit = db.tblCredits.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
-            if(customerCredit.Count() > 0)
+            if (customerCredit.Count() > 0)
             {
                 var credit = customerCredit.Select(t => t.Credit).Sum();
                 var debt = customerCredit.Select(t => t.Debt).Sum();
@@ -360,7 +359,7 @@ namespace StockManagemengBasic
             lblTotalAmountDescription.Text = string.Empty;
             txtContactNumber.Text = string.Empty;
 
-           
+
 
         }
 

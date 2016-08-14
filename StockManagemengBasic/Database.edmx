@@ -116,6 +116,9 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDiscountEnable" Type="bit" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LotNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStocks">
           <Key>
@@ -154,6 +157,9 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <Function Name="SPInvoiceReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="StockmanagementModelStoreContainer">
           <EntitySet Name="tblBanks" EntityType="Self.tblBanks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCashbooks" EntityType="Self.tblCashbooks" Schema="dbo" store:Type="Tables" />
@@ -173,9 +179,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="StockmanagementModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="StockmanagementEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="tblInvoiceReport">
+            <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="tblBanks" EntityType="StockmanagementModel.tblBank" />
           <EntitySet Name="tblCashbooks" EntityType="StockmanagementModel.tblCashbook" />
           <EntitySet Name="tblCredits" EntityType="StockmanagementModel.tblCredit" />
+          <EntitySet Name="tblCustomers" EntityType="StockmanagementModel.tblCustomer" />
           <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.tblInvoiceItem" />
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
           <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
@@ -184,7 +194,9 @@
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
-          <EntitySet Name="tblCustomers" EntityType="StockmanagementModel.tblCustomer" />
+          <FunctionImport Name="SPInvoiceReport" ReturnType="Collection(StockmanagementModel.SPInvoiceReport_Result)">
+            <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblBank">
           <Key>
@@ -220,6 +232,19 @@
           <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblInvoiceItem">
           <Key>
@@ -284,6 +309,9 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDiscountEnable" Type="Boolean" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LotNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStock">
           <Key>
@@ -322,26 +350,28 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="tblCustomer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
+        <ComplexType Name="SPInvoiceReport_Result">
+          <Property Type="String" Name="PaymentType" Nullable="true" MaxLength="22" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="DiscountedPrice" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Qty" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ItemPrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Model" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPaid" Nullable="true" />
+          <Property Type="Int32" Name="InvoiceID" Nullable="false" />
+          <Property Type="Decimal" Name="TotalItemPrice" Nullable="true" Precision="37" Scale="4" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="StockmanagementModelStoreContainer" CdmEntityContainer="StockmanagementEntities">
-          <EntitySetMapping Name="tblBanks">
+        <EntitySetMapping Name="tblBanks">
             <EntityTypeMapping TypeName="StockmanagementModel.tblBank">
               <MappingFragment StoreEntitySet="tblBanks">
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -375,6 +405,20 @@
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomers">
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -437,6 +481,9 @@
           <EntitySetMapping Name="tblStockItems">
             <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
               <MappingFragment StoreEntitySet="tblStockItems">
+                <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsDiscountEnable" ColumnName="IsDiscountEnable" />
                 <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -488,20 +535,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblCustomers">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblCustomer">
-              <MappingFragment StoreEntitySet="tblCustomers">
-                <ScalarProperty Name="NIC" ColumnName="NIC" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <FunctionImportMapping FunctionImportName="SPInvoiceReport" FunctionName="StockmanagementModel.Store.SPInvoiceReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StockmanagementModel.SPInvoiceReport_Result">
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="DiscountedPrice" ColumnName="DiscountedPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TotalItemPrice" ColumnName="TotalItemPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -526,6 +578,7 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCashbook" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCredit" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblCustomer" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
@@ -534,7 +587,6 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="8.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblCustomer" Width="1.5" PointX="9.375" PointY="4.75" />
       </Diagram>
     </Diagrams>
   </Designer>

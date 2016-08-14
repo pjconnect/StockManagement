@@ -81,6 +81,7 @@ namespace StockManagemengBasic
                 Date = stockRecievDate,
                 CreatedDate = DateTime.Now,
                 StockID = ItemID,
+                LotNumber = 1, //TODO: manage lots
             };
 
             db.tblStockItems.AddObject(newStockReciev);

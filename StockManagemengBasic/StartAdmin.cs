@@ -110,8 +110,7 @@ namespace StockManagemengBasic
 
         private void dailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Reports.InvoiceReportViewer viewer = new Reports.InvoiceReportViewer(36);
-            //viewer.Show();
+            
         }
     }
 }

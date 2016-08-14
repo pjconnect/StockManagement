@@ -51,6 +51,7 @@
             this.cashbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loader = new System.Windows.Forms.Panel();
+            this.purchaseOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,8 +61,8 @@
             this.invoiceToolStripMenuItem,
             this.stockToolStripMenuItem,
             this.reportsToolStripMenuItem,
-            this.systemUsersToolStripMenuItem,
-            this.creditorsToolStripMenuItem});
+            this.creditorsToolStripMenuItem,
+            this.systemUsersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -80,14 +81,14 @@
             // addInvoiceToolStripMenuItem
             // 
             this.addInvoiceToolStripMenuItem.Name = "addInvoiceToolStripMenuItem";
-            this.addInvoiceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addInvoiceToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.addInvoiceToolStripMenuItem.Text = "Add Invoice";
             this.addInvoiceToolStripMenuItem.Click += new System.EventHandler(this.addInvoiceToolStripMenuItem_Click);
             // 
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.customersToolStripMenuItem.Text = "Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
@@ -97,7 +98,8 @@
             this.addStockToolStripMenuItem,
             this.stockreceiveToolStripMenuItem,
             this.suppliersToolStripMenuItem1,
-            this.itemReturnToolStripMenuItem});
+            this.itemReturnToolStripMenuItem,
+            this.purchaseOrdersToolStripMenuItem});
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.stockToolStripMenuItem.Text = "Stock";
@@ -142,14 +144,14 @@
             // dailyReportToolStripMenuItem
             // 
             this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
-            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.dailyReportToolStripMenuItem.Text = "Daily Report";
             this.dailyReportToolStripMenuItem.Click += new System.EventHandler(this.dailyReportToolStripMenuItem_Click);
             // 
             // stockReportToolStripMenuItem
             // 
             this.stockReportToolStripMenuItem.Name = "stockReportToolStripMenuItem";
-            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.stockReportToolStripMenuItem.Text = "Stock Report";
             // 
             // systemUsersToolStripMenuItem
@@ -240,6 +242,12 @@
             this.loader.Size = new System.Drawing.Size(1008, 622);
             this.loader.TabIndex = 1;
             // 
+            // purchaseOrdersToolStripMenuItem
+            // 
+            this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
+            this.purchaseOrdersToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            // 
             // StartAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,5 +292,6 @@
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addInvoiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrdersToolStripMenuItem;
     }
 }
