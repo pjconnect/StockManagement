@@ -215,16 +215,20 @@ namespace StockManagemengBasic
 
         void SelectedStockInformation()
         {
-            var StockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+            if (dgStock.SelectedRows.Count > 0)
+            {
+                var StockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
 
-            var selectedStock = db.tblStocks.Where(t => t.ID == StockID).Select(t => t).First();
+                var selectedStock = db.tblStocks.Where(t => t.ID == StockID).Select(t => t).First();
 
-            txtSelectedStockID.Text = selectedStock.ID;
-            txtSelectedItemName.Text = selectedStock.ItemName;
+                txtSelectedStockID.Text = selectedStock.ID;
+                txtSelectedItemName.Text = selectedStock.ItemName;
 
-            var selectedStockItems = db.tblStockItems.Where(t => t.StockID == StockID).Select(t => t);
+                var selectedStockItems = db.tblStockItems.Where(t => t.StockID == StockID).Select(t => t);
 
-            dgStockItems.DataSource = selectedStockItems.Select(t => new { t.ID, t.Qty, t.SellPrice, t.PurchasePrice, });
+                dgStockItems.DataSource = selectedStockItems.Select(t => new { t.ID, t.Qty, t.SellPrice, t.PurchasePrice, });
+
+            }
         }
 
         private void dgStockItems_CellClick(object sender, DataGridViewCellEventArgs e)
