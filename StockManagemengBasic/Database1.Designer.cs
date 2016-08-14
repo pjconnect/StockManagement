@@ -196,6 +196,38 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<tblStockItem> tblStockItems
+        {
+            get
+            {
+                if ((_tblStockItems == null))
+                {
+                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
+                }
+                return _tblStockItems;
+            }
+        }
+        private ObjectSet<tblStockItem> _tblStockItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblStock> tblStocks
+        {
+            get
+            {
+                if ((_tblStocks == null))
+                {
+                    _tblStocks = base.CreateObjectSet<tblStock>("tblStocks");
+                }
+                return _tblStocks;
+            }
+        }
+        private ObjectSet<tblStock> _tblStocks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<tblSupplier> tblSuppliers
         {
             get
@@ -224,38 +256,6 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<tblStock> tblStocks
-        {
-            get
-            {
-                if ((_tblStocks == null))
-                {
-                    _tblStocks = base.CreateObjectSet<tblStock>("tblStocks");
-                }
-                return _tblStocks;
-            }
-        }
-        private ObjectSet<tblStock> _tblStocks;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<tblStockItem> tblStockItems
-        {
-            get
-            {
-                if ((_tblStockItems == null))
-                {
-                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
-                }
-                return _tblStockItems;
-            }
-        }
-        private ObjectSet<tblStockItem> _tblStockItems;
 
         #endregion
 
@@ -326,6 +326,22 @@ namespace StockManagemengBasic
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStockItems(tblStockItem tblStockItem)
+        {
+            base.AddObject("tblStockItems", tblStockItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblStocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStocks(tblStock tblStock)
+        {
+            base.AddObject("tblStocks", tblStock);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the tblSuppliers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotblSuppliers(tblSupplier tblSupplier)
@@ -339,22 +355,6 @@ namespace StockManagemengBasic
         public void AddTotblUsers(tblUser tblUser)
         {
             base.AddObject("tblUsers", tblUser);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the tblStocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblStocks(tblStock tblStock)
-        {
-            base.AddObject("tblStocks", tblStock);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblStockItems(tblStockItem tblStockItem)
-        {
-            base.AddObject("tblStockItems", tblStockItem);
         }
 
         #endregion
@@ -2270,30 +2270,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SupplierID
-        {
-            get
-            {
-                return _SupplierID;
-            }
-            set
-            {
-                OnSupplierIDChanging(value);
-                ReportPropertyChanging("SupplierID");
-                _SupplierID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SupplierID");
-                OnSupplierIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SupplierID;
-        partial void OnSupplierIDChanging(Nullable<global::System.Int32> value);
-        partial void OnSupplierIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 AlertQty
@@ -2623,6 +2599,30 @@ namespace StockManagemengBasic
         private global::System.Int32 _LotNumber;
         partial void OnLotNumberChanging(global::System.Int32 value);
         partial void OnLotNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SupplierID
+        {
+            get
+            {
+                return _SupplierID;
+            }
+            set
+            {
+                OnSupplierIDChanging(value);
+                ReportPropertyChanging("SupplierID");
+                _SupplierID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierID");
+                OnSupplierIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SupplierID;
+        partial void OnSupplierIDChanging(Nullable<global::System.Int32> value);
+        partial void OnSupplierIDChanged();
 
         #endregion
 

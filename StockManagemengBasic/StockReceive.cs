@@ -16,6 +16,7 @@ namespace StockManagemengBasic
         int supplierID = 0;
         StockmanagementEntities db = new StockmanagementEntities();
         private Image barcodeImg;
+        private int selectedStockItemID = 0;
 
         public StockReceive()
         {
@@ -25,7 +26,7 @@ namespace StockManagemengBasic
 
         private void StockReceive_Load(object sender, EventArgs e)
         {
-
+            SelectedStockInformation();
         }
 
         private void btnSearchSupplier_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace StockManagemengBasic
         {
             supplierID = SupplierID;
 
-           //db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
+            //db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
             var supplier = db.tblSuppliers.Where(t => t.ID == supplierID).First();
             txtspName.Text = supplier.Name;
             txtspContact.Text = supplier.ContactNumber;
@@ -57,20 +58,20 @@ namespace StockManagemengBasic
             decimal purchasedPrice = 0;
             decimal sellPrice = 0;
             string ItemID = "";
-            
-            try 
-            {	        
-    		    qty = Convert.ToDecimal(txtQty.Text);
+
+            try
+            {
+                qty = Convert.ToDecimal(txtQty.Text);
                 purchasedPrice = Convert.ToDecimal(txtPurchasedPrice.Text);
                 sellPrice = Convert.ToDecimal(txtSellPrice.Text);
                 ItemID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
-                
-	        }
-	        catch (Exception ex)
-	        {
-		        MessageBox.Show(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return;
-	        }
+            }
 
             var invoiceNumber = txtInvoiceNumber.Text;
             var stockRecievDate = dtpStockRecieveDate.Value;
@@ -88,35 +89,71 @@ namespace StockManagemengBasic
                 //update all columns to new price
             }
             #endregion
-
-            var newStockReciev = new tblStockItem()
+            var stockItemID = 0;
+            if (selectedStockItemID != 0)
             {
-                Qty = qty,
-                PurchasePrice = purchasedPrice,
-                SellPrice = sellPrice,
-                InvoiceNumber = invoiceNumber,
-                Date = stockRecievDate,
-                CreatedDate = DateTime.Now,
-                StockID = ItemID,
-                LotNumber = lotNumber, 
-            };
+                var stockItem = db.tblStockItems.Where(t => t.ID == selectedStockItemID).Select(t => t).FirstOrDefault();
+                stockItem.Qty = qty;
+                stockItem.PurchasePrice = purchasedPrice;
+                stockItem.SellPrice = sellPrice;
+                stockItem.InvoiceNumber = invoiceNumber;
+                stockItem.Date = stockRecievDate;
+                stockItem.CreatedDate = DateTime.Now;
+                stockItem.StockID = ItemID;
+                stockItem.LotNumber = lotNumber;
+                stockItem.SupplierID = supplierID;
 
-            db.tblStockItems.AddObject(newStockReciev);
+                stockItemID = selectedStockItemID;
 
-            try
-            {
-                db.SaveChanges();
-                MessageBox.Show("Successfully Saved!");
-                loadGrid();
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Successfully Updated!");
+                    loadGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                return;
+                var newStockReciev = new tblStockItem()
+                {
+                    Qty = qty,
+                    PurchasePrice = purchasedPrice,
+                    SellPrice = sellPrice,
+                    InvoiceNumber = invoiceNumber,
+                    Date = stockRecievDate,
+                    CreatedDate = DateTime.Now,
+                    StockID = ItemID,
+                    LotNumber = lotNumber,
+                    SupplierID = supplierID,
+                };
+
+                db.tblStockItems.AddObject(newStockReciev);
+
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Successfully Inserted!");
+                    loadGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
+                stockItemID = newStockReciev.ID;
             }
 
-            GenerateBarcode(newStockReciev.ID.ToString()); // TODO: If this is a lot enable, edit this
             
+
+            GenerateBarcode(stockItemID.ToString());
+
         }
 
         void GenerateBarcode(string StockID)
@@ -164,6 +201,22 @@ namespace StockManagemengBasic
 
         private void dgStock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            SelectedStockInformation();
+
+            pbBarcode.Image = null;
+            txtQty.Text = string.Empty;
+            txtPurchasedPrice.Text = string.Empty;
+            txtSellPrice.Text = string.Empty;
+            supplierID = 0;
+            txtspName.Text = string.Empty;
+            txtspContact.Text = string.Empty;
+            this.selectedStockItemID = 0;
+            txtStockItemID.Text = string.Empty;
+
+        }
+
+        void SelectedStockInformation()
+        {
             var StockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
 
             var selectedStock = db.tblStocks.Where(t => t.ID == StockID).Select(t => t).First();
@@ -173,7 +226,33 @@ namespace StockManagemengBasic
 
             var selectedStockItems = db.tblStockItems.Where(t => t.StockID == StockID).Select(t => t);
 
-            dgStockItems.DataSource = selectedStockItems.Select(t=>new { t.ID, t.Qty, t.SellPrice, t.PurchasePrice,  });
+            dgStockItems.DataSource = selectedStockItems.Select(t => new { t.ID, t.Qty, t.SellPrice, t.PurchasePrice, });
+        }
+
+        private void dgStockItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var StockItemID = Convert.ToInt32(dgStockItems.SelectedRows[0].Cells["ID"].Value);
+
+                var SelectedStockItem = db.tblStockItems.Where(t => t.ID == StockItemID).Select(t => t).First();
+
+                txtPurchasedPrice.Text = SelectedStockItem.PurchasePrice.ToString();
+                txtSellPrice.Text = SelectedStockItem.SellPrice.ToString();
+                txtQty.Text = SelectedStockItem.Qty.ToString();
+                txtInvoiceNumber.Text = SelectedStockItem.InvoiceNumber;
+
+                if (SelectedStockItem.SupplierID != null)
+                {
+                    SupplierSearch_SupplierSelect((int)SelectedStockItem.SupplierID);
+                }
+
+                GenerateBarcode(SelectedStockItem.ID.ToString());
+
+                selectedStockItemID = SelectedStockItem.ID;
+
+                txtStockItemID.Text = selectedStockItemID.ToString();
+            }
         }
     }
 }

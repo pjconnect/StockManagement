@@ -36,13 +36,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnSearchSupplier = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pbBarcode = new System.Windows.Forms.PictureBox();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.pbBarcode = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtSelectedItemName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtSelectedStockID = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtSelectedItemName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpStockRecieveDate = new System.Windows.Forms.DateTimePicker();
@@ -57,6 +57,8 @@
             this.txtQty = new System.Windows.Forms.TextBox();
             this.btnInsert = new System.Windows.Forms.Button();
             this.dgStockItems = new System.Windows.Forms.DataGridView();
+            this.txtStockItemID = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).BeginInit();
             this.Supplier.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -152,15 +154,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Barcode";
             // 
-            // pbBarcode
-            // 
-            this.pbBarcode.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbBarcode.Location = new System.Drawing.Point(6, 19);
-            this.pbBarcode.Name = "pbBarcode";
-            this.pbBarcode.Size = new System.Drawing.Size(250, 100);
-            this.pbBarcode.TabIndex = 30;
-            this.pbBarcode.TabStop = false;
-            // 
             // btnPrint
             // 
             this.btnPrint.Location = new System.Drawing.Point(181, 125);
@@ -170,6 +163,15 @@
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // pbBarcode
+            // 
+            this.pbBarcode.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pbBarcode.Location = new System.Drawing.Point(6, 19);
+            this.pbBarcode.Name = "pbBarcode";
+            this.pbBarcode.Size = new System.Drawing.Size(250, 100);
+            this.pbBarcode.TabIndex = 30;
+            this.pbBarcode.TabStop = false;
             // 
             // groupBox2
             // 
@@ -183,6 +185,23 @@
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Item";
+            // 
+            // txtSelectedItemName
+            // 
+            this.txtSelectedItemName.Location = new System.Drawing.Point(72, 43);
+            this.txtSelectedItemName.Name = "txtSelectedItemName";
+            this.txtSelectedItemName.ReadOnly = true;
+            this.txtSelectedItemName.Size = new System.Drawing.Size(163, 20);
+            this.txtSelectedItemName.TabIndex = 23;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 46);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Item Name";
             // 
             // txtSelectedStockID
             // 
@@ -201,23 +220,6 @@
             this.label8.TabIndex = 22;
             this.label8.Text = "Item ID";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 46);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 13);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Item Name";
-            // 
-            // txtSelectedItemName
-            // 
-            this.txtSelectedItemName.Location = new System.Drawing.Point(72, 43);
-            this.txtSelectedItemName.Name = "txtSelectedItemName";
-            this.txtSelectedItemName.ReadOnly = true;
-            this.txtSelectedItemName.Size = new System.Drawing.Size(163, 20);
-            this.txtSelectedItemName.TabIndex = 23;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label5);
@@ -227,9 +229,11 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.txtSellPrice);
             this.groupBox3.Controls.Add(this.txtPurchasedPrice);
+            this.groupBox3.Controls.Add(this.txtStockItemID);
             this.groupBox3.Controls.Add(this.txtQty);
             this.groupBox3.Controls.Add(this.btnInsert);
             this.groupBox3.Location = new System.Drawing.Point(11, 190);
@@ -242,7 +246,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 138);
+            this.label5.Location = new System.Drawing.Point(6, 164);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 40;
@@ -250,14 +254,14 @@
             // 
             // dtpStockRecieveDate
             // 
-            this.dtpStockRecieveDate.Location = new System.Drawing.Point(6, 154);
+            this.dtpStockRecieveDate.Location = new System.Drawing.Point(6, 180);
             this.dtpStockRecieveDate.Name = "dtpStockRecieveDate";
             this.dtpStockRecieveDate.Size = new System.Drawing.Size(221, 20);
             this.dtpStockRecieveDate.TabIndex = 33;
             // 
             // txtInvoiceNumber
             // 
-            this.txtInvoiceNumber.Location = new System.Drawing.Point(117, 108);
+            this.txtInvoiceNumber.Location = new System.Drawing.Point(117, 134);
             this.txtInvoiceNumber.Name = "txtInvoiceNumber";
             this.txtInvoiceNumber.Size = new System.Drawing.Size(110, 20);
             this.txtInvoiceNumber.TabIndex = 29;
@@ -265,7 +269,7 @@
             // checkBuyForCredit
             // 
             this.checkBuyForCredit.AutoSize = true;
-            this.checkBuyForCredit.Location = new System.Drawing.Point(138, 180);
+            this.checkBuyForCredit.Location = new System.Drawing.Point(138, 206);
             this.checkBuyForCredit.Name = "checkBuyForCredit";
             this.checkBuyForCredit.Size = new System.Drawing.Size(89, 17);
             this.checkBuyForCredit.TabIndex = 34;
@@ -275,7 +279,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(56, 85);
+            this.label3.Location = new System.Drawing.Point(56, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 36;
@@ -284,7 +288,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 59);
+            this.label2.Location = new System.Drawing.Point(22, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 37;
@@ -293,7 +297,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 111);
+            this.label4.Location = new System.Drawing.Point(6, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 13);
             this.label4.TabIndex = 38;
@@ -302,7 +306,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 34);
+            this.label1.Location = new System.Drawing.Point(83, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 13);
             this.label1.TabIndex = 39;
@@ -310,28 +314,28 @@
             // 
             // txtSellPrice
             // 
-            this.txtSellPrice.Location = new System.Drawing.Point(117, 82);
+            this.txtSellPrice.Location = new System.Drawing.Point(117, 108);
             this.txtSellPrice.Name = "txtSellPrice";
             this.txtSellPrice.Size = new System.Drawing.Size(110, 20);
             this.txtSellPrice.TabIndex = 32;
             // 
             // txtPurchasedPrice
             // 
-            this.txtPurchasedPrice.Location = new System.Drawing.Point(117, 56);
+            this.txtPurchasedPrice.Location = new System.Drawing.Point(117, 82);
             this.txtPurchasedPrice.Name = "txtPurchasedPrice";
             this.txtPurchasedPrice.Size = new System.Drawing.Size(110, 20);
             this.txtPurchasedPrice.TabIndex = 31;
             // 
             // txtQty
             // 
-            this.txtQty.Location = new System.Drawing.Point(117, 30);
+            this.txtQty.Location = new System.Drawing.Point(117, 56);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(110, 20);
             this.txtQty.TabIndex = 30;
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(127, 203);
+            this.btnInsert.Location = new System.Drawing.Point(127, 229);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(100, 23);
             this.btnInsert.TabIndex = 35;
@@ -354,7 +358,24 @@
             this.dgStockItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgStockItems.Size = new System.Drawing.Size(395, 200);
             this.dgStockItems.TabIndex = 8;
-            this.dgStockItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgStock_CellClick);
+            this.dgStockItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgStockItems_CellClick);
+            // 
+            // txtStockItemID
+            // 
+            this.txtStockItemID.Enabled = false;
+            this.txtStockItemID.Location = new System.Drawing.Point(117, 30);
+            this.txtStockItemID.Name = "txtStockItemID";
+            this.txtStockItemID.Size = new System.Drawing.Size(110, 20);
+            this.txtStockItemID.TabIndex = 30;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(39, 33);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Stock Item ID";
             // 
             // StockReceive
             // 
@@ -367,7 +388,7 @@
             this.Controls.Add(this.dgStockItems);
             this.Controls.Add(this.dgStock);
             this.Name = "StockReceive";
-            this.Size = new System.Drawing.Size(954, 464);
+            this.Size = new System.Drawing.Size(954, 486);
             this.Load += new System.EventHandler(this.StockReceive_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgStock)).EndInit();
             this.Supplier.ResumeLayout(false);
@@ -414,5 +435,7 @@
         private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.DataGridView dgStockItems;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtStockItemID;
     }
 }

@@ -150,6 +150,7 @@ namespace StockManagemengBasic
             txtBrand.Text = "";
             txtItemID.Text = "";
             txtItemName.Text = "";
+            txtModel.Text = "";
             txtColor.Text = "";
             txtAlertQty.Text = "";
         }

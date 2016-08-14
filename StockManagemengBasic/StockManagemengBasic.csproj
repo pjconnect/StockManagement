@@ -294,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database.edmx.sql" />
+    <Content Include="db\database.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
