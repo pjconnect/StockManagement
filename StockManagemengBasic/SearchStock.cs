@@ -45,7 +45,7 @@ namespace StockManagemengBasic
 
         void RefreshGrid()
         {
-            dgStock.DataSource = db.tblStocks.ToList();
+            dgStock.DataSource = db.tblStockItems.ToList();
         }
 
         private void SearchStock_Load(object sender, EventArgs e)

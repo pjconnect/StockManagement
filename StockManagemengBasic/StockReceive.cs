@@ -23,6 +23,11 @@ namespace StockManagemengBasic
             loadGrid();
         }
 
+        private void StockReceive_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnSearchSupplier_Click(object sender, EventArgs e)
         {
             var supplierSearch = new SupplierSearch();
@@ -38,14 +43,10 @@ namespace StockManagemengBasic
             var supplier = db.tblSuppliers.Where(t => t.ID == supplierID).First();
             txtspName.Text = supplier.Name;
             txtspContact.Text = supplier.ContactNumber;
-            txtspEmail.Text = supplier.Email;
-            txtspNIC.Text = supplier.NIC;
-            txtspFax.Text = supplier.Fax;
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-
             if (supplierID == 0)
             {
                 MessageBox.Show("Please select a supplier first");
@@ -73,6 +74,20 @@ namespace StockManagemengBasic
 
             var invoiceNumber = txtInvoiceNumber.Text;
             var stockRecievDate = dtpStockRecieveDate.Value;
+            var lotNumber = 1;
+
+            #region Managing Log
+
+            //  WE DO NOT MANAGE LOT LOL WTF. TOD: DELETE THE COLUMN
+            if (SystemProperties.IsLotManage)
+            {
+                lotNumber = db.tblStockItems.Where(t => t.StockID == ItemID).Select(t => t).Count() + 1;
+            }
+            else
+            {
+                //update all columns to new price
+            }
+            #endregion
 
             var newStockReciev = new tblStockItem()
             {
@@ -83,7 +98,7 @@ namespace StockManagemengBasic
                 Date = stockRecievDate,
                 CreatedDate = DateTime.Now,
                 StockID = ItemID,
-                LotNumber = 1, //TODO: manage lots
+                LotNumber = lotNumber, 
             };
 
             db.tblStockItems.AddObject(newStockReciev);
@@ -100,7 +115,12 @@ namespace StockManagemengBasic
                 return;
             }
 
-            //generate barcode
+            GenerateBarcode(newStockReciev.ID.ToString()); // TODO: If this is a lot enable, edit this
+            
+        }
+
+        void GenerateBarcode(string StockID)
+        {
             Barcode barcode = new Barcode()
             {
                 IncludeLabel = true,
@@ -112,13 +132,8 @@ namespace StockManagemengBasic
                 ForeColor = Color.Black,
             };
 
-            barcodeImg = barcode.Encode(TYPE.CODE128B, newStockReciev.ID.ToString());
+            barcodeImg = barcode.Encode(TYPE.CODE128B, StockID);
             pbBarcode.Image = barcodeImg;
-
-            btnInsert.Enabled = false;
-            dgStock.Enabled = false;
-            btnPrint.Enabled = true;
-            btnNewStock.Enabled = true;
 
         }
 
@@ -127,11 +142,6 @@ namespace StockManagemengBasic
             var collection = from stocks in db.tblStocks
                              select new { ID = stocks.ID, Name = stocks.ItemName, TotalQty = db.tblStockItems.Where(t => t.StockID == stocks.ID).Select(t => t.Qty).Sum() };
             dgStock.DataSource = collection;
-        }
-
-        private void StockReceive_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -150,6 +160,20 @@ namespace StockManagemengBasic
             e.Graphics.DrawImage(img, loc);
 
             img.Dispose();
+        }
+
+        private void dgStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var StockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+
+            var selectedStock = db.tblStocks.Where(t => t.ID == StockID).Select(t => t).First();
+
+            txtSelectedStockID.Text = selectedStock.ID;
+            txtSelectedItemName.Text = selectedStock.ItemName;
+
+            var selectedStockItems = db.tblStockItems.Where(t => t.StockID == StockID).Select(t => t);
+
+            dgStockItems.DataSource = selectedStockItems.Select(t=>new { t.ID, t.Qty, t.SellPrice, t.PurchasePrice,  });
         }
     }
 }

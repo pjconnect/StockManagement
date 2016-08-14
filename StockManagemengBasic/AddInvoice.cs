@@ -39,7 +39,8 @@ namespace StockManagemengBasic
 
         void AddToCart()
         {
-            var stockID = txtItemID.Text;
+            var stockItemID = Convert.ToInt32(txtItemID.Text);
+            var stockID = db.tblStockItems.Where(t => t.ID == stockItemID).Select(t => t.StockID).First();
             var stock = db.tblStocks.Where(t => t.ID == stockID).Select(t => t).ToList();
             var stockItems = db.tblStockItems.Where(t => t.StockID == stockID).Select(t => t).ToList();
 
@@ -255,10 +256,12 @@ namespace StockManagemengBasic
 
             MessageBox.Show("Successfully Saved ", "Success");
 
-            Clear();
+            
 
             Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
             invoiceReport.Show();
+
+            Clear();
 
         }
 

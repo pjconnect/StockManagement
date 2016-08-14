@@ -117,7 +117,6 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDiscountEnable" Type="bit" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="LotNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblStocks">
@@ -191,13 +190,13 @@
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
           <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
           <EntitySet Name="tblReturns" EntityType="StockmanagementModel.tblReturn" />
-          <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.tblStockItem" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
           <FunctionImport Name="SPInvoiceReport" ReturnType="Collection(StockmanagementModel.SPInvoiceReport_Result)">
           <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
+          <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.tblStockItem" />
         </EntityContainer>
         <EntityType Name="tblBank">
           <Key>
@@ -298,22 +297,6 @@
           <Property Name="ReturnItemID" Type="Int32" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="tblStockItem">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StockID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="SellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDiscountEnable" Type="Boolean" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="LotNumber" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="tblSupplier">
           <Key>
             <PropertyRef Name="ID" />
@@ -366,6 +349,21 @@
           <Property Name="SupplierID" Type="Int32" />
           <Property Name="AlertQty" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblStockItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDiscountEnable" Type="Boolean" />
+          <Property Name="LotNumber" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -480,23 +478,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblStockItems">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
-              <MappingFragment StoreEntitySet="tblStockItems">
-                <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="IsDiscountEnable" ColumnName="IsDiscountEnable" />
-                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
-                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="StockID" ColumnName="StockID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSuppliers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblSupplier">
               <MappingFragment StoreEntitySet="tblSuppliers">
@@ -557,6 +538,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblStockItems">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblStockItem">
+              <MappingFragment StoreEntitySet="tblStockItems">
+                <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
+                <ScalarProperty Name="IsDiscountEnable" ColumnName="IsDiscountEnable" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -586,10 +583,10 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblReturn" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="6.75" PointY="6.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="6.75" PointY="6" />
       </Diagram>
     </Diagrams>
   </Designer>

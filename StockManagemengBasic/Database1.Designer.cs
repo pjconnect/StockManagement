@@ -196,22 +196,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblStockItem> tblStockItems
-        {
-            get
-            {
-                if ((_tblStockItems == null))
-                {
-                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
-                }
-                return _tblStockItems;
-            }
-        }
-        private ObjectSet<tblStockItem> _tblStockItems;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblSupplier> tblSuppliers
         {
             get
@@ -256,6 +240,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblStock> _tblStocks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblStockItem> tblStockItems
+        {
+            get
+            {
+                if ((_tblStockItems == null))
+                {
+                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
+                }
+                return _tblStockItems;
+            }
+        }
+        private ObjectSet<tblStockItem> _tblStockItems;
 
         #endregion
 
@@ -326,14 +326,6 @@ namespace StockManagemengBasic
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblStockItems(tblStockItem tblStockItem)
-        {
-            base.AddObject("tblStockItems", tblStockItem);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tblSuppliers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotblSuppliers(tblSupplier tblSupplier)
@@ -355,6 +347,14 @@ namespace StockManagemengBasic
         public void AddTotblStocks(tblStock tblStock)
         {
             base.AddObject("tblStocks", tblStock);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStockItems(tblStockItem tblStockItem)
+        {
+            base.AddObject("tblStockItems", tblStockItem);
         }
 
         #endregion
@@ -2599,30 +2599,6 @@ namespace StockManagemengBasic
         private Nullable<global::System.Boolean> _IsDiscountEnable;
         partial void OnIsDiscountEnableChanging(Nullable<global::System.Boolean> value);
         partial void OnIsDiscountEnableChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Price
-        {
-            get
-            {
-                return _Price;
-            }
-            set
-            {
-                OnPriceChanging(value);
-                ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Price");
-                OnPriceChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _Price;
-        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
-        partial void OnPriceChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
