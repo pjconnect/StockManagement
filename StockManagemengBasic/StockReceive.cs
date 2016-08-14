@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BarcodeLib;
+using System.Drawing.Printing;
 
 namespace StockManagemengBasic
 {
@@ -13,6 +15,7 @@ namespace StockManagemengBasic
     {
         int supplierID = 0;
         StockmanagementEntities db = new StockmanagementEntities();
+        private Image barcodeImg;
 
         public StockReceive()
         {
@@ -38,7 +41,6 @@ namespace StockManagemengBasic
             txtspEmail.Text = supplier.Email;
             txtspNIC.Text = supplier.NIC;
             txtspFax.Text = supplier.Fax;
-
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -95,7 +97,28 @@ namespace StockManagemengBasic
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
+
+            //generate barcode
+            Barcode barcode = new Barcode()
+            {
+                IncludeLabel = true,
+                Alignment = AlignmentPositions.CENTER,
+                Width = 250,
+                Height = 80,
+                RotateFlipType = RotateFlipType.RotateNoneFlipNone,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+            };
+
+            barcodeImg = barcode.Encode(TYPE.CODE128B, newStockReciev.ID.ToString());
+            pbBarcode.Image = barcodeImg;
+
+            btnInsert.Enabled = false;
+            dgStock.Enabled = false;
+            btnPrint.Enabled = true;
+            btnNewStock.Enabled = true;
 
         }
 
@@ -106,6 +129,27 @@ namespace StockManagemengBasic
             dgStock.DataSource = collection;
         }
 
+        private void StockReceive_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += PrintPage;
+            //pd.Print();
+            //new PrintPreviewControl();
+            // TODO: Add print preveiw
+        }
+
+        private void PrintPage(object o, PrintPageEventArgs e)
+        {
+            System.Drawing.Image img = barcodeImg;
+            Point loc = new Point(280, 80);
+            e.Graphics.DrawImage(img, loc);
+
+            img.Dispose();
+        }
     }
 }

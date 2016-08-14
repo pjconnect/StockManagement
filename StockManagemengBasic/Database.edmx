@@ -128,8 +128,9 @@
           <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Brand" Type="nvarchar" MaxLength="50" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="SupplierID" Type="int" />
-          <Property Name="AlertQty" Type="int" />
+          <Property Name="AlertQty" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSuppliers">
@@ -191,12 +192,12 @@
           <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
           <EntitySet Name="tblReturns" EntityType="StockmanagementModel.tblReturn" />
           <EntitySet Name="tblStockItems" EntityType="StockmanagementModel.tblStockItem" />
-          <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
           <EntitySet Name="tblSuppliers" EntityType="StockmanagementModel.tblSupplier" />
           <EntitySet Name="tblUsers" EntityType="StockmanagementModel.tblUser" />
           <FunctionImport Name="SPInvoiceReport" ReturnType="Collection(StockmanagementModel.SPInvoiceReport_Result)">
-            <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+          <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblStocks" EntityType="StockmanagementModel.tblStock" />
         </EntityContainer>
         <EntityType Name="tblBank">
           <Key>
@@ -313,18 +314,6 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="LotNumber" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblStock">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupplierID" Type="Int32" />
-          <Property Name="AlertQty" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="tblSupplier">
           <Key>
             <PropertyRef Name="ID" />
@@ -365,6 +354,19 @@
           <Property Type="Int32" Name="InvoiceID" Nullable="false" />
           <Property Type="Decimal" Name="TotalItemPrice" Nullable="true" Precision="37" Scale="4" />
         </ComplexType>
+        <EntityType Name="tblStock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="AlertQty" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -495,19 +497,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblStocks">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
-              <MappingFragment StoreEntitySet="tblStocks">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSuppliers">
             <EntityTypeMapping TypeName="StockmanagementModel.tblSupplier">
               <MappingFragment StoreEntitySet="tblSuppliers">
@@ -554,6 +543,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="tblStocks">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblStock">
+              <MappingFragment StoreEntitySet="tblStocks">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="AlertQty" ColumnName="AlertQty" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -584,9 +587,9 @@
         <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblReturn" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </Diagrams>
   </Designer>

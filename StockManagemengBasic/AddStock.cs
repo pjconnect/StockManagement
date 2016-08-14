@@ -19,11 +19,28 @@ namespace StockManagemengBasic
             InitializeComponent();
             RefreshStockGrid();
             dgStock.ReadOnly = true;
+            
         }
 
         void RefreshStockGrid()
         {
             dgStock.DataSource = db.tblStocks.ToList();
+        }
+
+        void GenerateItemID()
+        {
+
+            var itemCount = db.tblStocks.Count() + 1;
+
+            char brandFirstLeter = (txtBrand.Text.Length >0)? txtBrand.Text[0]: '0';
+            char modelFirstLeter = (txtModel.Text.Length >0)? txtModel.Text[0]: '0';
+            char colorFirstLeter = (txtColor.Text.Length >0)? txtColor.Text[0]: '0';
+            char nameFirstLeter = (txtItemName.Text.Length >0)? txtItemName.Text[0]: '0';
+
+            var itemID = itemCount.ToString("00") + brandFirstLeter.ToString().ToUpper() + modelFirstLeter.ToString().ToUpper() + colorFirstLeter.ToString().ToUpper() + nameFirstLeter.ToString().ToUpper();
+
+            txtItemID.Text = itemID;
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -32,12 +49,13 @@ namespace StockManagemengBasic
             #region init variables
 
             var itemID = txtItemID.Text;
-            var model = txtModel.Text;
+            var model = txtColor.Text;
             var brand = txtBrand.Text;
             var itemname = txtItemName.Text;
+            var color = txtColor.Text;
 
             var alert = txtAlertQty.Text;
-            decimal puchasePrice = 0;
+
             var alertqty = 0;
             try
             {
@@ -64,6 +82,7 @@ namespace StockManagemengBasic
                 firstitem.ItemName = itemname;
                 firstitem.ID = itemID;
                 firstitem.Model = model;
+                firstitem.Color = color;
                 message = "Successfully Updated";
                 firstitem.CreatedDate = DateTime.Now;
             }
@@ -78,6 +97,7 @@ namespace StockManagemengBasic
                     ID = itemID,
                     Model = model,
                     CreatedDate = DateTime.Now,
+                    Color = color,
 
                 };
 
@@ -121,7 +141,7 @@ namespace StockManagemengBasic
             txtBrand.Text = selectedRow.Brand;
             txtItemID.Text = selectedRow.ID;
             txtItemName.Text = selectedRow.ItemName;
-            txtModel.Text = selectedRow.Model;
+            txtColor.Text = selectedRow.Model;
             txtAlertQty.Text = selectedRow.AlertQty.ToString();
 
         }
@@ -130,8 +150,28 @@ namespace StockManagemengBasic
             txtBrand.Text = "";
             txtItemID.Text = "";
             txtItemName.Text = "";
-            txtModel.Text = "";
+            txtColor.Text = "";
             txtAlertQty.Text = "";
+        }
+
+        private void txtItemName_TextChanged(object sender, EventArgs e)
+        {
+            GenerateItemID();
+        }
+
+        private void txtBrand_TextChanged(object sender, EventArgs e)
+        {
+            GenerateItemID();
+        }
+
+        private void txtModel_TextChanged(object sender, EventArgs e)
+        {
+            GenerateItemID();
+        }
+
+        private void txtColor_TextChanged(object sender, EventArgs e)
+        {
+            GenerateItemID();
         }
     }
 }

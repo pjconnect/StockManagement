@@ -212,22 +212,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblStock> tblStocks
-        {
-            get
-            {
-                if ((_tblStocks == null))
-                {
-                    _tblStocks = base.CreateObjectSet<tblStock>("tblStocks");
-                }
-                return _tblStocks;
-            }
-        }
-        private ObjectSet<tblStock> _tblStocks;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblSupplier> tblSuppliers
         {
             get
@@ -256,6 +240,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblStock> tblStocks
+        {
+            get
+            {
+                if ((_tblStocks == null))
+                {
+                    _tblStocks = base.CreateObjectSet<tblStock>("tblStocks");
+                }
+                return _tblStocks;
+            }
+        }
+        private ObjectSet<tblStock> _tblStocks;
 
         #endregion
 
@@ -334,14 +334,6 @@ namespace StockManagemengBasic
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tblStocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblStocks(tblStock tblStock)
-        {
-            base.AddObject("tblStocks", tblStock);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tblSuppliers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotblSuppliers(tblSupplier tblSupplier)
@@ -355,6 +347,14 @@ namespace StockManagemengBasic
         public void AddTotblUsers(tblUser tblUser)
         {
             base.AddObject("tblUsers", tblUser);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblStocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStocks(tblStock tblStock)
+        {
+            base.AddObject("tblStocks", tblStock);
         }
 
         #endregion
@@ -2128,12 +2128,14 @@ namespace StockManagemengBasic
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="itemName">Initial value of the ItemName property.</param>
+        /// <param name="alertQty">Initial value of the AlertQty property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
-        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName, global::System.DateTime createdDate)
+        public static tblStock CreatetblStock(global::System.String id, global::System.String itemName, global::System.Int32 alertQty, global::System.DateTime createdDate)
         {
             tblStock tblStock = new tblStock();
             tblStock.ID = id;
             tblStock.ItemName = itemName;
+            tblStock.AlertQty = alertQty;
             tblStock.CreatedDate = createdDate;
             return tblStock;
         }
@@ -2246,6 +2248,30 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String Color
+        {
+            get
+            {
+                return _Color;
+            }
+            set
+            {
+                OnColorChanging(value);
+                ReportPropertyChanging("Color");
+                _Color = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Color");
+                OnColorChanged();
+            }
+        }
+        private global::System.String _Color;
+        partial void OnColorChanging(global::System.String value);
+        partial void OnColorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> SupplierID
         {
             get
@@ -2268,9 +2294,9 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> AlertQty
+        public global::System.Int32 AlertQty
         {
             get
             {
@@ -2285,8 +2311,8 @@ namespace StockManagemengBasic
                 OnAlertQtyChanged();
             }
         }
-        private Nullable<global::System.Int32> _AlertQty;
-        partial void OnAlertQtyChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _AlertQty;
+        partial void OnAlertQtyChanging(global::System.Int32 value);
         partial void OnAlertQtyChanged();
     
         /// <summary>

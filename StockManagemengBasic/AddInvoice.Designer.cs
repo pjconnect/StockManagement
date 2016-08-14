@@ -81,14 +81,15 @@
             this.txtItemID.Location = new System.Drawing.Point(57, 13);
             this.txtItemID.Name = "txtItemID";
             this.txtItemID.Size = new System.Drawing.Size(170, 20);
-            this.txtItemID.TabIndex = 1;
+            this.txtItemID.TabIndex = 0;
+            this.txtItemID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItemID_KeyPress);
             // 
             // btnAddItem
             // 
             this.btnAddItem.Location = new System.Drawing.Point(350, 10);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(75, 23);
-            this.btnAddItem.TabIndex = 3;
+            this.btnAddItem.TabIndex = 0;
             this.btnAddItem.Text = "Add";
             this.btnAddItem.UseVisualStyleBackColor = true;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
@@ -203,7 +204,7 @@
             this.txtCash.Location = new System.Drawing.Point(56, 28);
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(177, 20);
-            this.txtCash.TabIndex = 5;
+            this.txtCash.TabIndex = 3;
             this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
             // 
             // groupBox3
@@ -260,14 +261,14 @@
             this.txtChequeNumber.Location = new System.Drawing.Point(107, 24);
             this.txtChequeNumber.Name = "txtChequeNumber";
             this.txtChequeNumber.Size = new System.Drawing.Size(138, 20);
-            this.txtChequeNumber.TabIndex = 11;
+            this.txtChequeNumber.TabIndex = 5;
             // 
             // txtCheque
             // 
             this.txtCheque.Location = new System.Drawing.Point(107, 50);
             this.txtCheque.Name = "txtCheque";
             this.txtCheque.Size = new System.Drawing.Size(138, 20);
-            this.txtCheque.TabIndex = 12;
+            this.txtCheque.TabIndex = 4;
             this.txtCheque.TextChanged += new System.EventHandler(this.txtCheque_TextChanged);
             // 
             // btnSearch
@@ -275,7 +276,7 @@
             this.btnSearch.Location = new System.Drawing.Point(431, 9);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 4;
+            this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Search Item";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -329,7 +330,8 @@
             this.txtQty.Location = new System.Drawing.Point(262, 12);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(78, 20);
-            this.txtQty.TabIndex = 2;
+            this.txtQty.TabIndex = 1;
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             // 
             // label10
             // 
@@ -435,7 +437,7 @@
             this.txtDiscount.Location = new System.Drawing.Point(192, 465);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(100, 20);
-            this.txtDiscount.TabIndex = 14;
+            this.txtDiscount.TabIndex = 7;
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             // 
             // label12
@@ -456,7 +458,7 @@
             this.cmbDiscountType.Location = new System.Drawing.Point(298, 465);
             this.cmbDiscountType.Name = "cmbDiscountType";
             this.cmbDiscountType.Size = new System.Drawing.Size(52, 21);
-            this.cmbDiscountType.TabIndex = 15;
+            this.cmbDiscountType.TabIndex = 8;
             this.cmbDiscountType.SelectedIndexChanged += new System.EventHandler(this.cmbDiscountType_SelectedIndexChanged);
             // 
             // lblTotalAmountDescription

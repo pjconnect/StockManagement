@@ -33,9 +33,11 @@ namespace StockManagemengBasic
         {
             Clear();
             DisableTextboxes();
+
+            txtItemID.Focus();
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e)
+        void AddToCart()
         {
             var stockID = txtItemID.Text;
             var stock = db.tblStocks.Where(t => t.ID == stockID).Select(t => t).ToList();
@@ -130,9 +132,11 @@ namespace StockManagemengBasic
             CalculateBalance();
             EnableTextboxes();
 
-            Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
-            invoiceReport.Show();
+        }
 
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            AddToCart();
         }
 
         private void btnPay_Click(object sender, EventArgs e)
@@ -252,6 +256,9 @@ namespace StockManagemengBasic
             MessageBox.Show("Successfully Saved ", "Success");
 
             Clear();
+
+            Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
+            invoiceReport.Show();
 
         }
 
@@ -474,6 +481,22 @@ namespace StockManagemengBasic
             txtDiscount.Enabled = false;
             cmbDiscountType.Enabled = false;
             btnPay.Enabled = false;
+        }
+
+        private void txtItemID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                AddToCart();
+            }
+        }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                AddToCart();
+            }
         }
     }
 }
