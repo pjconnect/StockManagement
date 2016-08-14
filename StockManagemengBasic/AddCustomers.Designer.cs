@@ -44,6 +44,7 @@
             this.txtNIC = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtContactNumber = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +85,8 @@
             this.dgCustomers.ReadOnly = true;
             this.dgCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCustomers.Size = new System.Drawing.Size(339, 360);
-            this.dgCustomers.TabIndex = 9;
+            this.dgCustomers.TabIndex = 10;
+            this.dgCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCustomers_CellClick);
             // 
             // txtDesignation
             // 
@@ -102,11 +104,11 @@
             // 
             // btnCreateCustomer
             // 
-            this.btnCreateCustomer.Location = new System.Drawing.Point(215, 349);
+            this.btnCreateCustomer.Location = new System.Drawing.Point(233, 349);
             this.btnCreateCustomer.Name = "btnCreateCustomer";
-            this.btnCreateCustomer.Size = new System.Drawing.Size(100, 23);
+            this.btnCreateCustomer.Size = new System.Drawing.Size(82, 23);
             this.btnCreateCustomer.TabIndex = 8;
-            this.btnCreateCustomer.Text = "Create Customer";
+            this.btnCreateCustomer.Text = "Save";
             this.btnCreateCustomer.UseVisualStyleBackColor = true;
             this.btnCreateCustomer.Click += new System.EventHandler(this.btnCreateCustomer_Click);
             // 
@@ -181,6 +183,16 @@
             this.txtContactNumber.Size = new System.Drawing.Size(174, 20);
             this.txtContactNumber.TabIndex = 2;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(141, 349);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(82, 23);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // AddCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +213,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtDesignation);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreateCustomer);
             this.Name = "AddCustomers";
             this.Load += new System.EventHandler(this.AddCustomers_Load);
@@ -228,5 +241,6 @@
         private System.Windows.Forms.TextBox txtNIC;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtContactNumber;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
