@@ -19,7 +19,7 @@ namespace StockManagemengBasic
             InitializeComponent();
             RefreshStockGrid();
             dgStock.ReadOnly = true;
-            
+
         }
 
         void RefreshStockGrid()
@@ -32,10 +32,10 @@ namespace StockManagemengBasic
 
             var itemCount = db.tblStocks.Count() + 1;
 
-            char brandFirstLeter = (txtBrand.Text.Length >0)? txtBrand.Text[0]: '0';
-            char modelFirstLeter = (txtModel.Text.Length >0)? txtModel.Text[0]: '0';
-            char colorFirstLeter = (txtColor.Text.Length >0)? txtColor.Text[0]: '0';
-            char nameFirstLeter = (txtItemName.Text.Length >0)? txtItemName.Text[0]: '0';
+            char brandFirstLeter = (txtBrand.Text.Length > 0) ? txtBrand.Text[0] : '0';
+            char modelFirstLeter = (txtModel.Text.Length > 0) ? txtModel.Text[0] : '0';
+            char colorFirstLeter = (txtColor.Text.Length > 0) ? txtColor.Text[0] : '0';
+            char nameFirstLeter = (txtItemName.Text.Length > 0) ? txtItemName.Text[0] : '0';
 
             var itemID = itemCount.ToString("00") + brandFirstLeter.ToString().ToUpper() + modelFirstLeter.ToString().ToUpper() + colorFirstLeter.ToString().ToUpper() + nameFirstLeter.ToString().ToUpper();
 
@@ -45,7 +45,7 @@ namespace StockManagemengBasic
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            
+
             #region init variables
 
             var itemID = txtItemID.Text;
@@ -59,7 +59,8 @@ namespace StockManagemengBasic
             var alertqty = 0;
             try
             {
-                alertqty = Convert.ToInt32(txtAlertQty.Text);
+                if (txtAlertQty.Text != string.Empty)
+                    alertqty = Convert.ToInt32(txtAlertQty.Text);
 
             }
             catch (Exception ex)
@@ -146,7 +147,8 @@ namespace StockManagemengBasic
 
         }
 
-        private void clearForm() {
+        private void clearForm()
+        {
             txtBrand.Text = "";
             txtItemID.Text = "";
             txtItemName.Text = "";

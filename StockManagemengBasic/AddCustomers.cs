@@ -31,11 +31,10 @@ namespace StockManagemengBasic
             var address = txtAddress.Text;
             var nic = txtNIC.Text;
 
-            if(name.Length == 0 || nic.Length == 0){
+            if(name.Length == 0 || contactNumber.Length == 0){
                 MessageBox.Show("Some Fields Cannot Be Empty!");
                 return;
             }
-
 
             var customers = db.tblCustomers.Where(t=>t.ID == selectedID).Select(t=>t);
 

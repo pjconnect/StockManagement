@@ -89,6 +89,7 @@ namespace StockManagemengBasic
                 //update all columns to new price
             }
             #endregion
+
             var stockItemID = 0;
             if (selectedStockItemID != 0)
             {
@@ -148,6 +149,43 @@ namespace StockManagemengBasic
                 }
 
                 stockItemID = newStockReciev.ID;
+
+                //if buy for credit
+                if (checkBuyForCredit.Checked)
+                {
+                    var newdebt = new tblDebtor()
+                    {
+                        Credit = purchasedPrice * qty,
+                        StockItemID = stockItemID,
+                        Title = "Purchase Stock " + ItemID + "(" + txtSelectedItemName.Text + ")" + " From: " + txtspName.Text,
+                        Date = dtpStockRecieveDate.Value,
+                    };
+
+                    db.tblDebtors.AddObject(newdebt);
+                }
+                else
+                {
+                    var newcash = new tblCashbook()
+                    {
+                        Debt = purchasedPrice * qty,
+                        Title = "Purchase Stock " + ItemID + "(" + txtSelectedItemName.Text + ")" + " From: " + txtspName.Text,
+                        StockItemID = stockItemID,
+                        Date = dtpStockRecieveDate.Value,
+                    };
+
+                    db.tblCashbooks.AddObject(newcash);
+                }
+
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
             }
 
             GenerateBarcode(stockItemID.ToString());

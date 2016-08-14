@@ -25,8 +25,8 @@ GO
 IF OBJECT_ID(N'[dbo].[tblCashbooks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblCashbooks];
 GO
-IF OBJECT_ID(N'[dbo].[tblCredits]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblCredits];
+IF OBJECT_ID(N'[dbo].[tblCreditors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblCreditors];
 GO
 IF OBJECT_ID(N'[dbo].[tblInvoiceItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblInvoiceItems];
@@ -74,8 +74,8 @@ CREATE TABLE [dbo].[tblCashbooks] (
 );
 GO
 
--- Creating table 'tblCredits'
-CREATE TABLE [dbo].[tblCredits] (
+-- Creating table 'tblCreditors'
+CREATE TABLE [dbo].[tblCreditors] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [CustomerID] int  NULL,
     [Credit] decimal(18,2)  NULL,
@@ -206,8 +206,8 @@ ADD CONSTRAINT [PK_tblCashbooks]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'tblCredits'
-ALTER TABLE [dbo].[tblCredits]
+-- Creating primary key on [ID] in table 'tblCreditors'
+ALTER TABLE [dbo].[tblCreditors]
 ADD CONSTRAINT [PK_tblCredits]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO

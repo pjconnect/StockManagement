@@ -17,6 +17,7 @@ namespace StockManagemengBasic
         decimal totalPrice = 0;
         decimal totalDiscountedPrice = 0;
         decimal totalDiscount = 0;
+        decimal balance = 0;
         int customerID = 0;
 
         decimal cash = 0;
@@ -144,6 +145,7 @@ namespace StockManagemengBasic
         {
 
             CalculateDiscout();
+            CalculateBalance();
 
             var discountType = cmbDiscountType.SelectedIndex + 1;
 
@@ -172,9 +174,6 @@ namespace StockManagemengBasic
                 return;
             }
 
-            decimal balance = 0;
-
-
             //pay type algorithm
             if (txtCash.Text != 0.ToString())
             {
@@ -191,6 +190,16 @@ namespace StockManagemengBasic
 
             if (total <= (cash + credit + cheque))
             {
+
+                if(credit > 0 || cheque > 0)
+                {
+                    if (balance != 0)
+                    {
+                        MessageBox.Show("If you pay by 'Credit' or 'Cheque' Make sure your balance is 0 ");
+                        return;
+                    }
+                }
+
                 var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
                 invoice.IsPaid = true;
                 invoice.CreditReceived = credit;
@@ -199,9 +208,6 @@ namespace StockManagemengBasic
                 invoice.PaymentType = paymentType;
                 invoice.Discount = totalDiscount;
                 invoice.DiscountType = discountType;
-
-                balance = total - (cash + credit + cheque);
-                txtBalance.Text = balance.ToString();
 
             }
             else
@@ -243,16 +249,17 @@ namespace StockManagemengBasic
                     return;
                 }
 
-                var newcredit = new tblCredit()
+                var newcredit = new tblCreditor()
                 {
-                    Credit = credit - balance,
+                    Credit = credit ,
                     Debt = 0,
                     CustomerID = customerID,
                     Date = DateTime.Now,
                     InvoiceID = invoiceID,
+                    Title = "Transaction by Invoice " + invoiceID,
                 };
 
-                db.tblCredits.AddObject(newcredit);
+                db.tblCreditors.AddObject(newcredit);
             }
 
             //if cash go to cash
@@ -260,10 +267,10 @@ namespace StockManagemengBasic
             {
                 var newcash = new tblCashbook()
                 {
-                    Credit = cash,
+                    Credit = cash - Math.Abs(balance),
                     Date = DateTime.Now,
                     InvoiceID = invoiceID,
-                    Title = "Transaction by Invoice",
+                    Title = "Transaction by Invoice "+invoiceID,
                 };
 
                 db.tblCashbooks.AddObject(newcash);
@@ -305,7 +312,7 @@ namespace StockManagemengBasic
             txtContactNumber.Text = selectedCustomer.ContactNumber;
 
             //calculate debt
-            var customerCredit = db.tblCredits.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
+            var customerCredit = db.tblCreditors.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
             if (customerCredit.Count() > 0)
             {
                 var credit = customerCredit.Select(t => t.Credit).Sum();
@@ -481,8 +488,8 @@ namespace StockManagemengBasic
             }
 
             var totalPay = cash + credit + cheque;
-
-            txtBalance.Text = (totalPay - totalAmount).ToString();
+            balance = totalPay - totalAmount;
+            txtBalance.Text = balance.ToString();
             txtTotal.Text = (totalDiscount == 0) ? totalAmount.ToString() : totalDiscountedPrice.ToString();
 
         }

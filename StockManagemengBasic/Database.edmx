@@ -24,14 +24,14 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
           <Property Name="Comment" Type="nvarchar" MaxLength="50" />
-          <Property Name="SupplierID" Type="int" />
+          <Property Name="StockItemID" Type="int" />
           <Property Name="InvoiceID" Type="int" />
           <Property Name="IsAdministratoryPay" Type="bit" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblCredits">
+        <EntityType Name="tblCreditors">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -41,6 +41,7 @@
           <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="InvoiceID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="tblCustomers">
           <Key>
@@ -54,6 +55,18 @@
           <Property Name="Fax" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="300" />
           <Property Name="NIC" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblDebtors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="300" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="tblInvoiceItems">
           <Key>
@@ -163,8 +176,9 @@
         <EntityContainer Name="StockmanagementModelStoreContainer">
           <EntitySet Name="tblBanks" EntityType="Self.tblBanks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCashbooks" EntityType="Self.tblCashbooks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblCredits" EntityType="Self.tblCredits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCreditors" EntityType="Self.tblCreditors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDebtors" EntityType="Self.tblDebtors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoiceItems" EntityType="Self.tblInvoiceItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoices" EntityType="Self.tblInvoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReturnItems" EntityType="Self.tblReturnItems" Schema="dbo" store:Type="Tables" />
@@ -187,8 +201,9 @@
           </FunctionImport>
           <EntitySet Name="tblBanks" EntityType="StockmanagementModel.tblBank" />
           <EntitySet Name="tblCashbooks" EntityType="StockmanagementModel.tblCashbook" />
-          <EntitySet Name="tblCredits" EntityType="StockmanagementModel.tblCredit" />
+          <EntitySet Name="tblCreditors" EntityType="StockmanagementModel.tblCreditor" />
           <EntitySet Name="tblCustomers" EntityType="StockmanagementModel.tblCustomer" />
+          <EntitySet Name="tblDebtors" EntityType="StockmanagementModel.tblDebtor" />
           <EntitySet Name="tblInvoiceItems" EntityType="StockmanagementModel.tblInvoiceItem" />
           <EntitySet Name="tblInvoices" EntityType="StockmanagementModel.tblInvoice" />
           <EntitySet Name="tblReturnItems" EntityType="StockmanagementModel.tblReturnItem" />
@@ -232,14 +247,14 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="StockItemID" Type="Int32" />
           <Property Name="InvoiceID" Type="Int32" />
           <Property Name="IsAdministratoryPay" Type="Boolean" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="tblCredit">
+        <EntityType Name="tblCreditor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -249,6 +264,7 @@
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCustomer">
           <Key>
@@ -262,6 +278,18 @@
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDebtor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="tblInvoiceItem">
           <Key>
@@ -409,7 +437,7 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="IsAdministratoryPay" ColumnName="IsAdministratoryPay" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
@@ -418,9 +446,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblCredits">
-            <EntityTypeMapping TypeName="StockmanagementModel.tblCredit">
-              <MappingFragment StoreEntitySet="tblCredits">
+          <EntitySetMapping Name="tblCreditors">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblCreditor">
+              <MappingFragment StoreEntitySet="tblCreditors">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
@@ -440,6 +469,19 @@
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDebtors">
+            <EntityTypeMapping TypeName="StockmanagementModel.tblDebtor">
+              <MappingFragment StoreEntitySet="tblDebtors">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Debt" ColumnName="Debt" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -577,16 +619,17 @@
       <Diagram Name="Database" >
         <EntityTypeShape EntityType="StockmanagementModel.tblBank" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCashbook" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblCredit" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblCreditor" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="StockmanagementModel.tblCustomer" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblReturn" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblDebtor" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblInvoiceItem" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblInvoice" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblReturnItem" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblReturn" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStockItem" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblStock" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblSupplier" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="StockmanagementModel.tblUser" Width="1.5" PointX="8.75" PointY="4.75" />
       </Diagram>
     </Diagrams>
   </Designer>
