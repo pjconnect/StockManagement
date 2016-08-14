@@ -7,14 +7,15 @@
     <Schema Namespace="StockmanagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="tblBanks">
           <Key>
-            <PropertyRef Name="Date" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="ReleaseDate" Type="datetime" />
           <Property Name="ChequeState" Type="int" />
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
         </EntityType>
         <EntityType Name="tblCashbooks">
           <Key>
@@ -39,6 +40,7 @@
           <Property Name="Credit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
         </EntityType>
         <EntityType Name="tblCustomers">
           <Key>
@@ -59,9 +61,9 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InvoiceID" Type="int" Nullable="false" />
-          <Property Name="ItemID" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockID" Type="nvarchar" MaxLength="50" />
           <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SoldPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DiscountType" Type="int" />
           <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ReturnedQty" Type="decimal" Precision="18" Scale="2" />
@@ -80,7 +82,6 @@
           <Property Name="PaymentType" Type="int" Nullable="false" />
           <Property Name="CreditReceived" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ChequeRecieved" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="BankID" Type="int" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsPaid" Type="bit" />
           <Property Name="CashierID" Type="int" Nullable="false" />
@@ -214,14 +215,15 @@
         </ComplexType>
         <EntityType Name="tblBank">
           <Key>
-            <PropertyRef Name="Date" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
           <Property Name="ChequeState" Type="Int32" />
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceID" Type="Int32" />
         </EntityType>
         <EntityType Name="tblCashbook">
           <Key>
@@ -246,6 +248,7 @@
           <Property Name="Credit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Debt" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceID" Type="Int32" />
         </EntityType>
         <EntityType Name="tblCustomer">
           <Key>
@@ -266,9 +269,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InvoiceID" Type="Int32" Nullable="false" />
-          <Property Name="ItemID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Qty" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SoldPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="DiscountType" Type="Int32" />
           <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ReturnedQty" Type="Decimal" Precision="18" Scale="2" />
@@ -287,7 +290,6 @@
           <Property Name="PaymentType" Type="Int32" Nullable="false" />
           <Property Name="CreditReceived" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ChequeRecieved" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="BankID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="CashierID" Type="Int32" Nullable="false" />
@@ -391,6 +393,7 @@
           <EntitySetMapping Name="tblBanks">
             <EntityTypeMapping TypeName="StockmanagementModel.tblBank">
               <MappingFragment StoreEntitySet="tblBanks">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ChequeState" ColumnName="ChequeState" />
@@ -418,6 +421,7 @@
           <EntitySetMapping Name="tblCredits">
             <EntityTypeMapping TypeName="StockmanagementModel.tblCredit">
               <MappingFragment StoreEntitySet="tblCredits">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Debt" ColumnName="Debt" />
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
@@ -448,9 +452,9 @@
                 <ScalarProperty Name="ReturnedQty" ColumnName="ReturnedQty" />
                 <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
                 <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -462,7 +466,6 @@
                 <ScalarProperty Name="CashierID" ColumnName="CashierID" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
                 <ScalarProperty Name="ChequeRecieved" ColumnName="ChequeRecieved" />
                 <ScalarProperty Name="CreditReceived" ColumnName="CreditReceived" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />

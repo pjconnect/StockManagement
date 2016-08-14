@@ -104,8 +104,8 @@ namespace StockManagemengBasic
                 {
                     InvoiceID = invoiceID,
                     Qty = qty,
-                    ItemID = selectedStock.ID,
-                    SellingPrice = selectedStockItem.SellPrice, // TODO: May be no need sell price because we have itemprice and discount
+                    StockID = selectedStock.ID,
+                    SoldPrice = selectedStockItem.SellPrice, // TODO: May be no need sell price because we have itemprice and discount
                     ItemPrice = selectedStockItem.SellPrice,
                 };
 
@@ -122,7 +122,7 @@ namespace StockManagemengBasic
                     return;
                 }
 
-                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).Select(t => new { t.ItemID, t.ItemPrice, t.Qty, ItemName = db.tblStocks.Where(si => si.ID == t.ItemID).Select(si => si.ItemName).FirstOrDefault() });
+                dgCart.DataSource = db.tblInvoiceItems.Where(t => t.InvoiceID == invoiceID).Select(t => new { t.StockID, t.ItemPrice, t.Qty, ItemName = db.tblStocks.Where(si => si.ID == t.StockID).Select(si => si.ItemName).FirstOrDefault() });
             }
             else
             {
@@ -142,15 +142,10 @@ namespace StockManagemengBasic
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice;
 
-            if (total <= 0)
-            {
-                MessageBox.Show("Total Canot be less than 0");
-                return;
-            }
+            CalculateDiscout();
 
-            decimal balance = 0;
+            var discountType = cmbDiscountType.SelectedIndex + 1;
 
             try
             {
@@ -168,6 +163,17 @@ namespace StockManagemengBasic
                 MessageBox.Show(ex.Message);
                 return;
             }
+
+            var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice;
+
+            if (total <= 0)
+            {
+                MessageBox.Show("Total Canot be less than 0");
+                return;
+            }
+
+            decimal balance = 0;
+
 
             //pay type algorithm
             if (txtCash.Text != 0.ToString())
@@ -191,6 +197,8 @@ namespace StockManagemengBasic
                 invoice.CashReceived = cash;
                 invoice.ChequeRecieved = cheque;
                 invoice.PaymentType = paymentType;
+                invoice.Discount = totalDiscount;
+                invoice.DiscountType = discountType;
 
                 balance = total - (cash + credit + cheque);
                 txtBalance.Text = balance.ToString();
@@ -202,7 +210,8 @@ namespace StockManagemengBasic
                 return;
             }
 
-            //if credit go to credit
+            
+            //if bank go to bank
             if (cheque > 0)
             {
                 if (txtChequeNumber.Text.Length < 5)
@@ -218,13 +227,14 @@ namespace StockManagemengBasic
                     ChequeState = 1,
                     Date = dtpRealiseDate.Value,
                     ReleaseDate = DateTime.Now,
+                    InvoiceID = invoiceID,
                 };
 
                 db.tblBanks.AddObject(newbank);
 
             }
 
-            //if bank go to bank
+            //if credit go to credit
             if (credit > 0)
             {
                 if (customerID <= 0)
@@ -235,13 +245,28 @@ namespace StockManagemengBasic
 
                 var newcredit = new tblCredit()
                 {
-                    Credit = credit,
+                    Credit = credit - balance,
                     Debt = 0,
                     CustomerID = customerID,
                     Date = DateTime.Now,
+                    InvoiceID = invoiceID,
                 };
 
                 db.tblCredits.AddObject(newcredit);
+            }
+
+            //if cash go to cash
+            if(cash > 0)
+            {
+                var newcash = new tblCashbook()
+                {
+                    Credit = cash,
+                    Date = DateTime.Now,
+                    InvoiceID = invoiceID,
+                    Title = "Transaction by Invoice",
+                };
+
+                db.tblCashbooks.AddObject(newcash);
             }
 
             try
@@ -256,7 +281,7 @@ namespace StockManagemengBasic
 
             MessageBox.Show("Successfully Saved ", "Success");
 
-            
+
 
             Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
             invoiceReport.Show();
