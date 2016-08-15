@@ -32,12 +32,14 @@
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditorsPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockreceiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.itemReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debtorsPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +54,6 @@
             this.changeMyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loader = new System.Windows.Forms.Panel();
-            this.creditorsPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debtorsPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +94,13 @@
             this.customersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customersToolStripMenuItem.Text = "Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
+            // 
+            // creditorsPayToolStripMenuItem
+            // 
+            this.creditorsPayToolStripMenuItem.Name = "creditorsPayToolStripMenuItem";
+            this.creditorsPayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.creditorsPayToolStripMenuItem.Text = "CreditorsPay";
+            this.creditorsPayToolStripMenuItem.Click += new System.EventHandler(this.creditorsPayToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
             // 
@@ -141,6 +148,12 @@
             this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
             this.purchaseOrdersToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            // 
+            // debtorsPayToolStripMenuItem
+            // 
+            this.debtorsPayToolStripMenuItem.Name = "debtorsPayToolStripMenuItem";
+            this.debtorsPayToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.debtorsPayToolStripMenuItem.Text = "DebtorsPay";
             // 
             // reportsToolStripMenuItem
             // 
@@ -251,18 +264,6 @@
             this.loader.Name = "loader";
             this.loader.Size = new System.Drawing.Size(1008, 622);
             this.loader.TabIndex = 1;
-            // 
-            // creditorsPayToolStripMenuItem
-            // 
-            this.creditorsPayToolStripMenuItem.Name = "creditorsPayToolStripMenuItem";
-            this.creditorsPayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.creditorsPayToolStripMenuItem.Text = "CreditorsPay";
-            // 
-            // debtorsPayToolStripMenuItem
-            // 
-            this.debtorsPayToolStripMenuItem.Name = "debtorsPayToolStripMenuItem";
-            this.debtorsPayToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.debtorsPayToolStripMenuItem.Text = "DebtorsPay";
             // 
             // StartAdmin
             // 

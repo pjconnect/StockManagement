@@ -89,7 +89,8 @@ namespace StockManagemengBasic
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new AddCustomers().Show();
+            ClearLoader();
+            loader.Controls.Add(new AddCustomers());
         }
 
         private void addInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,6 +112,12 @@ namespace StockManagemengBasic
         private void dailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void creditorsPayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new CreditorPay());
         }
     }
 }

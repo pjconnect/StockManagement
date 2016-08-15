@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCustomers.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddCustomers.Designer.cs">
       <DependentUpon>AddCustomers.cs</DependentUpon>
@@ -117,6 +117,12 @@
     </Compile>
     <Compile Include="ChangeMyPassword.Designer.cs">
       <DependentUpon>ChangeMyPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreditorPay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CreditorPay.Designer.cs">
+      <DependentUpon>CreditorPay.cs</DependentUpon>
     </Compile>
     <Compile Include="Creditors.cs">
       <SubType>UserControl</SubType>
@@ -198,6 +204,12 @@
       <DependentUpon>SupplierSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemProperties.cs" />
+    <Compile Include="UserControlDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControlDialog.Designer.cs">
+      <DependentUpon>UserControlDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddCustomers.resx">
       <DependentUpon>AddCustomers.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeMyPassword.resx">
       <DependentUpon>ChangeMyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreditorPay.resx">
+      <DependentUpon>CreditorPay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Creditors.resx">
       <DependentUpon>Creditors.cs</DependentUpon>
@@ -265,6 +280,9 @@
     </Compile>
     <EmbeddedResource Include="SupplierSearch.resx">
       <DependentUpon>SupplierSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlDialog.resx">
+      <DependentUpon>UserControlDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Database.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

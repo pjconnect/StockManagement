@@ -324,8 +324,11 @@ namespace StockManagemengBasic
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
         {
+            var popup = new UserControlDialog();
             var customerSearch = new AddCustomers();
-            customerSearch.Show();
+            popup.ClientSize = customerSearch.Size;
+            popup.Controls.Add(customerSearch);
+            popup.Show();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
