@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartAdmin));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,8 +63,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.invoiceToolStripMenuItem,
             this.stockToolStripMenuItem,
-            this.reportsToolStripMenuItem,
             this.creditorsToolStripMenuItem,
+            this.reportsToolStripMenuItem,
             this.systemUsersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -99,7 +100,7 @@
             // 
             this.creditorsPayToolStripMenuItem.Name = "creditorsPayToolStripMenuItem";
             this.creditorsPayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.creditorsPayToolStripMenuItem.Text = "CreditorsPay";
+            this.creditorsPayToolStripMenuItem.Text = "Creditors Pay";
             this.creditorsPayToolStripMenuItem.Click += new System.EventHandler(this.creditorsPayToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
@@ -167,14 +168,14 @@
             // dailyReportToolStripMenuItem
             // 
             this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
-            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dailyReportToolStripMenuItem.Text = "Daily Report";
             this.dailyReportToolStripMenuItem.Click += new System.EventHandler(this.dailyReportToolStripMenuItem_Click);
             // 
             // stockReportToolStripMenuItem
             // 
             this.stockReportToolStripMenuItem.Name = "stockReportToolStripMenuItem";
-            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stockReportToolStripMenuItem.Text = "Stock Report";
             // 
             // creditorsToolStripMenuItem
@@ -272,6 +273,7 @@
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.loader);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "StartAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

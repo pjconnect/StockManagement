@@ -156,6 +156,7 @@
             this.dgStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgStock.Location = new System.Drawing.Point(198, 3);
             this.dgStock.Name = "dgStock";
+            this.dgStock.RowHeadersVisible = false;
             this.dgStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgStock.Size = new System.Drawing.Size(470, 288);
             this.dgStock.TabIndex = 9;

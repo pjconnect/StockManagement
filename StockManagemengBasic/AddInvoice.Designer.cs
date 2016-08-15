@@ -405,9 +405,9 @@
             // 
             // btnNewCustomer
             // 
-            this.btnNewCustomer.Location = new System.Drawing.Point(164, 24);
+            this.btnNewCustomer.Location = new System.Drawing.Point(179, 24);
             this.btnNewCustomer.Name = "btnNewCustomer";
-            this.btnNewCustomer.Size = new System.Drawing.Size(75, 23);
+            this.btnNewCustomer.Size = new System.Drawing.Size(60, 23);
             this.btnNewCustomer.TabIndex = 8;
             this.btnNewCustomer.Text = "New";
             this.btnNewCustomer.UseVisualStyleBackColor = true;
@@ -415,9 +415,9 @@
             // 
             // btnSearchCustomer
             // 
-            this.btnSearchCustomer.Location = new System.Drawing.Point(83, 24);
+            this.btnSearchCustomer.Location = new System.Drawing.Point(97, 24);
             this.btnSearchCustomer.Name = "btnSearchCustomer";
-            this.btnSearchCustomer.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchCustomer.Size = new System.Drawing.Size(76, 23);
             this.btnSearchCustomer.TabIndex = 7;
             this.btnSearchCustomer.Text = "Search";
             this.btnSearchCustomer.UseVisualStyleBackColor = true;
