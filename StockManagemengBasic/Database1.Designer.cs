@@ -899,12 +899,18 @@ namespace StockManagemengBasic
         /// Create a new tblCreditor object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="credit">Initial value of the Credit property.</param>
+        /// <param name="debt">Initial value of the Debt property.</param>
         /// <param name="date">Initial value of the Date property.</param>
-        public static tblCreditor CreatetblCreditor(global::System.Int32 id, global::System.DateTime date)
+        /// <param name="amountRecieved">Initial value of the AmountRecieved property.</param>
+        public static tblCreditor CreatetblCreditor(global::System.Int32 id, global::System.Decimal credit, global::System.Decimal debt, global::System.DateTime date, global::System.Decimal amountRecieved)
         {
             tblCreditor tblCreditor = new tblCreditor();
             tblCreditor.ID = id;
+            tblCreditor.Credit = credit;
+            tblCreditor.Debt = debt;
             tblCreditor.Date = date;
+            tblCreditor.AmountRecieved = amountRecieved;
             return tblCreditor;
         }
 
@@ -966,9 +972,9 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Credit
+        public global::System.Decimal Credit
         {
             get
             {
@@ -983,16 +989,16 @@ namespace StockManagemengBasic
                 OnCreditChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Credit;
-        partial void OnCreditChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _Credit;
+        partial void OnCreditChanging(global::System.Decimal value);
         partial void OnCreditChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Debt
+        public global::System.Decimal Debt
         {
             get
             {
@@ -1007,8 +1013,8 @@ namespace StockManagemengBasic
                 OnDebtChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Debt;
-        partial void OnDebtChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _Debt;
+        partial void OnDebtChanging(global::System.Decimal value);
         partial void OnDebtChanged();
     
         /// <summary>
@@ -1082,6 +1088,30 @@ namespace StockManagemengBasic
         private global::System.String _Title;
         partial void OnTitleChanging(global::System.String value);
         partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AmountRecieved
+        {
+            get
+            {
+                return _AmountRecieved;
+            }
+            set
+            {
+                OnAmountRecievedChanging(value);
+                ReportPropertyChanging("AmountRecieved");
+                _AmountRecieved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AmountRecieved");
+                OnAmountRecievedChanged();
+            }
+        }
+        private global::System.Decimal _AmountRecieved;
+        partial void OnAmountRecievedChanging(global::System.Decimal value);
+        partial void OnAmountRecievedChanged();
 
         #endregion
 

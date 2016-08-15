@@ -1,9 +1,9 @@
 
 -- --------------------------------------------------
--- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+-- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/12/2016 10:34:49
--- Generated from EDMX file: D:\Projects\StockManagementBasic\StockManagemengBasic\Database.edmx
+-- Date Created: 08/13/2016 01:01:36
+-- Generated from EDMX file: E:\PROJECTS\c#\StockManagement\StockManagemengBasic\Database.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -22,11 +22,17 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[tblBanks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblBanks];
+GO
 IF OBJECT_ID(N'[dbo].[tblCashbooks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblCashbooks];
 GO
 IF OBJECT_ID(N'[dbo].[tblCreditors]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblCreditors];
+GO
+IF OBJECT_ID(N'[dbo].[tblCustomers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblCustomers];
 GO
 IF OBJECT_ID(N'[dbo].[tblInvoiceItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblInvoiceItems];
@@ -34,11 +40,11 @@ GO
 IF OBJECT_ID(N'[dbo].[tblInvoices]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblInvoices];
 GO
-IF OBJECT_ID(N'[dbo].[tblReturns]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblReturns];
-GO
 IF OBJECT_ID(N'[dbo].[tblReturnItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblReturnItems];
+GO
+IF OBJECT_ID(N'[dbo].[tblReturns]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[tblReturns];
 GO
 IF OBJECT_ID(N'[dbo].[tblStockItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblStockItems];
@@ -52,13 +58,21 @@ GO
 IF OBJECT_ID(N'[dbo].[tblUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[tblUsers];
 GO
-IF OBJECT_ID(N'[dbo].[tblBanks]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[tblBanks];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
+
+-- Creating table 'tblBanks'
+CREATE TABLE [dbo].[tblBanks] (
+    [ID] int  NULL,
+    [ChequeNumber] nvarchar(50)  NULL,
+    [ReleaseDate] datetime  NULL,
+    [ChequeState] int  NULL,
+    [Amount] decimal(18,2)  NULL,
+    [Date] datetime  NOT NULL
+);
+GO
 
 -- Creating table 'tblCashbooks'
 CREATE TABLE [dbo].[tblCashbooks] (
@@ -96,14 +110,14 @@ CREATE TABLE [dbo].[tblInvoiceItems] (
     [ItemPrice] decimal(18,2)  NULL,
     [Debt] decimal(18,2)  NULL,
     [Comment] decimal(18,2)  NULL,
-    [Category] nchar(10)  NULL
+    [Category] nvarchar(50)  NULL
 );
 GO
 
 -- Creating table 'tblInvoices'
 CREATE TABLE [dbo].[tblInvoices] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [CustomerID] int  NOT NULL,
+    [CustomerID] int  NULL,
     [Discount] decimal(18,2)  NULL,
     [DiscountType] int  NULL,
     [CashReceived] decimal(18,2)  NULL,
@@ -113,7 +127,15 @@ CREATE TABLE [dbo].[tblInvoices] (
     [BankID] int  NULL,
     [CreatedDate] datetime  NOT NULL,
     [IsPaid] bit  NULL,
-    [CreatedUserID] int  NOT NULL
+    [CashierID] int  NOT NULL
+);
+GO
+
+-- Creating table 'tblReturnItems'
+CREATE TABLE [dbo].[tblReturnItems] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [StockItemID] nvarchar(50)  NOT NULL,
+    [Qty] decimal(18,2)  NOT NULL
 );
 GO
 
@@ -127,24 +149,16 @@ CREATE TABLE [dbo].[tblReturns] (
 );
 GO
 
--- Creating table 'tblReturnItems'
-CREATE TABLE [dbo].[tblReturnItems] (
-    [ID] int IDENTITY(1,1) NOT NULL,
-    [StockItemID] nvarchar(50)  NOT NULL,
-    [Qty] decimal(18,2)  NOT NULL
-);
-GO
-
 -- Creating table 'tblStockItems'
 CREATE TABLE [dbo].[tblStockItems] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [StockID] nvarchar(50)  NOT NULL,
-    [Credit] nvarchar(50)  NULL,
-    [Debt] nvarchar(50)  NULL,
+    [Qty] decimal(18,2)  NULL,
     [PurchasePrice] decimal(18,2)  NOT NULL,
     [SellPrice] decimal(18,2)  NOT NULL,
     [Date] datetime  NOT NULL,
-    [CreatedDate] datetime  NOT NULL
+    [CreatedDate] datetime  NOT NULL,
+    [InvoiceNumber] nvarchar(50)  NULL
 );
 GO
 
@@ -185,20 +199,28 @@ CREATE TABLE [dbo].[tblUsers] (
 );
 GO
 
--- Creating table 'tblBanks'
-CREATE TABLE [dbo].[tblBanks] (
-    [ID] int  NULL,
-    [ChequeNumber] nvarchar(50)  NULL,
-    [ReleaseDate] datetime  NULL,
-    [ChequeState] int  NULL,
-    [Amount] decimal(18,2)  NULL,
-    [Date] datetime  NOT NULL
+-- Creating table 'tblCustomers'
+CREATE TABLE [dbo].[tblCustomers] (
+    [ID] int IDENTITY(1,1) NOT NULL,
+    [ContactNumber] nvarchar(50)  NOT NULL,
+    [CustomerName] nvarchar(150)  NOT NULL,
+    [Designation] nvarchar(50)  NULL,
+    [Email] nvarchar(50)  NULL,
+    [Fax] nvarchar(50)  NULL,
+    [Address] nvarchar(300)  NULL,
+    [NIC] nvarchar(50)  NULL
 );
 GO
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
+
+-- Creating primary key on [Date] in table 'tblBanks'
+ALTER TABLE [dbo].[tblBanks]
+ADD CONSTRAINT [PK_tblBanks]
+    PRIMARY KEY CLUSTERED ([Date] ASC);
+GO
 
 -- Creating primary key on [ID] in table 'tblCashbooks'
 ALTER TABLE [dbo].[tblCashbooks]
@@ -224,15 +246,15 @@ ADD CONSTRAINT [PK_tblInvoices]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'tblReturns'
-ALTER TABLE [dbo].[tblReturns]
-ADD CONSTRAINT [PK_tblReturns]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
-GO
-
 -- Creating primary key on [ID] in table 'tblReturnItems'
 ALTER TABLE [dbo].[tblReturnItems]
 ADD CONSTRAINT [PK_tblReturnItems]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'tblReturns'
+ALTER TABLE [dbo].[tblReturns]
+ADD CONSTRAINT [PK_tblReturns]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
@@ -260,10 +282,10 @@ ADD CONSTRAINT [PK_tblUsers]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [Date] in table 'tblBanks'
-ALTER TABLE [dbo].[tblBanks]
-ADD CONSTRAINT [PK_tblBanks]
-    PRIMARY KEY CLUSTERED ([Date] ASC);
+-- Creating primary key on [ID] in table 'tblCustomers'
+ALTER TABLE [dbo].[tblCustomers]
+ADD CONSTRAINT [PK_tblCustomers]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
 -- --------------------------------------------------

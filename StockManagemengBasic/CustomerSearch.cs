@@ -29,8 +29,12 @@ namespace StockManagemengBasic
 
         void SelectCustomer()
         {
-            var id = Convert.ToInt32(dgCustomer.SelectedRows[0].Cells["ID"].Value);
-            CustomerSelect(id);
+            try {
+                var id = Convert.ToInt32(dgCustomer.SelectedRows[0].Cells["ID"].Value);
+                CustomerSelect(id);
+            }catch (Exception ex){
+                CustomerSelect(-1);
+            }
             this.Close();
         }
 
