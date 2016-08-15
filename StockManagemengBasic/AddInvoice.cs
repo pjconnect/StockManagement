@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Objects;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,28 +15,139 @@ namespace StockManagemengBasic
         StockmanagementEntities db = new StockmanagementEntities();
         bool isFirstTime = true;
         int invoiceID = 0;
+        int customerID = 0;
+        
+
+        // calculated from add to cart metod
         decimal totalPrice = 0;
+
+        // calculated from calculatediscount method
         decimal totalDiscountedPrice = 0;
         decimal totalDiscount = 0;
-        decimal balance = 0;
-        int customerID = 0;
 
+        //calculate balance method
+        decimal balance = 0;
         decimal cash = 0;
         decimal credit = 0;
         decimal cheque = 0;
-        int paymentType = 0; // cash, credit or cheque
 
-        public AddInvoice()
-        {
-            InitializeComponent();
-        }
-
+        #region Events
         private void AddInvoice_Load(object sender, EventArgs e)
         {
             Clear();
             DisableTextboxes();
 
             txtItemID.Focus();
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            AddToCart();
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            Pay();
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            var popup = new UserControlDialog();
+            var customerSearch = new AddCustomers();
+            popup.ClientSize = customerSearch.Size;
+            popup.Controls.Add(customerSearch);
+            popup.Show();
+        }
+
+        // Event from Customer Search Window
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            var customerSearch = new CustomerSearch();
+            customerSearch.Show();
+            customerSearch.CustomerSelect += CustomerSearch_CustomerSelect;
+        }
+        private void CustomerSearch_CustomerSelect(int CustomerID)
+        {
+            this.customerID = CustomerID;
+            var selectedCustomer = db.tblCustomers.Where(t => t.ID == customerID).Select(t => t).FirstOrDefault();
+            txtCustomerName.Text = selectedCustomer.CustomerName;
+            txtContactNumber.Text = selectedCustomer.ContactNumber;
+
+            //calculate debt
+            var customerCredit = db.tblCreditors.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
+            if (customerCredit.Count() > 0)
+            {
+                var credit = customerCredit.Select(t => t.Credit).Sum();
+                var debt = customerCredit.Select(t => t.Debt).Sum();
+                var total = credit - debt;
+                lblTotalCredit.Text = total.ToString();
+            }
+        }
+
+        // Event from Stock Search Window
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var searchStock = new SearchStock();
+            searchStock.Show();
+            searchStock.SelectStock += SearchStock_SelectStock;
+        }
+        private void SearchStock_SelectStock(string stockID)
+        {
+            txtItemID.Text = stockID;
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+        }
+        private void cmbDiscountType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+        }
+
+        #region Keyboard Navigation
+
+        private void txtCash_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+        }
+
+        private void txtCheque_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+
+        }
+
+        private void txtCredit_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBalance();
+
+        }
+
+        private void txtItemID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                AddToCart();
+            }
+        }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                AddToCart();
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region methods
+        public AddInvoice()
+        {
+            InitializeComponent();
         }
 
         void AddToCart()
@@ -136,45 +248,31 @@ namespace StockManagemengBasic
 
         }
 
-        private void btnAddItem_Click(object sender, EventArgs e)
+        void Pay()
         {
-            AddToCart();
-        }
-
-        private void btnPay_Click(object sender, EventArgs e)
-        {
-
-            CalculateDiscout();
             CalculateBalance();
 
             var discountType = cmbDiscountType.SelectedIndex + 1;
-
-            try
-            {
-                cash = Convert.ToDecimal(txtCash.Text);
-                credit = Convert.ToDecimal(txtCredit.Text);
-                cheque = Convert.ToDecimal(txtCheque.Text);
-
-                if (cash < 0 || credit < 0 || cheque < 0)
-                {
-                    MessageBox.Show("You have 'minus (-)' Value one of text fields, please correct them ");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
             var total = (totalDiscount == 0) ? totalPrice : totalDiscountedPrice;
 
-            if (total <= 0)
+
+            if (total > (cash + credit + cheque))
             {
-                MessageBox.Show("Total Canot be less than 0");
+                MessageBox.Show("Can not pay less than the total amount");
                 return;
+            }
+
+            if (credit > 0 || cheque > 0)
+            {
+                if (balance != 0)
+                {
+                    MessageBox.Show("If you pay by 'Credit' or 'Cheque' Make sure your balance is 0 ");
+                    return;
+                }
             }
 
             //pay type algorithm
+            int paymentType = 0;
             if (txtCash.Text != 0.ToString())
             {
                 paymentType += 1;
@@ -188,35 +286,15 @@ namespace StockManagemengBasic
                 paymentType += 5;
             }
 
-            if (total <= (cash + credit + cheque))
-            {
+            var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
+            invoice.IsPaid = true;
+            invoice.CreditReceived = credit;
+            invoice.CashReceived = cash;
+            invoice.ChequeRecieved = cheque;
+            invoice.PaymentType = paymentType;
+            invoice.Discount = totalDiscount;
+            invoice.DiscountType = discountType;
 
-                if(credit > 0 || cheque > 0)
-                {
-                    if (balance != 0)
-                    {
-                        MessageBox.Show("If you pay by 'Credit' or 'Cheque' Make sure your balance is 0 ");
-                        return;
-                    }
-                }
-
-                var invoice = db.tblInvoices.Where(t => t.ID == invoiceID).Select(t => t).First();
-                invoice.IsPaid = true;
-                invoice.CreditReceived = credit;
-                invoice.CashReceived = cash;
-                invoice.ChequeRecieved = cheque;
-                invoice.PaymentType = paymentType;
-                invoice.Discount = totalDiscount;
-                invoice.DiscountType = discountType;
-
-            }
-            else
-            {
-                MessageBox.Show("Can not pay less than the total amount");
-                return;
-            }
-
-            
             //if bank go to bank
             if (cheque > 0)
             {
@@ -246,12 +324,13 @@ namespace StockManagemengBasic
                 if (customerID <= 0)
                 {
                     MessageBox.Show("You must first enter customer before pay by credit");
+                    DiscardAllDbChanges();
                     return;
                 }
 
                 var newcredit = new tblCreditor()
                 {
-                    Credit = credit ,
+                    Credit = credit,
                     Debt = 0,
                     CustomerID = customerID,
                     Date = DateTime.Now,
@@ -263,14 +342,14 @@ namespace StockManagemengBasic
             }
 
             //if cash go to cash
-            if(cash > 0)
+            if (cash > 0)
             {
                 var newcash = new tblCashbook()
                 {
                     Credit = cash - Math.Abs(balance),
                     Date = DateTime.Now,
                     InvoiceID = invoiceID,
-                    Title = "Transaction by Invoice "+invoiceID,
+                    Title = "Transaction by Invoice " + invoiceID,
                 };
 
                 db.tblCashbooks.AddObject(newcash);
@@ -288,86 +367,16 @@ namespace StockManagemengBasic
 
             MessageBox.Show("Successfully Saved ", "Success");
 
-
-
             Reports.InvoiceViewer invoiceReport = new Reports.InvoiceViewer(invoiceID);
             invoiceReport.Show();
 
             Clear();
-
         }
 
-        private void btnSearchCustomer_Click(object sender, EventArgs e)
+
+        void DiscardAllDbChanges()
         {
-            var customerSearch = new CustomerSearch();
-            customerSearch.Show();
-            customerSearch.CustomerSelect += CustomerSearch_CustomerSelect;
-        }
-
-        private void CustomerSearch_CustomerSelect(int CustomerID)
-        {
-            this.customerID = CustomerID;
-            var selectedCustomer = db.tblCustomers.Where(t => t.ID == customerID).Select(t => t).FirstOrDefault();
-            txtCustomerName.Text = selectedCustomer.CustomerName;
-            txtContactNumber.Text = selectedCustomer.ContactNumber;
-
-            //calculate debt
-            var customerCredit = db.tblCreditors.Where(t => t.CustomerID == selectedCustomer.ID).Select(t => t);
-            if (customerCredit.Count() > 0)
-            {
-                var credit = customerCredit.Select(t => t.Credit).Sum();
-                var debt = customerCredit.Select(t => t.Debt).Sum();
-                var total = credit - debt;
-                lblTotalCredit.Text = total.ToString();
-            }
-        }
-
-        private void btnNewCustomer_Click(object sender, EventArgs e)
-        {
-            var popup = new UserControlDialog();
-            var customerSearch = new AddCustomers();
-            popup.ClientSize = customerSearch.Size;
-            popup.Controls.Add(customerSearch);
-            popup.Show();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            var searchStock = new SearchStock();
-            searchStock.Show();
-            searchStock.SelectStock += SearchStock_SelectStock;
-        }
-
-        private void SearchStock_SelectStock(string stockID)
-        {
-            txtItemID.Text = stockID;
-        }
-
-        private void txtDiscount_TextChanged(object sender, EventArgs e)
-        {
-            CalculateBalance();
-        }
-
-        private void cmbDiscountType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CalculateBalance();
-        }
-
-        private void txtCash_TextChanged(object sender, EventArgs e)
-        {
-            CalculateBalance();
-        }
-
-        private void txtCheque_TextChanged(object sender, EventArgs e)
-        {
-            CalculateBalance();
-
-        }
-
-        private void txtCredit_TextChanged(object sender, EventArgs e)
-        {
-            CalculateBalance();
-
+            db = new StockmanagementEntities();
         }
 
         void Clear()
@@ -383,7 +392,6 @@ namespace StockManagemengBasic
             cash = 0;
             credit = 0;
             cheque = 0;
-            paymentType = 0; // cash, credit or cheque
 
             dgCart.DataSource = null;
             txtCash.Text = 0.ToString();
@@ -404,8 +412,6 @@ namespace StockManagemengBasic
             lblTotalAmountDescription.Text = string.Empty;
             txtContactNumber.Text = string.Empty;
 
-
-
         }
 
         void ZerofyPayTextboxes()
@@ -424,6 +430,7 @@ namespace StockManagemengBasic
             }
         }
 
+        //calculating balance and put in inside textbox, this method call inside calculate balance
         void CalculateDiscout()
         {
             int discount = 0;
@@ -446,7 +453,6 @@ namespace StockManagemengBasic
             {
                 totalDiscount = ((decimal)discount / 100) * totalPrice;
                 totalDiscountedPrice = totalPrice - totalDiscount;
-
             }
             else
             {
@@ -494,7 +500,6 @@ namespace StockManagemengBasic
             balance = totalPay - totalAmount;
             txtBalance.Text = balance.ToString();
             txtTotal.Text = (totalDiscount == 0) ? totalAmount.ToString() : totalDiscountedPrice.ToString();
-
         }
 
         void EnableTextboxes()
@@ -521,20 +526,6 @@ namespace StockManagemengBasic
             btnPay.Enabled = false;
         }
 
-        private void txtItemID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                AddToCart();
-            }
-        }
-
-        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                AddToCart();
-            }
-        }
+        #endregion
     }
 }
