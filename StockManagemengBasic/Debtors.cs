@@ -11,9 +11,14 @@ namespace StockManagemengBasic
 {
     public partial class Debtors : UserControl
     {
+
+        StockmanagementEntities db = new StockmanagementEntities();
+
         public Debtors()
         {
             InitializeComponent();
+
+            dgDebtors.DataSource = db.tblDebtors.ToList();
         }
     }
 }

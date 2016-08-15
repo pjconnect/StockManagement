@@ -32,7 +32,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgInhandChequs = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,9 +52,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnMoveToBanked = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgInhandChequs)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -77,9 +84,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnMoveToBanked);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dgInhandChequs);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -90,7 +98,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(542, 387);
+            this.textBox1.Location = new System.Drawing.Point(542, 376);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 2;
@@ -98,29 +106,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(439, 390);
+            this.label1.Location = new System.Drawing.Point(439, 379);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Total Inhand Value";
             // 
-            // dataGridView1
+            // dgInhandChequs
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(636, 367);
-            this.dataGridView1.TabIndex = 0;
+            this.dgInhandChequs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInhandChequs.Location = new System.Drawing.Point(3, 3);
+            this.dgInhandChequs.Name = "dgInhandChequs";
+            this.dgInhandChequs.Size = new System.Drawing.Size(549, 367);
+            this.dgInhandChequs.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(648, 457);
+            this.tabPage2.Size = new System.Drawing.Size(648, 422);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Banked Cheques";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -146,17 +156,20 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(636, 367);
+            this.dataGridView2.Size = new System.Drawing.Size(550, 367);
             this.dataGridView2.TabIndex = 3;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button7);
+            this.tabPage3.Controls.Add(this.button6);
+            this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.textBox3);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(648, 457);
+            this.tabPage3.Size = new System.Drawing.Size(648, 422);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Realised  Cheques";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -182,17 +195,18 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(636, 367);
+            this.dataGridView3.Size = new System.Drawing.Size(550, 367);
             this.dataGridView3.TabIndex = 3;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button8);
             this.tabPage4.Controls.Add(this.textBox4);
             this.tabPage4.Controls.Add(this.label4);
             this.tabPage4.Controls.Add(this.dataGridView4);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(648, 457);
+            this.tabPage4.Size = new System.Drawing.Size(648, 422);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Retured Cheques";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -218,7 +232,7 @@
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(3, 3);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(636, 367);
+            this.dataGridView4.Size = new System.Drawing.Size(550, 367);
             this.dataGridView4.TabIndex = 6;
             // 
             // dateTimePicker1
@@ -280,6 +294,69 @@
             this.button2.Text = "This Month";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // btnMoveToBanked
+            // 
+            this.btnMoveToBanked.Location = new System.Drawing.Point(564, 6);
+            this.btnMoveToBanked.Name = "btnMoveToBanked";
+            this.btnMoveToBanked.Size = new System.Drawing.Size(75, 35);
+            this.btnMoveToBanked.TabIndex = 3;
+            this.btnMoveToBanked.Text = "Move to Bank";
+            this.btnMoveToBanked.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(567, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 35);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Move to Inhand";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(567, 47);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 35);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Move to Realised";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(567, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 35);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "<< Move to Banked";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(567, 44);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 35);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "Make Realised";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(567, 85);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 35);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "Make Retured";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(564, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 35);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "<< Move to Banked";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
             // Bank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +374,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgInhandChequs)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -319,7 +396,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgInhandChequs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
@@ -338,5 +415,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMoveToBanked;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }

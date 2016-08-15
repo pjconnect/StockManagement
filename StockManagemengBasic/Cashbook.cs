@@ -20,9 +20,10 @@ namespace StockManagemengBasic
 
             dgCashbook.DataSource = from invoice in db.tblInvoices
                                     join invoiceItems in db.tblInvoiceItems on invoice.ID equals invoiceItems.InvoiceID
+                                    join stockitems in db.tblStockItems on invoiceItems.StockItemID equals stockitems.ID
                                     join stock in db.tblStocks on invoiceItems.StockID equals stock.ID
                                     where invoice.IsPaid == true
-                                    select new { invoice.ID , stock.ItemName, invoiceItems.SoldPrice };
+                                    select new { invoice.ID , stock.ItemName, stockitems.PurchasePrice, invoiceItems.SoldPrice,  };
 
         }
     }

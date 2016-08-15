@@ -212,22 +212,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblStockItem> tblStockItems
-        {
-            get
-            {
-                if ((_tblStockItems == null))
-                {
-                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
-                }
-                return _tblStockItems;
-            }
-        }
-        private ObjectSet<tblStockItem> _tblStockItems;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblStock> tblStocks
         {
             get
@@ -272,6 +256,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblUser> _tblUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblStockItem> tblStockItems
+        {
+            get
+            {
+                if ((_tblStockItems == null))
+                {
+                    _tblStockItems = base.CreateObjectSet<tblStockItem>("tblStockItems");
+                }
+                return _tblStockItems;
+            }
+        }
+        private ObjectSet<tblStockItem> _tblStockItems;
 
         #endregion
 
@@ -350,14 +350,6 @@ namespace StockManagemengBasic
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblStockItems(tblStockItem tblStockItem)
-        {
-            base.AddObject("tblStockItems", tblStockItem);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tblStocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotblStocks(tblStock tblStock)
@@ -379,6 +371,14 @@ namespace StockManagemengBasic
         public void AddTotblUsers(tblUser tblUser)
         {
             base.AddObject("tblUsers", tblUser);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblStockItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblStockItems(tblStockItem tblStockItem)
+        {
+            base.AddObject("tblStockItems", tblStockItem);
         }
 
         #endregion
@@ -1841,12 +1841,14 @@ namespace StockManagemengBasic
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="invoiceID">Initial value of the InvoiceID property.</param>
         /// <param name="soldPrice">Initial value of the SoldPrice property.</param>
-        public static tblInvoiceItem CreatetblInvoiceItem(global::System.Int32 id, global::System.Int32 invoiceID, global::System.Decimal soldPrice)
+        /// <param name="stockItemID">Initial value of the StockItemID property.</param>
+        public static tblInvoiceItem CreatetblInvoiceItem(global::System.Int32 id, global::System.Int32 invoiceID, global::System.Decimal soldPrice, global::System.Int32 stockItemID)
         {
             tblInvoiceItem tblInvoiceItem = new tblInvoiceItem();
             tblInvoiceItem.ID = id;
             tblInvoiceItem.InvoiceID = invoiceID;
             tblInvoiceItem.SoldPrice = soldPrice;
+            tblInvoiceItem.StockItemID = stockItemID;
             return tblInvoiceItem;
         }
 
@@ -2096,6 +2098,30 @@ namespace StockManagemengBasic
         private global::System.String _Category;
         partial void OnCategoryChanging(global::System.String value);
         partial void OnCategoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 StockItemID
+        {
+            get
+            {
+                return _StockItemID;
+            }
+            set
+            {
+                OnStockItemIDChanging(value);
+                ReportPropertyChanging("StockItemID");
+                _StockItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StockItemID");
+                OnStockItemIDChanged();
+            }
+        }
+        private global::System.Int32 _StockItemID;
+        partial void OnStockItemIDChanging(global::System.Int32 value);
+        partial void OnStockItemIDChanged();
 
         #endregion
 

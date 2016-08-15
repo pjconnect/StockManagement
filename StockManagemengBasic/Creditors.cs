@@ -11,9 +11,13 @@ namespace StockManagemengBasic
 {
     public partial class Creditors : UserControl
     {
+
+        StockmanagementEntities db = new StockmanagementEntities();
+
         public Creditors()
         {
             InitializeComponent();
+            dgCreditor.DataSource = db.tblCreditors.ToList();
         }
     }
 }

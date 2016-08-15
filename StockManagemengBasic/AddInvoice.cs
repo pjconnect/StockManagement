@@ -218,6 +218,7 @@ namespace StockManagemengBasic
                     InvoiceID = invoiceID,
                     Qty = qty,
                     StockID = selectedStock.ID,
+                    StockItemID = selectedStockItem.ID,
                     SoldPrice = selectedStockItem.SellPrice, // TODO: May be no need sell price because we have itemprice and discount
                     ItemPrice = selectedStockItem.SellPrice,
                 };
