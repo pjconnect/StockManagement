@@ -84,7 +84,7 @@ namespace StockManagemengBasic
                         CustomerID = customerID,
                         PaymentType = 0,
                         CreatedDate = DateTime.Now,
-                        CashierID = 0, // TODO: add chashier ID
+                        CashierID = SystemProperties.CurrentLoginUserID,
                     };
 
                     db.tblInvoices.AddObject(newInvoice);
