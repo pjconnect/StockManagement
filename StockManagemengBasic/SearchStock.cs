@@ -17,7 +17,6 @@ namespace StockManagemengBasic
         public delegate void SelectStockHandler(string stockID);
         public event SelectStockHandler SelectStock = delegate { };
 
-
         public SearchStock()
         {
             InitializeComponent();
@@ -32,7 +31,7 @@ namespace StockManagemengBasic
         {
             try
             {
-                var stockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+                var stockID = dgStockItems.SelectedRows[0].Cells["ID"].Value.ToString();
                 SelectStock(stockID);
                 this.Close();
             }
@@ -40,17 +39,29 @@ namespace StockManagemengBasic
             {
                 MessageBox.Show("No Items Added!");
             }
-            
+
         }
 
-        void RefreshGrid()
+        void RefreshStockItemGrid(string stockID = "")
         {
-            dgStock.DataSource = db.tblStockItems.ToList();
+            if(stockID == string.Empty)
+            {
+                dgStockItems.DataSource = db.tblStockItems.ToList();
+            }
+            else
+            {
+                dgStockItems.DataSource = db.tblStockItems.Where(t => t.StockID == stockID).ToList();
+            }
+        }
+
+        void RefreshStockGrid()
+        {
+            dgStock.DataSource = db.tblStocks.ToList();
         }
 
         private void SearchStock_Load(object sender, EventArgs e)
         {
-            RefreshGrid();
+            RefreshStockGrid();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -61,6 +72,15 @@ namespace StockManagemengBasic
         private void dgStock_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SelectStockItem();
+        }
+
+        private void dgStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgStock.RowCount > 0) {
+                var selectedStockID = dgStock.SelectedRows[0].Cells["ID"].Value.ToString();
+
+                RefreshStockItemGrid(selectedStockID);
+            }
         }
     }
 }

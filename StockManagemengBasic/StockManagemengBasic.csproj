@@ -147,6 +147,12 @@
     <Compile Include="AddStock.Designer.cs">
       <DependentUpon>AddStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="DebtorPay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DebtorPay.Designer.cs">
+      <DependentUpon>DebtorPay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Debtors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerSearch.resx">
       <DependentUpon>CustomerSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebtorPay.resx">
+      <DependentUpon>DebtorPay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Debtors.resx">
       <DependentUpon>Debtors.cs</DependentUpon>

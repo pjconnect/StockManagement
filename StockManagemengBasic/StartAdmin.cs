@@ -119,5 +119,11 @@ namespace StockManagemengBasic
             ClearLoader();
             loader.Controls.Add(new CreditorPay());
         }
+
+        private void debtorsPayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLoader();
+            loader.Controls.Add(new DebtorPay());
+        }
     }
 }
