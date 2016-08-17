@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtReason = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtComment = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.dgAdminPay = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnGetMoney = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAdminPay)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,12 +51,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Reason";
             // 
-            // textBox1
+            // txtReason
             // 
-            this.textBox1.Location = new System.Drawing.Point(71, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtReason.Location = new System.Drawing.Point(71, 4);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(183, 20);
+            this.txtReason.TabIndex = 1;
             // 
             // label2
             // 
@@ -67,13 +67,13 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Comment";
             // 
-            // textBox2
+            // txtComment
             // 
-            this.textBox2.Location = new System.Drawing.Point(71, 31);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(183, 112);
-            this.textBox2.TabIndex = 2;
+            this.txtComment.Location = new System.Drawing.Point(71, 31);
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(183, 112);
+            this.txtComment.TabIndex = 2;
             // 
             // label3
             // 
@@ -84,20 +84,20 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Amount";
             // 
-            // textBox3
+            // txtAmount
             // 
-            this.textBox3.Location = new System.Drawing.Point(71, 149);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(183, 20);
-            this.textBox3.TabIndex = 1;
+            this.txtAmount.Location = new System.Drawing.Point(71, 149);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(183, 20);
+            this.txtAmount.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgAdminPay
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(260, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(404, 293);
-            this.dataGridView1.TabIndex = 3;
+            this.dgAdminPay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAdminPay.Location = new System.Drawing.Point(260, 20);
+            this.dgAdminPay.Name = "dgAdminPay";
+            this.dgAdminPay.Size = new System.Drawing.Size(404, 293);
+            this.dgAdminPay.TabIndex = 3;
             // 
             // label4
             // 
@@ -125,33 +125,34 @@
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 6;
             // 
-            // button1
+            // btnGetMoney
             // 
-            this.button1.Location = new System.Drawing.Point(179, 175);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Get Money";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGetMoney.Location = new System.Drawing.Point(179, 175);
+            this.btnGetMoney.Name = "btnGetMoney";
+            this.btnGetMoney.Size = new System.Drawing.Size(75, 23);
+            this.btnGetMoney.TabIndex = 7;
+            this.btnGetMoney.Text = "Get Money";
+            this.btnGetMoney.UseVisualStyleBackColor = true;
+            this.btnGetMoney.Click += new System.EventHandler(this.btnGetMoney_Click);
             // 
             // AdmininstratorPay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGetMoney);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.dgAdminPay);
+            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtReason);
             this.Controls.Add(this.label1);
             this.Name = "AdmininstratorPay";
             this.Size = new System.Drawing.Size(667, 352);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAdminPay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,15 +161,15 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtReason;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.DataGridView dgAdminPay;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGetMoney;
     }
 }

@@ -30,23 +30,21 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchInvoice = new System.Windows.Forms.TextBox();
-            this.dgReturn = new System.Windows.Forms.DataGridView();
             this.dgInvoiceItems = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgReturn)).BeginInit();
+            this.txtReturnedQty = new System.Windows.Forms.TextBox();
+            this.txtReturnedReason = new System.Windows.Forms.TextBox();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoiceItems)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Location = new System.Drawing.Point(341, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -54,90 +52,101 @@
             // 
             // txtSearchInvoice
             // 
-            this.txtSearchInvoice.Location = new System.Drawing.Point(53, 19);
+            this.txtSearchInvoice.Location = new System.Drawing.Point(388, 18);
             this.txtSearchInvoice.Name = "txtSearchInvoice";
             this.txtSearchInvoice.Size = new System.Drawing.Size(284, 20);
             this.txtSearchInvoice.TabIndex = 1;
             // 
-            // dgReturn
-            // 
-            this.dgReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgReturn.Location = new System.Drawing.Point(6, 22);
-            this.dgReturn.Name = "dgReturn";
-            this.dgReturn.Size = new System.Drawing.Size(315, 372);
-            this.dgReturn.TabIndex = 6;
-            // 
             // dgInvoiceItems
             // 
+            this.dgInvoiceItems.AllowUserToAddRows = false;
+            this.dgInvoiceItems.AllowUserToDeleteRows = false;
+            this.dgInvoiceItems.AllowUserToResizeColumns = false;
+            this.dgInvoiceItems.AllowUserToResizeRows = false;
+            this.dgInvoiceItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgInvoiceItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgInvoiceItems.Location = new System.Drawing.Point(9, 45);
+            this.dgInvoiceItems.Location = new System.Drawing.Point(3, 18);
             this.dgInvoiceItems.Name = "dgInvoiceItems";
-            this.dgInvoiceItems.Size = new System.Drawing.Size(328, 349);
+            this.dgInvoiceItems.ReadOnly = true;
+            this.dgInvoiceItems.RowHeadersVisible = false;
+            this.dgInvoiceItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgInvoiceItems.Size = new System.Drawing.Size(328, 136);
             this.dgInvoiceItems.TabIndex = 7;
+            this.dgInvoiceItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvoiceItems_CellClick);
             // 
-            // groupBox1
+            // txtReturnedQty
             // 
-            this.groupBox1.Controls.Add(this.txtSearchInvoice);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dgInvoiceItems);
-            this.groupBox1.Location = new System.Drawing.Point(420, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(343, 400);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Invoice";
+            this.txtReturnedQty.Location = new System.Drawing.Point(231, 160);
+            this.txtReturnedQty.Name = "txtReturnedQty";
+            this.txtReturnedQty.Size = new System.Drawing.Size(100, 20);
+            this.txtReturnedQty.TabIndex = 8;
             // 
-            // button1
+            // txtReturnedReason
             // 
-            this.button1.Location = new System.Drawing.Point(363, 136);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtReturnedReason.Location = new System.Drawing.Point(196, 186);
+            this.txtReturnedReason.Multiline = true;
+            this.txtReturnedReason.Name = "txtReturnedReason";
+            this.txtReturnedReason.Size = new System.Drawing.Size(135, 36);
+            this.txtReturnedReason.TabIndex = 9;
             // 
-            // textBox2
+            // btnReturn
             // 
-            this.textBox2.Location = new System.Drawing.Point(339, 110);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(69, 20);
-            this.textBox2.TabIndex = 3;
+            this.btnReturn.Location = new System.Drawing.Point(255, 229);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(75, 23);
+            this.btnReturn.TabIndex = 10;
+            this.btnReturn.Text = "Make Return";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // button2
+            // label2
             // 
-            this.button2.Location = new System.Drawing.Point(363, 81);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(145, 189);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Reason";
             // 
-            // groupBox2
+            // label3
             // 
-            this.groupBox2.Controls.Add(this.dgReturn);
-            this.groupBox2.Location = new System.Drawing.Point(6, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(327, 400);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Returned Items";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(145, 163);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Returned Qty";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(344, 44);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(328, 346);
+            this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvoiceItems_CellClick);
             // 
             // ItemReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.txtReturnedReason);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgInvoiceItems);
+            this.Controls.Add(this.txtReturnedQty);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSearchInvoice);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Name = "ItemReturn";
-            this.Size = new System.Drawing.Size(766, 413);
-            ((System.ComponentModel.ISupportInitialize)(this.dgReturn)).EndInit();
+            this.Size = new System.Drawing.Size(766, 506);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoiceItems)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,12 +156,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchInvoice;
-        private System.Windows.Forms.DataGridView dgReturn;
         private System.Windows.Forms.DataGridView dgInvoiceItems;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.TextBox txtReturnedReason;
+        private System.Windows.Forms.TextBox txtReturnedQty;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
