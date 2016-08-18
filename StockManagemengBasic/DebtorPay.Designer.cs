@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgDebtors = new System.Windows.Forms.DataGridView();
             this.btnPay = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCustomerSearch = new System.Windows.Forms.Button();
@@ -46,21 +46,22 @@
             this.txtPaying = new System.Windows.Forms.TextBox();
             this.txtRecieved = new System.Windows.Forms.TextBox();
             this.txtCredit = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDebtors)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgDebtors
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(556, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(283, 308);
-            this.dataGridView1.TabIndex = 0;
+            this.dgDebtors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDebtors.Location = new System.Drawing.Point(355, 8);
+            this.dgDebtors.Name = "dgDebtors";
+            this.dgDebtors.Size = new System.Drawing.Size(283, 308);
+            this.dgDebtors.TabIndex = 0;
+            this.dgDebtors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDebtors_CellClick);
             // 
             // btnPay
             // 
-            this.btnPay.Location = new System.Drawing.Point(268, 307);
+            this.btnPay.Location = new System.Drawing.Point(169, 293);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(75, 23);
             this.btnPay.TabIndex = 18;
@@ -146,7 +147,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 312);
+            this.label8.Location = new System.Drawing.Point(9, 270);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 13;
@@ -155,7 +156,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 271);
+            this.label6.Location = new System.Drawing.Point(9, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 14;
@@ -164,7 +165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 230);
+            this.label5.Location = new System.Drawing.Point(9, 218);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 15;
@@ -181,36 +182,32 @@
             // 
             // txtBalance
             // 
-            this.txtBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBalance.Location = new System.Drawing.Point(109, 300);
+            this.txtBalance.Location = new System.Drawing.Point(109, 267);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.ReadOnly = true;
-            this.txtBalance.Size = new System.Drawing.Size(135, 29);
+            this.txtBalance.Size = new System.Drawing.Size(135, 20);
             this.txtBalance.TabIndex = 21;
             // 
             // txtPaying
             // 
-            this.txtPaying.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.txtPaying.Location = new System.Drawing.Point(109, 262);
+            this.txtPaying.Location = new System.Drawing.Point(109, 241);
             this.txtPaying.Name = "txtPaying";
-            this.txtPaying.Size = new System.Drawing.Size(135, 29);
+            this.txtPaying.Size = new System.Drawing.Size(135, 20);
             this.txtPaying.TabIndex = 17;
             // 
             // txtRecieved
             // 
-            this.txtRecieved.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.txtRecieved.Location = new System.Drawing.Point(109, 224);
+            this.txtRecieved.Location = new System.Drawing.Point(109, 215);
             this.txtRecieved.Name = "txtRecieved";
-            this.txtRecieved.Size = new System.Drawing.Size(135, 29);
+            this.txtRecieved.Size = new System.Drawing.Size(135, 20);
             this.txtRecieved.TabIndex = 12;
             // 
             // txtCredit
             // 
-            this.txtCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.txtCredit.Location = new System.Drawing.Point(109, 186);
+            this.txtCredit.Location = new System.Drawing.Point(109, 189);
             this.txtCredit.Name = "txtCredit";
             this.txtCredit.ReadOnly = true;
-            this.txtCredit.Size = new System.Drawing.Size(135, 29);
+            this.txtCredit.Size = new System.Drawing.Size(135, 20);
             this.txtCredit.TabIndex = 20;
             // 
             // DebtorPay
@@ -227,10 +224,10 @@
             this.Controls.Add(this.txtPaying);
             this.Controls.Add(this.txtRecieved);
             this.Controls.Add(this.txtCredit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgDebtors);
             this.Name = "DebtorPay";
             this.Size = new System.Drawing.Size(842, 408);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDebtors)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -240,7 +237,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgDebtors;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCustomerSearch;

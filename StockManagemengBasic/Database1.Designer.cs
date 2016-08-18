@@ -132,22 +132,6 @@ namespace StockManagemengBasic
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tblDebtor> tblDebtors
-        {
-            get
-            {
-                if ((_tblDebtors == null))
-                {
-                    _tblDebtors = base.CreateObjectSet<tblDebtor>("tblDebtors");
-                }
-                return _tblDebtors;
-            }
-        }
-        private ObjectSet<tblDebtor> _tblDebtors;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tblInvoiceItem> tblInvoiceItems
         {
             get
@@ -272,6 +256,22 @@ namespace StockManagemengBasic
             }
         }
         private ObjectSet<tblStockItem> _tblStockItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblDebtor> tblDebtors
+        {
+            get
+            {
+                if ((_tblDebtors == null))
+                {
+                    _tblDebtors = base.CreateObjectSet<tblDebtor>("tblDebtors");
+                }
+                return _tblDebtors;
+            }
+        }
+        private ObjectSet<tblDebtor> _tblDebtors;
 
         #endregion
 
@@ -307,14 +307,6 @@ namespace StockManagemengBasic
         public void AddTotblCustomers(tblCustomer tblCustomer)
         {
             base.AddObject("tblCustomers", tblCustomer);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the tblDebtors EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotblDebtors(tblDebtor tblDebtor)
-        {
-            base.AddObject("tblDebtors", tblDebtor);
         }
     
         /// <summary>
@@ -379,6 +371,14 @@ namespace StockManagemengBasic
         public void AddTotblStockItems(tblStockItem tblStockItem)
         {
             base.AddObject("tblStockItems", tblStockItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblDebtors EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblDebtors(tblDebtor tblDebtor)
+        {
+            base.AddObject("tblDebtors", tblDebtor);
         }
 
         #endregion
@@ -1376,12 +1376,16 @@ namespace StockManagemengBasic
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="stockItemID">Initial value of the StockItemID property.</param>
         /// <param name="date">Initial value of the Date property.</param>
-        public static tblDebtor CreatetblDebtor(global::System.Int32 id, global::System.Int32 stockItemID, global::System.DateTime date)
+        /// <param name="refInvoiceNumber">Initial value of the RefInvoiceNumber property.</param>
+        /// <param name="amountRecieved">Initial value of the AmountRecieved property.</param>
+        public static tblDebtor CreatetblDebtor(global::System.Int32 id, global::System.Int32 stockItemID, global::System.DateTime date, global::System.String refInvoiceNumber, global::System.Decimal amountRecieved)
         {
             tblDebtor tblDebtor = new tblDebtor();
             tblDebtor.ID = id;
             tblDebtor.StockItemID = stockItemID;
             tblDebtor.Date = date;
+            tblDebtor.RefInvoiceNumber = refInvoiceNumber;
+            tblDebtor.AmountRecieved = amountRecieved;
             return tblDebtor;
         }
 
@@ -1559,6 +1563,54 @@ namespace StockManagemengBasic
         private global::System.DateTime _Date;
         partial void OnDateChanging(global::System.DateTime value);
         partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RefInvoiceNumber
+        {
+            get
+            {
+                return _RefInvoiceNumber;
+            }
+            set
+            {
+                OnRefInvoiceNumberChanging(value);
+                ReportPropertyChanging("RefInvoiceNumber");
+                _RefInvoiceNumber = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RefInvoiceNumber");
+                OnRefInvoiceNumberChanged();
+            }
+        }
+        private global::System.String _RefInvoiceNumber;
+        partial void OnRefInvoiceNumberChanging(global::System.String value);
+        partial void OnRefInvoiceNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AmountRecieved
+        {
+            get
+            {
+                return _AmountRecieved;
+            }
+            set
+            {
+                OnAmountRecievedChanging(value);
+                ReportPropertyChanging("AmountRecieved");
+                _AmountRecieved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AmountRecieved");
+                OnAmountRecievedChanged();
+            }
+        }
+        private global::System.Decimal _AmountRecieved;
+        partial void OnAmountRecievedChanging(global::System.Decimal value);
+        partial void OnAmountRecievedChanged();
 
         #endregion
 
@@ -2879,24 +2931,24 @@ namespace StockManagemengBasic
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String InvoiceNumber
+        public global::System.String RefInvoiceNumber
         {
             get
             {
-                return _InvoiceNumber;
+                return _RefInvoiceNumber;
             }
             set
             {
-                OnInvoiceNumberChanging(value);
-                ReportPropertyChanging("InvoiceNumber");
-                _InvoiceNumber = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("InvoiceNumber");
-                OnInvoiceNumberChanged();
+                OnRefInvoiceNumberChanging(value);
+                ReportPropertyChanging("RefInvoiceNumber");
+                _RefInvoiceNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RefInvoiceNumber");
+                OnRefInvoiceNumberChanged();
             }
         }
-        private global::System.String _InvoiceNumber;
-        partial void OnInvoiceNumberChanging(global::System.String value);
-        partial void OnInvoiceNumberChanged();
+        private global::System.String _RefInvoiceNumber;
+        partial void OnRefInvoiceNumberChanging(global::System.String value);
+        partial void OnRefInvoiceNumberChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

@@ -54,6 +54,15 @@ namespace StockManagemengBasic
                 return;
             }
 
+            if (checkBuyForCredit.Checked)
+            {
+                if (txtInvoiceNumber.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("If you save by credti you must enter the reference invoice number");
+                    return;
+                }
+            }
+
             decimal qty = 0;
             decimal purchasedPrice = 0;
             decimal sellPrice = 0;
@@ -97,7 +106,7 @@ namespace StockManagemengBasic
                 stockItem.Qty = qty;
                 stockItem.PurchasePrice = purchasedPrice;
                 stockItem.SellPrice = sellPrice;
-                stockItem.InvoiceNumber = invoiceNumber;
+                stockItem.RefInvoiceNumber = invoiceNumber;
                 stockItem.Date = stockRecievDate;
                 stockItem.CreatedDate = DateTime.Now;
                 stockItem.StockID = ItemID;
@@ -126,7 +135,7 @@ namespace StockManagemengBasic
                     Qty = qty,
                     PurchasePrice = purchasedPrice,
                     SellPrice = sellPrice,
-                    InvoiceNumber = invoiceNumber,
+                    RefInvoiceNumber = invoiceNumber,
                     Date = stockRecievDate,
                     CreatedDate = DateTime.Now,
                     StockID = ItemID,
@@ -280,7 +289,7 @@ namespace StockManagemengBasic
                 txtPurchasedPrice.Text = SelectedStockItem.PurchasePrice.ToString();
                 txtSellPrice.Text = SelectedStockItem.SellPrice.ToString();
                 txtQty.Text = SelectedStockItem.Qty.ToString();
-                txtInvoiceNumber.Text = SelectedStockItem.InvoiceNumber;
+                txtInvoiceNumber.Text = SelectedStockItem.RefInvoiceNumber;
 
                 if (SelectedStockItem.SupplierID != null)
                 {
